@@ -1,0 +1,98 @@
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+   background: url('../green-05.jpg') no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  background-color: rgba(0,0,0,0.7);
+
+}
+
+
+/* Custom page CSS
+-------------------------------------------------- */
+/* Not required for template or sticky footer method. */
+
+body > .container {
+  padding: 60px 15px 0;
+}
+.container .text-muted {
+  margin: 20px 0;
+}
+
+.footer > .container {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+code {
+  font-size: 80%;
+}
+
+#navmain{
+    
+background: rgba(0, 0, 0, 0.9);
+border: none;
+max-height: 10%;
+border-radius: 0px;
+}
+
+#divlogo{
+    
+   font-size: 50px;
+   
+}
+
+#pp{
+    
+    margin-top: -20%;
+}
+
+#menuspan{
+    
+    color:white;
+    font-size: 20px;
+    padding: 10px;
+}
+
+#menuspan:hover{
+    
+    color: #1e7145;
+}
+
+.form-group{
+    
+    padding: 10px;
+}
+
+
+#bc{
+    
+    background-color: rgba(0,0,0,0.9);
+    color: white;
+    margin-top: 20%;
+    
+}
+
+.selew{
+    
+    color:white;
+}
+
+.navbar .dropdown-menu:after{
+    
+    color:white;
+}
