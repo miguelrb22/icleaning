@@ -45,13 +45,13 @@
             <div class="row ">
 
 
-                <form  id="bc" class="form-inline well" role="form" method="POST" action="php/prueba.php">
+                <form  id="bc" class="form-inline well" role="form" method="POST" action="">
                     
                     <div style="margin-left: 20%;">
                         
                         <div class="form-group">
                             <select  style="color:white;"  class="selectbuscador form-control">
-                                <option  style="color:white;" value="">Exteriores</option>
+                                <?php require_once 'php/prueba.php'; ?>
 
                             </select>
                         </div>
