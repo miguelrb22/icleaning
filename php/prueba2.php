@@ -2,8 +2,8 @@
 
 include_once 'database/DBAccess.php';
 
-$dbAccess = new DBAccess("SELECT * from especialidad");
-$result = $dbAccess->getResult();
+$dbAccess = new DBAccess();
+$result = $dbAccess->getSelect("SELECT * from especialidad");
 
 foreach($result as $row){
     
