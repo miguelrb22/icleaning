@@ -51,7 +51,7 @@
                         
                         <div class="form-group">
                             <select  style="color:white;"  class="selectbuscador form-control">
-                                <?php require_once 'php/prueba.php'; ?>
+                                <?php require_once 'php/prueba2.php'; ?>
 
                             </select>
                         </div>
