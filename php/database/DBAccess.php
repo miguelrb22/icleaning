@@ -48,5 +48,14 @@ class DBAccess
         
         $this->mysqli->close();
     }
+    
+    //Delete
+    public function delete($sentencia) {
+        
+        $this->query = $sentencia;
+        //Codigo para eliminar
+        
+        $this->mysqli->close();
+    }
 }
 

@@ -7,19 +7,19 @@
 class Provincia 
 {
     //Properties
-    protected $idEspecialidad;
+    protected $idProvincia;
     protected $nombreProvincia;
     
     //Construct
-    function __construct($idEspecialidad, $nombreProvincia) {
+    function __construct($idProvincia, $nombreProvincia) {
         
-        $this->idEspecialidad = $idEspecialidad;
+        $this->idProvincia = $idProvincia;
         $this->nombreProvincia = $nombreProvincia;
     }
     
     //Methods
-    public function getIdEspecialidad() {
-        return $this->idEspecialidad;
+    public function getIdProvincia() {
+        return $this->idProvincia;
     }
     
     public function getNombreProvincia() {
