@@ -64,12 +64,15 @@
 <div class="container">
     <div class="row ">
         <form  id="bc" class="form-inline well" role="form">
-            <div style="margin-left: 20%;"><div class="form-group">
+            <div style="margin-left: 20%;">
+                
+                <div class="form-group">
                     <select  style="color:white;"  class="selectbuscador form-control">
-                        <option  style="color:white;" value="">Exteriores</option>
+                        <?php require_once 'php/prueba2.php'; ?>
 
                     </select>
                 </div>
+                
                 <div class="form-group">
                     <select style="color:white;" class="selectbuscador2 form-control" minlength="60">
                         <option  style="color:white;" value="">Piscinas</option>

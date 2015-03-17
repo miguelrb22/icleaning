@@ -1,7 +1,5 @@
 <?php
 
-use mysqli;
-
 /**
  * @author Juan Serna Jaen <nyoronsheppard@gmail.com>
  * @package database
@@ -35,7 +33,7 @@ class DBAccess
     public function insert($sentencia) {
         
         $this->query = $sentencia;
-        //Codigo para insertar
+        $this->mysqli->query($this->query);
         
         $this->mysqli->close();
     }
@@ -44,7 +42,7 @@ class DBAccess
     public function update($sentencia) {
         
         $this->query = $sentencia;
-        //Codigo para actualizar
+        $this->mysqli->query($this->query);
         
         $this->mysqli->close();
     }
@@ -53,7 +51,7 @@ class DBAccess
     public function delete($sentencia) {
         
         $this->query = $sentencia;
-        //Codigo para eliminar
+        $this->mysqli->query($this->query);
         
         $this->mysqli->close();
     }

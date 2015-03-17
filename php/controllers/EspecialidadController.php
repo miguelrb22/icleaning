@@ -1,8 +1,8 @@
 <?php
 
-include_once '../models/Especialidad.php';
-include_once '../database/DBAccess.php';
-include_once 'ArrayList.php';
+include_once 'php/models/Especialidad.php';
+include_once 'php/database/DBAccess.php';
+include_once 'php/controllers/ArrayList.php';
 
 /**
  * @author Juan Serna Jaen <nyoronsheppard@gmail.com>
@@ -15,37 +15,46 @@ class EspecialidadController {
     //Constructor
     
     //Methods
+    //Tested
     public function getListaEspecialidades() {
         
-        $listaEspecialidades = new ArrayList();
+        //$listaEspecialidades = new ArrayList();
+        $listaEspecialidad = array();
         
         $dbAccess = new DBAccess();
         $result = $dbAccess->getSelect("SELECT * from especialidad");
 
         foreach($result as $row){
         
-            $especialidad = new Especialidad($row['idespecialidad'], $row['tipo_especialidad'], $row['salario_fijo'], $row['cobro_hora']);
-            $listaEspecialidades->addItem($especialidad);   
+            $especialidad = new Especialidad($row['idespecialidad'], $row['tipo_especialidad'], $row['salario_fijo'], $row['cobro_hora']); 
+            
+            array_push($listaEspecialidad, $especialidad);
+            
         }
         
-        return $listaEspecialidades;
+        return $listaEspecialidad;
     }
     
+    //Tested
     public function getEspecialidad($idEspecialidad) {
         
         $dbAccess = new DBAccess();
         $result = $dbAccess->getSelect("SELECT * from especialidad WHERE idespecialidad=" . $idEspecialidad);
         
-        $especialidad = new Especialidad($result['idespecialidad'], $row['tipo_especialidad'], $row['salario_fijo'], $row['cobro_hora']);
+        foreach($result as $row){
+            $especialidad = new Especialidad($row['idespecialidad'], $row['tipo_especialidad'], $row['salario_fijo'], $row['cobro_hora']);  
+        }
         
         return $especialidad;
     }
     
+    //Tested
     public function insertEspecialidad($especialidad) {
         
         $dbAccess = new DBAccess();
-        $dbAccess->insert("INSERT INTO especialidad ('tipo_especialidad', 'salario_fijo', 'cobro_hora') VALUES (" . 
-                          $especialidad->getTipoEspecialidad() . ", " . $especialidad->getSalarioFijo() . ", " . $especialidad->getCobroHora() . ")");
+        $dbAccess->insert("INSERT INTO especialidad (tipo_especialidad, salario_fijo, cobro_hora) VALUES ('" . 
+                          $especialidad->getTipoEspecialidad() . "', " . $especialidad->getSalarioFijo() . ", " . $especialidad->getCobroHora() . ")");
+   
     }
     
     public function updateEspecialidad($especialidad) {
