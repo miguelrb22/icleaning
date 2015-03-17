@@ -57,16 +57,18 @@ class EspecialidadController {
    
     }
     
+    //Tested
     public function updateEspecialidad($especialidad) {
         
         $dbAccess = new DBAccess();
-        $dbAccess->update("UPDATE especialidad SET 'tipo_especialidad'=" . $especialidad->getTipoEspecialidad() . ", 'salario_fijo=" . $especialidad->getSalarioFijo() .
-                          ", 'cobro_hora=" . $especialidad->getCobroHora() . " WHERE 'idespecialidad'=" . $especialidad->getIdEspecialidad());
+        $dbAccess->update("UPDATE especialidad SET tipo_especialidad='" . $especialidad->getTipoEspecialidad() . "', salario_fijo=" . $especialidad->getSalarioFijo() .
+                          ", cobro_hora=" . $especialidad->getCobroHora() . " WHERE idespecialidad=" . $especialidad->getIdEspecialidad());
     }
     
+    //Tested
     public function deleteEspecialidad($especialidad) { 
         
         $dbAccess = new DBAccess();
-        $dbAccess->delete("DELETE FROM especialidad WHERE 'idespecialidad'=" . $especialidad->getIdEspecialidad());
+        $dbAccess->delete("DELETE FROM especialidad WHERE idespecialidad=" . $especialidad->getIdEspecialidad());
     }
 }

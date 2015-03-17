@@ -20,7 +20,19 @@ echo "<option  style='color:white;' value='" .$esp->getIdEspecialidad(). "'>" .$
 */
 
 //Insertar
-$espCon = new EspecialidadController();
+/*$espCon = new EspecialidadController();
 
 $especialidad = new Especialidad(11, "Wololo", 100, 10);
-$espCon->insertEspecialidad($especialidad);
+$espCon->insertEspecialidad($especialidad);*/
+
+//Update
+/*$espCon = new EspecialidadController();
+
+$especialidad = new Especialidad(14, "Asdf", 150, 11);
+$espCon->updateEspecialidad($especialidad);*/
+
+//Delete
+/*$espCon = new EspecialidadController();
+
+$especialidad = new Especialidad(14, "Asdf", 150, 11);
+$espCon->deleteEspecialidad($especialidad);*/
