@@ -38,27 +38,29 @@ body > .container {
   padding-left: 15px;
 }
 
-code {
-  font-size: 80%;
-}
 
 #navmain{
     
 background: rgba(0, 0, 0, 0.9);
 border: none;
-max-height: 10%;
+max-height: 4% !important;
 border-radius: 0px;
+}
+
+.mainheader{
+    max-height: 4% !important;
+
+
 }
 
 #divlogo{
     
-   font-size: 50px;
+   font-size: 40px;
    
 }
 
 #pp{
-    
-    margin-top: -20%;
+
 }
 
 #menuspan{
