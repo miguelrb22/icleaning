@@ -6,7 +6,7 @@ include_once 'ArrayList.php';
 
 /**
  * @author Juan Serna Jaen <nyoronsheppard@gmail.com>
- * @package models
+ * @package controllers
  */
 class CompraController {
     
