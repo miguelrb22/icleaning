@@ -1,6 +1,6 @@
 <?php
 
-use mysqli;
+
 
 /**
  * @author Juan Serna Jaen <nyoronsheppard@gmail.com>

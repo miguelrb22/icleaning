@@ -20,13 +20,6 @@
     <link href="css/style.css" rel="stylesheet">
 
 
-
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
 </head>
 
 <body>
@@ -42,7 +35,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="index.php" style="height:100px">
-                    <div id="pp"> <img src="logo.png" width="192" height="60"></img> </div>
+                    <div id="pp"> <img src="logo.png" width="192" height="60"></div>
                 </a>
             </div>
             <div id="navbar" class="navbar-collapse collapse" style="margin-top:none">
@@ -109,7 +102,7 @@
                 <h4 class="modal-title" id="myModalLabel">Control de acceso</h4>
             </div>
             <div class="modal-body">
-                <form class="form-inline row">
+                <form class="form-inline row" method="post" action="php/logic/login.php">
 
 
                     <div class="form-group col col-lg-12 col-xs-12 col-md-12 col-sm-12">
@@ -117,7 +110,7 @@
                         <div class="input-group">
                             <div class="input-group-addon"><i class="fa fa-user-plus"></i>
                             </div>
-                            <input type="text" class="form-control" id="Usuariot" placeholder="Usuario">
+                            <input type="text" name="name" class="form-control" id="Usuariot" placeholder="Usuario">
                         </div>
                     </div>
 
@@ -125,15 +118,17 @@
                         <label class="sr-only" for="exampleInputAmount">Contraseña</label>
                         <div class="input-group">
                             <div class="input-group-addon"><i class="fa fa-key"></i></div>
-                            <input type="text" class="form-control" id="Contraseña" placeholder="Contraseá">
+                            <input type="text" name="pass" class="form-control" id="Contraseña" placeholder="Contraseá">
                         </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-primary">Entrar</button>
                     </div>
                 </form>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-primary">Entrar</button>
-            </div>
+
         </div>
     </div>
 </div>
