@@ -6,8 +6,7 @@ include_once 'ArrayList.php';
 
 /**
  * @author Juan Serna Jaen <nyoronsheppard@gmail.com>
- * @tester Miguel Ruiz Bas <Miguelruizbas@gmail.com>
- * @package models
+ * @package controllers
  */
 class ZonaController {
     
@@ -16,28 +15,22 @@ class ZonaController {
     //Construct
     
     //Methods
-    //TESTED
     public function getListaZonas() {
         
-        $listaZonas = Array();
+        $listaZonas = new ArrayList();
         
         $dbAccess = new DBAccess();
         $result = $dbAccess->getSelect("SELECT * from zona");
 
-
         foreach($result as $row){
         
             $zona = new Zona($row['idzona'], $row['provincia_idprovincia'], $row['nombre']);
-            array_push($listaZonas,$zona);
-
-
+            $listaZonas->addItem($zona);   
         }
         
         return $listaZonas;
     }
-
-
-
+    
     public function getZona($idZona) {
         
         $dbAccess = new DBAccess();
@@ -66,7 +59,3 @@ class ZonaController {
         $dbAccess->delete("DELETE FROM 'zona' WHERE 'idzona'=" . $zona->getIdZona());
     }
 }
-
-
-$aux = new ZonaController();
-$aux->getListaZonas();
