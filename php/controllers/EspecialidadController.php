@@ -2,7 +2,6 @@
 
 include_once 'php/models/Especialidad.php';
 include_once 'php/database/DBAccess.php';
-include_once 'php/controllers/ArrayList.php';
 
 /**
  * @author Juan Serna Jaen <nyoronsheppard@gmail.com>
@@ -15,10 +14,10 @@ class EspecialidadController {
     //Constructor
     
     //Methods
+    
     //Tested
     public function getListaEspecialidades() {
         
-        //$listaEspecialidades = new ArrayList();
         $listaEspecialidad = array();
         
         $dbAccess = new DBAccess();

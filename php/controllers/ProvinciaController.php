@@ -1,8 +1,7 @@
 <?php
 
-include_once '../models/Provincia.php';
-include_once '../database/DBAccess.php';
-include_once 'ArrayList.php';
+include_once 'php/models/Provincia.php';
+include_once 'php/database/DBAccess.php';
 
 /**
  * @author Juan Serna Jaen <nyoronsheppard@gmail.com>
@@ -15,9 +14,10 @@ class ProvinciaController {
     //Construct
     
     //Methods
+    //Tested
     public function getListaProvincias() {
         
-        $listaProvincias = new ArrayList();
+        $listaProvincias = array();
         
         $dbAccess = new DBAccess();
         $result = $dbAccess->getSelect("SELECT * from provincia");
@@ -25,38 +25,45 @@ class ProvinciaController {
         foreach($result as $row){
         
             $provincia = new Provincia($row['idprovincia'], $row['nombre_provincia']);
-            $listaProvincias->addItem($provincia);   
+            array_push($listaProvincias, $provincia); 
         }
         
         return $listaProvincias;
     }
     
+    //Tested
     public function getProvincia($idProvincia) {
         
         $dbAccess = new DBAccess();
-        $result = $dbAccess->getSelect("SELECT * from provincia where idprovincia =" . $idProvincia);
+        $result = $dbAccess->getSelect("SELECT * from provincia where idprovincia=" . $idProvincia);
             
-        $provincia = new Provincia($result['idprovincia'], $result['nombre_provincia']);
+        foreach($result as $row){
+        
+            $provincia = new Provincia($row['idprovincia'], $row['nombre_provincia']);
+        }
         
         return $provincia;
     }
     
+    //Tested
     public function insertProvincia($provincia) {
         
         $dbAccess = new DBAccess();
-        $dbAccess->insert("INSERT INTO provincia ('nombre_provincia') VALUES (" . $provincia->getNombreProvincia() . ")");
+        $dbAccess->insert("INSERT INTO provincia (nombre_provincia) VALUES ('" . $provincia->getNombreProvincia() . "')");
     }
     
+    //Tested
     public function updateProvincia($provincia) {
         
         $dbAccess = new DBAccess();
-        $dbAccess->update("UPDATE provincia SET 'nombre_provincia'=" . $provincia->getNombreProvincia() . "WHERE 'idprovincia'=" . $provincia->getIdProvincia());
+        $dbAccess->update("UPDATE provincia SET nombre_provincia='" . $provincia->getNombreProvincia() . "' WHERE idprovincia=" . $provincia->getIdProvincia());
     }
     
+    //Tested
     public function deleteProvincia($provincia) {
         
         $dbAccess = new DBAccess();
-        $dbAccess->delete("DELETE FROM provincia WHERE 'idprovincia'=" . $provincia->getIdProvincia());
+        $dbAccess->delete("DELETE FROM provincia WHERE idprovincia=" . $provincia->getIdProvincia());
     }
 }
 

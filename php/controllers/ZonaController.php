@@ -1,8 +1,7 @@
 <?php
 
-include_once '../models/Zona.php';
-include_once '../database/DBAccess.php';
-include_once 'ArrayList.php';
+include_once 'php/models/Zona.php';
+include_once 'php/database/DBAccess.php';
 
 /**
  * @author Juan Serna Jaen <nyoronsheppard@gmail.com>
@@ -15,9 +14,10 @@ class ZonaController {
     //Construct
     
     //Methods
+    //Tested
     public function getListaZonas() {
         
-        $listaZonas = new ArrayList();
+        $listaZonas = array();
         
         $dbAccess = new DBAccess();
         $result = $dbAccess->getSelect("SELECT * from zona");
@@ -25,18 +25,22 @@ class ZonaController {
         foreach($result as $row){
         
             $zona = new Zona($row['idzona'], $row['provincia_idprovincia'], $row['nombre']);
-            $listaZonas->addItem($zona);   
+            array_push($listaZonas, $zona);
         }
         
         return $listaZonas;
     }
     
+    //Tested
     public function getZona($idZona) {
         
         $dbAccess = new DBAccess();
         $result = $dbAccess->getSelect("SELECT * from zona WHERE idzona=" . $idZona);
         
-        $zona = new Zona($result['idzona'], $result['provincia_idprovincia'], $result['nombre']);
+        foreach($result as $row){
+        
+            $zona = new Zona($row['idzona'], $row['provincia_idprovincia'], $row['nombre']);
+        }
         
         return $zona;
     }
@@ -44,18 +48,20 @@ class ZonaController {
     public function insertZona($zona) {
         
         $dbAccess = new DBAccess();
-        $dbAccess->insert("INSERT INTO zona ('provincia_idprovincia', 'nombre') VALUES (" . $zona->getFkIdProvincia() . "," . $zona->getNombre() . ")");
+        $dbAccess->insert("INSERT INTO zona (provincia_idprovincia, nombre) VALUES (" . $zona->getFkIdProvincia() . ",'" . $zona->getNombre() . "')");
     }
     
+    //Tested
     public function updateZona($zona) {
         
         $dbAccess = new DBAccess();
-        $dbAccess->update("UPDATE zona SET 'provincia_idprovincia'=" . $zona->getFkIdProvincia() . ", 'nombre'=" . $zona->getNombre() . "WHERE 'idzona'=" . $zona->getIdZona());
+        $dbAccess->update("UPDATE zona SET provincia_idprovincia=" . $zona->getFkIdProvincia() . ", nombre='" . $zona->getNombre() . "' WHERE idzona=" . $zona->getIdZona());
     }
     
+    //Tested
     public function deleteZona($zona) {
         
         $dbAccess = new DBAccess();
-        $dbAccess->delete("DELETE FROM 'zona' WHERE 'idzona'=" . $zona->getIdZona());
+        $dbAccess->delete("DELETE FROM zona WHERE idzona=" . $zona->getIdZona());
     }
 }

@@ -1,8 +1,7 @@
 <?php
 
-include_once '../models/Factura.php';
-include_once '../database/DBAccess.php';
-include_once 'ArrayList.php';
+include_once 'php/models/FacturaController.php';
+include_once 'php/database/DBAccess.php';
 
 /**
  * @author Juan Serna Jaen <nyoronsheppard@gmail.com>
@@ -15,9 +14,10 @@ class FacturaController {
     //Construct
     
     //Methods
+    //Tested
     public function getListaFacturas() {
         
-        $listaFacturas = new ArrayList();
+        $listaFacturas = array();
         
         $dbAccess = new DBAccess();
         $result = $dbAccess->getSelect("SELECT * from factura");
@@ -25,39 +25,46 @@ class FacturaController {
         foreach($result as $row){
         
             $factura = new Factura($row['idfactura'], $row['mes'], $row['total_importe'], $row['pagada']);
-            $listaFacturas->addItem($factura);   
+            array_push($listaFacturas, $factura);
         }
         
         return $listaFacturas;
     }
     
+    //Tested
     public function getFactura($idFactura) {
         
         $dbAccess = new DBAccess();
         $result = $dbAccess->getSelect("SELECT * from factura WHERE idfactura=" . $idFactura);
         
-        $factura = new Factura($result['idfactura'], $row['mes'], $row['total_importe'], $row['pagada']);
+        foreach($result as $row){
+        
+            $factura = new Factura($row['idfactura'], $row['mes'], $row['total_importe'], $row['pagada']);
+        }
         
         return $factura;
     }
     
+    //Tested
     public function insertFactura($factura) {
         
         $dbAccess = new DBAccess();
-        $dbAccess->insert("INSERT INTO factura ('mes', 'total_importe', 'pagada') VALUES (" .
-                          $factura->getMes() . ", " . $factura->getTotalImporte() . ", " . $factura->getPagada() . ")");
+        $dbAccess->insert("INSERT INTO factura (mes, total_importe, pagada) VALUES ('" .
+                          $factura->getMes() . "', " . $factura->getTotalImporte() . ", '" . $factura->getPagada() . "')");
     }
     
+    //Tested
     public function updateFactura($factura) {
         
         $dbAccess = new DBAccess();
-        $dbAccess->update("UPDATE factura SET 'mew'=" . $factura->getMes() . ", 'total_importe'=" . $factura->getTotalImporte() . 
-                          ", 'pagada'=" . $factura->getPagada() . " WHERE 'idfactura'=" . $factura->getIdFactura());
+        $dbAccess->update("UPDATE factura SET mes='" . $factura->getMes() . "', total_importe=" . $factura->getTotalImporte() . 
+                          ", pagada='" . $factura->getPagada() . "' WHERE idfactura=" . $factura->getIdFactura());
     }
     
+    //Tested
     public function deleteFactura($factura) {
         
         $dbAccess = new DBAccess();
-        $dbAccess->delete("DELETE FROM factura WHERE 'idfactura'=" . $factura->getIdFactura());
+        $dbAccess->delete("DELETE FROM factura WHERE idfactura=" . $factura->getIdFactura());
     }
 }

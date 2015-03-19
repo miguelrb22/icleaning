@@ -1,8 +1,7 @@
 <?php
 
-include_once '../models/Ocupacion.php';
-include_once '../database/DBAccess.php';
-include_once 'ArrayList.php';
+include_once 'php/models/Ocupacion.php';
+include_once 'php/database/DBAccess.php';
 
 /**
  * @author Juan Serna Jaen <nyoronsheppard@gmail.com>
@@ -15,9 +14,10 @@ class OcupacionController {
     //Construct
     
     //Methods
+    //Tested
     public function getListaOcupaciones() {
         
-        $listaOcupaciones = new ArrayList();
+        $listaOcupaciones = array();
         
         $dbAccess = new DBAccess();
         $result = $dbAccess->getSelect("SELECT * from ocupacion");
@@ -25,18 +25,22 @@ class OcupacionController {
         foreach($result as $row){
         
             $ocupacion = new Ocupacion($row['idocupacion'], $row['empleado_idempleado'], $row['fecha_ocupado']);
-            $listaOcupaciones->addItem($ocupacion);   
+            array_push($listaOcupaciones, $ocupacion);   
         }
         
         return $listaOcupaciones;
     }
     
+    //Tested
     public function getOcupacion($idOcupacion) {
         
         $dbAccess = new DBAccess();
         $result = $dbAccess->getSelect("SELECT * from ocupacion WHERE idocupacion=" . $idOcupacion);
         
-        $ocupacion = new Ocupacion($result['idocupacion'], $result['empleado_idempleado'], $result['fecha_ocupado']);
+        foreach($result as $row){
+        
+            $ocupacion = new Ocupacion($row['idocupacion'], $row['empleado_idempleado'], $row['fecha_ocupado']);  
+        }
         
         return $ocupacion;
     }
@@ -44,20 +48,23 @@ class OcupacionController {
     public function insertOcupacion($ocupacion) {
         
         $dbAccess = new DBAccess();
-        $dbAccess->insert("INSERT INTO ocupacion ('empleado_idempleado', 'fecha_ocupado') VALUES (" . 
-                          $ocupacion->getFkIdEmpleado() . ", " . $ocupacion->getFechaOcupado() . ")");
+        $dbAccess->insert("INSERT INTO ocupacion (empleado_idempleado, fecha_ocupado) VALUES (" . 
+                          $ocupacion->getFkIdEmpleado() . ", '" . $ocupacion->getFechaOcupado() . "')");
     }
     
+    //Tested
     public function updateOcupacion($ocupacion) {
         
         $dbAccess = new DBAccess();
-        $dbAccess->update("UPDATE ocupacion SET 'empleado_idempleado'=" . $ocupacion->getFkIdEmpleado() . ", 'fecha_ocupado'=" .
-                          $ocupado->getFechaOcupado() . " WHERE 'idocupacion'=" . $ocupacion->getIdOcupacion());
+        $dbAccess->update("UPDATE ocupacion SET empleado_idempleado=" . $ocupacion->getFkIdEmpleado() . ", fecha_ocupado='" .
+                          $ocupacion->getFechaOcupado() . "' WHERE idocupacion=" . $ocupacion->getIdOcupacion());
+        
     }
     
+    //Tested
     public function deleteOcupacion($ocupacion) {
         
         $dbAccess = new DBAccess();
-        $dbAccess->delete("DELETE FROM ocupacion WHERE 'idocupacion'=" . $ocupacion->getIdOcupacion());
+        $dbAccess->delete("DELETE FROM ocupacion WHERE idocupacion=" . $ocupacion->getIdOcupacion());
     }
 }
