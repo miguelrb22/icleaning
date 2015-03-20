@@ -34,7 +34,7 @@ class DBAccess
         
         $this->query = $sentencia;
         $this->mysqli->query($this->query);
-        
+
         $this->mysqli->close();
     }
     

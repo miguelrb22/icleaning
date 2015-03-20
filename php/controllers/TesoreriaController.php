@@ -24,8 +24,8 @@ class TesoreriaController {
 
         foreach($result as $row){
         
-            $tesoreria = new Tesoreria($row['idtesoreria'], $row['tipo_tesoreria_idtipo_tesoreria'], $row['factura_idfactura'], $row['compra_idcompra'], 
-                                       $row['nomina_idnomina'], $row['fecha_importe'], $row['ingresado'], $row['importe']);
+            $tesoreria = new Tesoreria($row['idtesoreria'], $row['idtipo_tesoreria'], $row['idfactura'], $row['idcompra'],
+                                       $row['idnomina'], $row['fecha_importe'], $row['ingresado'], $row['importe']);
             array_push($listaTesoreria, $tesoreria);
         }
         
@@ -40,17 +40,18 @@ class TesoreriaController {
         
         foreach($result as $row){
         
-            $tesoreria = new Tesoreria($row['idtesoreria'], $row['tipo_tesoreria_idtipo_tesoreria'], $row['factura_idfactura'], $row['compra_idcompra'], 
-                                       $row['nomina_idnomina'], $row['fecha_importe'], $row['ingresado'], $row['importe']);
+            $tesoreria = new Tesoreria($row['idtesoreria'], $row['idtipo_tesoreria'], $row['idfactura'], $row['idcompra'],
+                                       $row['idnomina'], $row['fecha_importe'], $row['ingresado'], $row['importe']);
         }
         
         return $tesoreria;
     }
-    
+
+    //testes
     public function insertTesoreria($tesoreria) {
 
         $dbAccess = new DBAccess();
-        $dbAccess->insert("INSERT INTO tesoreria (tipo_tesoreria_idtipo_tesoreria, factura_idfactura, compra_idcompra, nomina_idnomina, fecha_importe, ingresado, importe) VALUES (" . 
+        $dbAccess->insert("INSERT INTO tesoreria (idtipo_tesoreria,idfactura, idcompra, idnomina, fecha_importe, ingresado, importe) VALUES (" .
                           $tesoreria->getfkIdTipoTesoreria() . ", " . $tesoreria->getfkIdFactura() . ", " . $tesoreria->getFkIdCompra() . ", " . $tesoreria->getFkIdNomina() .
                           ", '" . $tesoreria->getFechaImporte() . "', " . $tesoreria->getIngresado() . ", " . $tesoreria->getImporte() . ")");
     }
@@ -58,8 +59,8 @@ class TesoreriaController {
     public function updateTesoreria($tesoreria) {
         
         $dbAccess = new DBAccess();
-        $dbAccess->update("UPDATE tesoreria SET tipo_tesoreria_idtipo_tesoreria=" . $tesoreria->getfkIdTipoTesoreria() . ", factura_idfactura=" . $tesoreria->getfkIdFactura() .
-                          ", compra_idcompra=" . $tesoreria->getFkIdCompra() . ", nomina_idnomina=" . $tesoreria->getFkIdNomina() . ", fecha_importe='" . $tesoreria->getFechaImporte() . 
+        $dbAccess->update("UPDATE tesoreria SET idtipo_tesoreria=" . $tesoreria->getfkIdTipoTesoreria() . ", idfactura=" . $tesoreria->getfkIdFactura() .
+                          ", idcompra=" . $tesoreria->getFkIdCompra() . ", idnomina=" . $tesoreria->getFkIdNomina() . ", fecha_importe='" . $tesoreria->getFechaImporte() .
                           "', ingresado=" . $tesoreria->getIngresado() . ", importe=" . $tesoreria->getImporte() . " WHERE idtesoreria=" . $tesoreria->getIdTesoreria());
     }
     

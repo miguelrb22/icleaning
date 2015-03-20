@@ -24,7 +24,7 @@ class OcupacionController {
 
         foreach($result as $row){
         
-            $ocupacion = new Ocupacion($row['idocupacion'], $row['empleado_idempleado'], $row['fecha_ocupado']);
+            $ocupacion = new Ocupacion($row['idocupacion'], $row['idempleado'], $row['fecha_ocupado']);
             array_push($listaOcupaciones, $ocupacion);   
         }
         
@@ -39,16 +39,18 @@ class OcupacionController {
         
         foreach($result as $row){
         
-            $ocupacion = new Ocupacion($row['idocupacion'], $row['empleado_idempleado'], $row['fecha_ocupado']);  
+            $ocupacion = new Ocupacion($row['idocupacion'], $row['idempleado'], $row['fecha_ocupado']);
         }
         
         return $ocupacion;
     }
-    
+
+
+    //Tested
     public function insertOcupacion($ocupacion) {
         
         $dbAccess = new DBAccess();
-        $dbAccess->insert("INSERT INTO ocupacion (empleado_idempleado, fecha_ocupado) VALUES (" . 
+        $dbAccess->insert("INSERT INTO ocupacion (idempleado, fecha_ocupado) VALUES (" .
                           $ocupacion->getFkIdEmpleado() . ", '" . $ocupacion->getFechaOcupado() . "')");
     }
     
@@ -56,7 +58,7 @@ class OcupacionController {
     public function updateOcupacion($ocupacion) {
         
         $dbAccess = new DBAccess();
-        $dbAccess->update("UPDATE ocupacion SET empleado_idempleado=" . $ocupacion->getFkIdEmpleado() . ", fecha_ocupado='" .
+        $dbAccess->update("UPDATE ocupacion SET idempleado=" . $ocupacion->getFkIdEmpleado() . ", fecha_ocupado='" .
                           $ocupacion->getFechaOcupado() . "' WHERE idocupacion=" . $ocupacion->getIdOcupacion());
         
     }

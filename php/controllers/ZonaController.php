@@ -24,7 +24,7 @@ class ZonaController {
 
         foreach($result as $row){
         
-            $zona = new Zona($row['idzona'], $row['provincia_idprovincia'], $row['nombre']);
+            $zona = new Zona($row['idzona'], $row['idprovincia'], $row['nombre']);
             array_push($listaZonas, $zona);
         }
         
@@ -39,23 +39,25 @@ class ZonaController {
         
         foreach($result as $row){
         
-            $zona = new Zona($row['idzona'], $row['provincia_idprovincia'], $row['nombre']);
+            $zona = new Zona($row['idzona'], $row['idprovincia'], $row['nombre']);
         }
         
         return $zona;
     }
-    
+
+
+    //Tested
     public function insertZona($zona) {
         
         $dbAccess = new DBAccess();
-        $dbAccess->insert("INSERT INTO zona (provincia_idprovincia, nombre) VALUES (" . $zona->getFkIdProvincia() . ",'" . $zona->getNombre() . "')");
+        $dbAccess->insert("INSERT INTO zona (idprovincia, nombre) VALUES (" . $zona->getFkIdProvincia() . ",'" . $zona->getNombre() . "')");
     }
     
     //Tested
     public function updateZona($zona) {
         
         $dbAccess = new DBAccess();
-        $dbAccess->update("UPDATE zona SET provincia_idprovincia=" . $zona->getFkIdProvincia() . ", nombre='" . $zona->getNombre() . "' WHERE idzona=" . $zona->getIdZona());
+        $dbAccess->update("UPDATE zona SET idprovincia=" . $zona->getFkIdProvincia() . ", nombre='" . $zona->getNombre() . "' WHERE idzona=" . $zona->getIdZona());
     }
     
     //Tested

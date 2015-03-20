@@ -24,7 +24,7 @@ class TrabajoController {
 
         foreach($result as $row){
         
-            $trabajo = new Trabajo($row['idtrabajo'], $row['cliente_idcliente'], $row['empleado_idempleado'], $row['valoracion'], $row['factura_idfactura'], 
+            $trabajo = new Trabajo($row['idtrabajo'], $row['idcliente'], $row['idempleado'], $row['valoracion'], $row['idfactura'],
                                    $row['importe_total'], $row['finalizado'], $row['direccion_lugar'], $row['estimacion_horas'], $row['gasto_total'], 
                                    $row['importe_recibido'], $row['fecha_inicio'], $row['fecha_fin']);
             array_push($listaTrabajos, $trabajo);  
@@ -41,18 +41,20 @@ class TrabajoController {
         
         foreach($result as $row){
         
-            $trabajo = new Trabajo($row['idtrabajo'], $row['cliente_idcliente'], $row['empleado_idempleado'], $row['valoracion'], $row['factura_idfactura'], 
+            $trabajo = new Trabajo($row['idtrabajo'], $row['idcliente'], $row['idempleado'], $row['valoracion'], $row['idfactura'],
                                    $row['importe_total'], $row['finalizado'], $row['direccion_lugar'], $row['estimacion_horas'], $row['gasto_total'], 
                                    $row['importe_recibido'], $row['fecha_inicio'], $row['fecha_fin']); 
         }
         
         return $trabajo;
     }
-    
+
+
+    //tested
     public function insertTrabajo($trabajo) {
         
         $dbAccess = new DBAccess();
-        $dbAccess->insert("INSERT INTO trabajo (cliente_idcliente, empleado_idempleado, valoracion, factura_idfactura, importe_total, finalizado, "
+        $dbAccess->insert("INSERT INTO trabajo (idcliente, idempleado, valoracion, idfactura, importe_total, finalizado, "
                           . "direccion_lugar, estimacion_horas, gasto_total, importe_recibido, fecha_inicio, fecha_fin) VALUES (" .
                           $trabajo->getFkIdCliente() . ", " . $trabajo->getFkIdEmpleado() . ", " . $trabajo->getValoracion() . ", " . $trabajo->getFkIdFactura() .
                           ", " . $trabajo->getImporteTotal() . ", " . $trabajo->getFinalizado() . ", '" . $trabajo->getDireccionLugar() . "', " .
@@ -64,8 +66,8 @@ class TrabajoController {
     public function updateTrabajo($trabajo) {
         
         $dbAccess = new DBAccess();
-        $dbAccess->update("UPDATE trabajo SET cliente_idcliente=" . $trabajo->getFkIdCliente() . ", empleado_idempleado=" . $trabajo->getFkIdEmpleado() .
-                          ", valoracion=" . $trabajo->getValoracion() . ", factura_idfactura=" . $trabajo->getFkIdFactura() . ", importe_total=" . $trabajo->getImporteTotal() . 
+        $dbAccess->update("UPDATE trabajo SET idcliente=" . $trabajo->getFkIdCliente() . ", idempleado=" . $trabajo->getFkIdEmpleado() .
+                          ", valoracion=" . $trabajo->getValoracion() . ", idfactura=" . $trabajo->getFkIdFactura() . ", importe_total=" . $trabajo->getImporteTotal() .
                           ", finalizado=" . $trabajo->getFinalizado() . ", direccion_lugar='" . $trabajo->getDireccionLugar() . "', estimacion_horas=" . $trabajo->getEstimacionHoras() . 
                           ", gasto_total=" . $trabajo->getImporteRecibido() . ", fecha_inicio='" . $trabajo->getFechaInicio() . "', fecha_fin='" . $trabajo->getFechaFin() . 
                           "' WHERE idtrabajo=" . $trabajo->getIdTrabajo());

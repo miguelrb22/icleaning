@@ -24,7 +24,7 @@ class NominaController {
 
         foreach($result as $row){
         
-            $nomina = new Nomina($row['idnomina'], $row['empleado_idempleado'], $row['fecha_mes'], $row['nomina_total'], $row['pagada']);
+            $nomina = new Nomina($row['idnomina'], $row['idempleado'], $row['fecha_mes'], $row['nomina_total'], $row['pagada']);
             array_push($listaNominas, $nomina);   
         }
         
@@ -39,16 +39,18 @@ class NominaController {
         
         foreach($result as $row){
         
-            $nomina = new Nomina($row['idnomina'], $row['empleado_idempleado'], $row['fecha_mes'], $row['nomina_total'], $row['pagada']);  
+            $nomina = new Nomina($row['idnomina'], $row['idempleado'], $row['fecha_mes'], $row['nomina_total'], $row['pagada']);
         }
         
         return $nomina;
     }
-    
+
+
+    //Tested
     public function insertNomina($nomina) {
         
         $dbAccess = new DBAccess();
-        $dbAccess->insert("INSERT INTO nomina (empleado_idempleado, fecha_mes, nomina_total, pagada) VALUES (" .
+        $dbAccess->insert("INSERT INTO nomina (idempleado, fecha_mes, nomina_total, pagada) VALUES (" .
                           $nomina->getFkIdEmpleado() . ", '" . $nomina->getFechaMes() . "', " . $nomina->getNominaTotal() . ", '" . $nomina->getPagada() . "')");        
     }
     
@@ -56,7 +58,7 @@ class NominaController {
     public function updateNomina($nomina) {
         
         $dbAccess = new DBAccess();
-        $dbAccess->update("UPDATE nomina SET empleado_idempleado=" . $nomina->getFkIdEmpleado() . ", fecha_mes='" . $nomina->getFechaMes() . "', nomina_total=" . $nomina->getNominaTotal() .
+        $dbAccess->update("UPDATE nomina SET idempleado=" . $nomina->getFkIdEmpleado() . ", fecha_mes='" . $nomina->getFechaMes() . "', nomina_total=" . $nomina->getNominaTotal() .
                           ", pagada='" . $nomina->getPagada() . "' WHERE idnomina=" . $nomina->getIdNomina());
     }
     

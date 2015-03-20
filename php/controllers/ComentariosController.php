@@ -25,7 +25,7 @@ class ComentariosController {
 
         foreach($result as $row){
         
-            $comentario = new Comentarios($row['idcomentarios'], $row['comentario'], $row['empleado_idempleado']);
+            $comentario = new Comentarios($row['idcomentarios'], $row['comentario'], $row['idempleado']);
             array_push($listaComentarios, $comentario);
         }
         
@@ -40,7 +40,7 @@ class ComentariosController {
         
         foreach ($result as $row) {
             
-            $comentario = new Comentarios($row['idcomentarios'], $row['comentario'], $row['empleado_idempleado']);
+            $comentario = new Comentarios($row['idcomentarios'], $row['comentario'], $row['idempleado']);
         }
         
         return $comentario;
@@ -50,7 +50,7 @@ class ComentariosController {
     public function insertComentario($comentario) {
         
         $dbAccess = new DBAccess();
-        $dbAccess->insert("INSERT INTO comentarios (comentario, empleado_idempleado) VALUES ('" . $comentario->getComentario() .
+        $dbAccess->insert("INSERT INTO comentarios (comentario, idempleado) VALUES ('" . $comentario->getComentario() .
                           "', " . $comentario->getFkIdEmpleado() . ")");
     }
     
@@ -58,7 +58,7 @@ class ComentariosController {
     public function updateComentario($comentario) {
         
         $dbAccess = new DBAccess();
-        $dbAccess->update("UPDATE comentarios SET comentario='" . $comentario->getComentario() . "', empleado_idempleado=" . $comentario->getFkIdEmpleado() .
+        $dbAccess->update("UPDATE comentarios SET comentario='" . $comentario->getComentario() . "',idempleado=" . $comentario->getFkIdEmpleado() .
                           " WHERE idcomentarios=" . $comentario->getIdComentario());
     }
     
