@@ -163,19 +163,19 @@
                 <h2 class="section-heading">Y muchos más...</h2>
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
             <h4 class="text-primary">Aparcamientos</h4>
             <img class="img-responsive" src="parking.jpg" alt="">
         </div>
-        <div class="col-md-3">
+        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
             <h4 class="text-primary">Trasteros</h4>
             <img class="img-responsive" src="trastero.jpg" alt="">
         </div>
-        <div class="col-md-3">
+        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
             <h4 class="text-primary">Obras</h4>
             <img class="img-responsive" src="finobra.jpg" alt="">
         </div>
-        <div class="col-md-3">
+        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
             <h4 class="text-primary">Comunidad</h4>
             <img class="img-responsive" src="comunidades.jpg" alt="">
         </div>
