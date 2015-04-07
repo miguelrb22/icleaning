@@ -41,10 +41,10 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a href="#about">Nosotros</a>
+                    <a href="#services">Servicios</a>
                 </li>
                 <li>
-                    <a href="#services">Servicios</a>
+                    <a href="#about">Nosotros</a>
                 </li>
                 <li>
                     <a href="#contact">Contacto</a>
@@ -151,10 +151,42 @@
     <!-- /.container -->
 
 </div>
+
+<div class="content-section-b">
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col-lg-5 col-sm-6">
+                <hr class="section-heading-spacer">
+                <div class="clearfix"></div>
+                <h2 class="section-heading">Y muchos más...</h2>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <h4 class="text-primary">Aparcamientos</h4>
+            <img class="img-responsive" src="parking.jpg" alt="">
+        </div>
+        <div class="col-md-3">
+            <h4 class="text-primary">Trasteros</h4>
+            <img class="img-responsive" src="trastero.jpg" alt="">
+        </div>
+        <div class="col-md-3">
+            <h4 class="text-primary">Obras</h4>
+            <img class="img-responsive" src="finobra.jpg" alt="">
+        </div>
+        <div class="col-md-3">
+            <h4 class="text-primary">Comunidad</h4>
+            <img class="img-responsive" src="comunidades.jpg" alt="">
+        </div>
+    </div>
+    <!-- /.container -->
+
+</div>
 <!-- /.content-section-a -->
 
 <a name="about"></a>
-<div class="content-section-b">
+<div class="content-section-a">
 
     <div class="container">
         <div class="row">
