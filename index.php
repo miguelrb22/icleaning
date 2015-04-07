@@ -49,6 +49,9 @@
                 <li>
                     <a href="#contact">Contacto</a>
                 </li>
+                <li>
+                    <button style="margin-top:4%;" class="btn btn-success" data-toggle="modal" data-target="#myModal2"><i class="fa fa-key"></i> <span>Área Privada</span></button>
+                </li>
             </ul>
         </div>
         <!-- /.navbar-collapse -->
@@ -309,6 +312,49 @@
 </footer>
 
 
+<!-- Ventana modal INICIAR SESION-->
+<!-- Modal -->
+<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Acceso para registrados</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" method="POST" action="php/logic/login.php">
+
+                    <div class="form-group">
+                        <div class="col-sm-10 col-sm-offset-1">
+                            <div class="input-group">
+                                <div class="input-group-addon"><i class="fa fa-user"></i></div>
+                                <input type="text" class="form-control"  placeholder="Usuario" name="name">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-sm-10 col-sm-offset-1">
+                            <div class="input-group">
+                                <div class="input-group-addon"><i class="fa fa-key"></i></div>
+                                <input type="password" class="form-control"  placeholder="Contraseña" name="pass">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-primary">¡Entrar!</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
 <!-- Ventana modal -->
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -339,15 +385,18 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-primary">¡A Limpiar</button>
+                    </div>
                 </form>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-primary">¡A Limpiar</button>
-            </div>
+
         </div>
     </div>
 </div>
+
 
 <!-- jQuery -->
 <script src="js/jquery.js"></script>

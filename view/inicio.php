@@ -16,7 +16,7 @@ if(!isset($_SESSION['name'])){
 }
 else {
 
-    echo "<h1> Hola Cabrón </h1>";
+    echo "<h1> Hola Cabron </h1>";
 
 
 
