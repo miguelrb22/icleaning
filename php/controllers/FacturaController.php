@@ -1,6 +1,6 @@
 <?php
 
-include_once 'php/models/FacturaController.php';
+include_once 'php/models/Factura.php';
 include_once 'php/database/DBAccess.php';
 
 /**
