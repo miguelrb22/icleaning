@@ -58,7 +58,7 @@
 
 
 <!-- Header -->
-<a name="about"></a>
+<a name=""></a>
 <div class="intro-header">
     <div class="container">
 
@@ -118,7 +118,7 @@
                 <hr class="section-heading-spacer">
                 <div class="clearfix"></div>
                 <h2 class="section-heading">Exteriores</h2>
-                <p class="lead">Tanto interiores, como exteriores. En icleaning limpiamos las ventas de su casa o u oficia por fuera.</p>
+                <p class="lead">Tanto interiores, como exteriores. En icleaning limpiamos las ventanas de su casa u oficia por fuera.</p>
             </div>
             <div class="col-lg-5 col-sm-pull-6  col-sm-6">
                 <img class="img-responsive" src="exterior.jpg" alt="">
@@ -152,6 +152,71 @@
 
 </div>
 <!-- /.content-section-a -->
+
+<a name="about"></a>
+<div class="content-section-b">
+
+    <div class="container">
+        <div class="row">
+                <hr class="section-heading-spacer">
+                <div class="clearfix"></div>
+                <h2 class="section-heading">Acerca de iCleaning</h2>
+                <div class="col-md-6">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">¿Por qué elegirnos?</div>
+                            <div class="panel-body">
+                                <ul class="list-group">
+                                    <li class="list-group-item">
+                                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                                        <text>Reserva de manera sencilla y segura</text>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                                        <text>Ahorra tiempo y dinero</text>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                                        <text>Olvídate de comprar productos de limpieza</text>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                                        <text>Optimiza el tiempo de tu limpieza</text>
+                                    </li>
+                                </ul>  
+                            </div>
+                    </div> 
+                </div>
+                <div class="col-md-6">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">Garantía y Seguridad</div>
+                        <div class="panel-body">
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                                    <text>100% garantía de conformidad</text>
+                                </li>
+                                <li class="list-group-item">
+                                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                                    <text>Cancelaciones y modificaciones de reservas flexibles</text>
+                                </li>
+                                <li class="list-group-item">
+                                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                                    <text>Profesionales de confianza en tu ciudad</text>
+                                </li>
+                                <li class="list-group-item">
+                                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                                    <text>Pago seguro utilizando certificado SSL</text>
+                                </li>
+                            </ul>  
+                        </div>
+                    </div> 
+                </div>
+        </div>
+
+    </div>
+    <!-- /.container -->
+
+</div>
 
 <a name="contact"></a>
 <div class="banner">
