@@ -16,6 +16,9 @@
     <!-- CSS -->
     <link href="css/landing.css" rel="stylesheet">
 
+    <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+
+
     <!-- Fonts -->
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
@@ -365,23 +368,47 @@
                 <h4 class="modal-title" id="myModalLabel">Encuentra lo que buscas facilmente</h4>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal">
+                <form class="form-horizontal" method="POST" action="">
 
                     <div class="form-group">
                         <div class="col-sm-10 col-sm-offset-1">
                             <div class="input-group">
-                                <div class="input-group-addon">$</div>
-                                <input type="text" class="form-control" id="example" placeholder="Hola que tal">
+                                <span class="input-group-addon"><i class="fa fa-globe"></i></span>
+                                <select class="selectpicker form-control" data-live-search="true"
+                                        title="Selecciona una zona" name="zona">
+                                    <option value="" disabled selected>Selecciona la zona</option>
+                                    <option>Hot Dog, Fries and a Soda</option>
+                                    <option>Burger, Shake and a Smile</option>
+                                    <option>Sugar, Spice and all things nice</option>
+                                    <option>Baby Back Ribs</option>
+                                    <option>A really really long option made to illustra</option>
+                                </select>
                             </div>
                         </div>
                     </div>
 
+                    <div class="form-group">
+                        <div class="col-sm-10 col-sm-offset-1">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-magic"></i></span>
+                                <select class="selectpicker form-control" data-live-search="true"
+                                        title="Selecciona una zona" name="especialidad">
+                                    <option value="" disabled selected>Elige la especialidad</option>
+                                    <option>Hot Dog, Fries and a Soda</option>
+                                    <option>Burger, Shake and a Smile</option>
+                                    <option>Sugar, Spice and all things nice</option>
+                                    <option>Baby Back Ribs</option>
+                                    <option>A really really long option made to illustra</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="form-group">
                         <div class="col-sm-10 col-sm-offset-1">
                             <div class="input-group">
-                                <div class="input-group-addon">$</div>
-                                <input type="text" class="form-control" id="example2" placeholder="Bien y tu">
+                                <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
+                                <input type="text" class="form-control" id="datetimepicker4" placeholder="Fecha" name="fecha">
                             </div>
                         </div>
                     </div>
@@ -403,6 +430,20 @@
 
 <!-- Bootstrap Core JavaScript -->
 <script src="js/bootstrap.min.js"></script>
+
+<script src="js/moment.min.js"></script>
+
+<script src="js/bootstrap-datetimepicker.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+        $('#datetimepicker4').datetimepicker({
+            locale: 'es',
+            format: 'L'
+        });
+    });
+</script>
+
 
 
 
