@@ -10,8 +10,6 @@
 
     <title>iCleaning</title>
 
-    <!--JQuery-->
-    <script type="text/javascript" src="js/jquery.js"></script>
     
     <!-- Bootstrap CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -77,16 +75,12 @@
                     </div>
                 </div>
                 <div style="padding:16px;">
-                    TextBox : <input type="textbox" value="Type something"></input>
+                    TextBox : <input id="input1"type="textbox" placeholder="Type something"></input>
                 </div>
 
                 <button id="Get">Get TextBox Value</button> 
                 
-                <script type="text/javascript" language="javascript">
-                    $("button:#Get").click(function () {
-                        $('#msg').html($('input:textbox').val());   
-                    });
-                </script> 
+
                 <h2>TextBox value : <label id="msg"></label></h2>
     </div>
     <!-- /.container -->
@@ -152,6 +146,16 @@
 <!-- Bootstrap Core JavaScript -->
 <script src="js/bootstrap.min.js"></script>
 
+<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script>
+    $( document ).ready(function() {
+
+        $("#Get").click(function () {
+            $('#msg').html($('#input1').val());
+        });
+    });
+
+</script>
 </body>
 
 </html>
