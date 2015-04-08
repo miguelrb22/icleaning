@@ -79,4 +79,59 @@ class TrabajoController {
         $dbAccess = new DBAccess();
         $dbAccess->delete("DELETE FROM trabajo WHERE idtrabajo=" . $trabajo->getIdTrabajo());
     }
+    
+    //Tested
+    public function getTotalTrabajos() {
+        
+        $dbAccess = new DBAccess();
+        $countTrabajos = $dbAccess->getSelect("SELECT count(*) 'Total' FROM trabajo");
+        
+        foreach ($countTrabajos as $countTrabajo) {
+            $totalTrabajos = $countTrabajo['Total'];
+        }
+        
+        return $totalTrabajos;
+    }
+    
+    //Tested
+    public function getTrabajosIniciadosEsteMes() {
+        
+        $listaTrabajos = array();
+        
+        $dbAccess = new DBAccess();
+        $result = $dbAccess->getSelect("SELECT * FROM trabajo " .
+                                       "WHERE DATE_FORMAT(current_date(), '%Y') = DATE_FORMAT(fecha_inicio, '%Y') " .
+                                       "AND DATE_FORMAT(current_date(), '%m') = DATE_FORMAT(fecha_inicio, '%m');");
+        
+        foreach($result as $row){
+            $trabajo = new Trabajo($row['idtrabajo'], $row['idcliente'], $row['idempleado'], $row['valoracion'], $row['idfactura'],
+                                   $row['importe_total'], $row['finalizado'], $row['direccion_lugar'], $row['estimacion_horas'], $row['gasto_total'], 
+                                   $row['importe_recibido'], $row['fecha_inicio'], $row['fecha_fin']);
+            
+            array_push($listaTrabajos, $trabajo); 
+        }
+        
+        return $listaTrabajos;
+    }
+    
+    //Tested
+    public function getTrabajosFinalizadosEsteMes() {
+        
+        $listaTrabajos = array();
+        
+        $dbAccess = new DBAccess();
+        $result = $dbAccess->getSelect("SELECT * FROM trabajo " .
+                                       "WHERE DATE_FORMAT(current_date(), '%Y') = DATE_FORMAT(fecha_fin, '%Y') " .
+                                       "AND DATE_FORMAT(current_date(), '%m') = DATE_FORMAT(fecha_fin, '%m');");
+        
+        foreach($result as $row){
+            $trabajo = new Trabajo($row['idtrabajo'], $row['idcliente'], $row['idempleado'], $row['valoracion'], $row['idfactura'],
+                                   $row['importe_total'], $row['finalizado'], $row['direccion_lugar'], $row['estimacion_horas'], $row['gasto_total'], 
+                                   $row['importe_recibido'], $row['fecha_inicio'], $row['fecha_fin']);
+            
+            array_push($listaTrabajos, $trabajo); 
+        }
+        
+        return $listaTrabajos;
+    }
 }

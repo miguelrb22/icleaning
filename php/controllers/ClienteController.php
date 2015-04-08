@@ -70,4 +70,37 @@ class ClienteController {
         $dbAccess = new DBAccess();
         $dbAccess->delete("DELETE FROM cliente WHERE idcliente=" . $cliente->getIdCliente());
     }
+    
+    //Tested
+    public function getTotalClientes() {
+        
+        $dbAccess = new DBAccess();
+        $countClientes = $dbAccess->getSelect("SELECT count(*) 'Total' FROM cliente");
+        
+        foreach ($countClientes as $countCliente) {
+            $totalClientes = $countCliente['Total'];
+        }
+        
+        return $totalClientes;
+    }
+    
+    //Tested
+    public function getClientesIngresadosEsteMes() {
+        
+        $listaClientes = array();
+        
+        $dbAccess = new DBAccess();
+        $result = $dbAccess->getSelect("SELECT * FROM cliente " .
+                                        "WHERE DATE_FORMAT(current_date(), '%Y') = DATE_FORMAT(fecha_registro, '%Y')" .
+                                        "AND DATE_FORMAT(current_date(), '%m') = DATE_FORMAT(fecha_registro, '%m');");
+        
+        foreach($result as $row){
+            $cliente = new Cliente($row['idcliente'], $row['dni'], $row['nombre'], $row['direccion'], $row['telefono'],
+                                   $row['email'], $row['fecha_registro'], $row['contrasenya'], $row['foto_cliente'], $row['apellidos']);
+
+            array_push($listaClientes, $cliente);
+        }
+        
+        return $listaClientes;
+    }
 }

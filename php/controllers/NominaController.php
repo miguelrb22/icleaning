@@ -68,4 +68,17 @@ class NominaController {
         $dbAccess = new DBAccess();
         $dbAccess->delete("DELETE FROM nomina WHERE idnomina=" . $nomina->getIdNomina());
     }
+    
+    //Tested
+    public function getTotalCostesNominas() {
+        
+        $dbAccess = new DBAccess();
+        $countGastosNominas = $dbAccess->getSelect("SELECT sum(nomina_total) 'Total' FROM nomina");
+        
+        foreach ($countGastosNominas as $countGastosNomina) {
+            $totalGastosNominas = $countGastosNomina['Total'];
+        }
+        
+        return $totalGastosNominas;
+    }
 }

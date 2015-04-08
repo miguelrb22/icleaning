@@ -41,6 +41,9 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
                 <li>
+                    <a href="#infgen">Información General</a>
+                </li>
+                <li>
                     <a href="#nominas">Nominas</a>
                 </li>
                 <li>
@@ -56,6 +59,209 @@
     <!-- /.container -->
 </nav>
 
+<!-- Header -->
+<a name="infgen"></a>
+<div class="content-section-a">
+
+    <div class="container">
+                <hr class="section-heading-spacer">
+                <div class="clearfix"></div>
+                <h2 class="section-heading">Información General</h2>
+                
+                <?php 
+                    include_once 'php/controllers/ClienteController.php';
+                    include_once 'php/models/Cliente.php';
+                    
+                    include_once 'php/controllers/EmpleadoController.php';
+                    include_once 'php/models/Trabajador.php';
+                    
+                    include_once 'php/controllers/TrabajoController.php';
+                    include_once 'php/models/Trabajo.php';
+                    
+                    include_once 'php/controllers/FacturaController.php';
+                    include_once 'php/models/Factura.php';
+                    
+                    include_once 'php/controllers/NominaController.php';
+                    include_once 'php/models/Nomina.php';
+                    
+                    $clienteController = new ClienteController();
+                    $totalClientes = $clienteController->getTotalClientes();
+                    
+                    $empleadoController = new EmpleadoController();
+                    $totalEmpleados = $empleadoController->getTotalEmpleados();
+                    
+                    $trabajoController = new TrabajoController();
+                    $totalTrabajos = $trabajoController->getTotalTrabajos();
+                    
+                    $ingresosFacturaController = new FacturaController();
+                    $totalIngresosFactura = $ingresosFacturaController->getTotalIngresosFacturas();
+                    
+                    $gastosNominaController = new NominaController();
+                    $totalGastosNomina = $gastosNominaController->getTotalCostesNominas();
+                ?>
+                
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Panel General</div>
+                        <div class="panel-body">
+                          <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                            <h4 class="text-primary">Total de Clientes</h4>
+                            <?php echo "<h4 class='text-info'>" . $totalClientes . "</h4>" ?>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                                <h4 class="text-primary">Total de Empleados</h4>
+                                <?php echo "<h4 class='text-info'>" . $totalEmpleados . "</h4>" ?>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                                <h4 class="text-primary">Total de Trabajos</h4>
+                                <?php echo "<h4 class='text-info'>" . $totalTrabajos . "</h4>" ?>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                                <h4 class="text-primary">Ingresos</h4>
+                                <?php echo "<h4 class='text-info'>" . $totalIngresosFactura . "€</h4>" ?>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                                <h4 class="text-primary">Gastos de Nóminas</h4>
+                                <?php echo "<h4 class='text-info'>" . $totalGastosNomina . "€</h4>" ?>
+                            </div>
+                        </div>  
+                </div>
+                
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Clientes ingresados este mes</div>
+                          <?php
+                          
+                          $clienteList = $clienteController->getClientesIngresadosEsteMes();
+                          
+                            echo "<table class='table table-bordered'>"
+                         . "<thead>"
+                            . "<tr>"
+                               . "<th>ID</th>"
+                               . "<th>DNI</th>"
+                               . "<th>Nombre</th>"
+                               . "<th>Apellidos</th>"
+                               . "<th>Direccion</th>"
+                               . "<th>Telefono</th>"
+                               . "<th>Email</th>"
+                               . "<th>Fecha Registro</th>"
+                               . "<th>Contraseña</th>"
+                            . "</tr>"
+                         . "</thead>"
+                         . "<tbody>";
+                            
+                            foreach ($clienteList as $cliente) {
+                             
+                             echo "<tr>";
+                             echo "<td>" . $cliente->getIdCliente() . "</td>";
+                             echo "<td>" . $cliente->getDni() . "</td>";
+                             echo "<td>" . $cliente->getNombre() . "</td>";
+                             echo "<td>" . $cliente->getApellidos() . "</td>";
+                             echo "<td>" . $cliente->getDireccion() . "</td>";
+                             echo "<td>" . $cliente->getTelefono() . "</td>";
+                             echo "<td>" . $cliente->getEmail() . "</td>";
+                             echo "<td>" . $cliente->getFechaRegistro() . "</td>";
+                             echo "<td>" . $cliente->getContrasenya() . "</td>";
+                             echo "</tr>";
+                             
+                         }
+                          
+                         echo "</tbody>"
+                              . "</table>"
+                          ?>
+                </div>
+                
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Trabajos iniciados este mes</div>
+                          <?php
+                          
+                          $trabajosIniciadoMes = $trabajoController->getTrabajosIniciadosEsteMes();
+                          
+                            echo "<table class='table table-bordered'>"
+                         . "<thead>"
+                            . "<tr>"
+                               . "<th>ID</th>"
+                               . "<th>Cliente</th>"
+                               . "<th>Trabajador</th>"
+                               . "<th>Valoración</th>"
+                               . "<th>Factura</th>"
+                               . "<th>Importe Total</th>"
+                               . "<th>Dirección</th>"
+                               . "<th>Estimación</th>"
+                               . "<th>Gasto Total</th>"
+                               . "<th>Fecha Inicio</th>"
+                            . "</tr>"
+                         . "</thead>"
+                         . "<tbody>";
+                            
+                            foreach ($trabajosIniciadoMes as $trabajoIniciadoMes) {
+                             
+                             echo "<tr>";
+                             echo "<td>" . $trabajoIniciadoMes->getIdTrabajo() . "</td>";
+                             echo "<td>" . $trabajoIniciadoMes->getFkIdCliente() . "</td>";
+                             echo "<td>" . $trabajoIniciadoMes->getFkIdEmpleado() . "</td>";
+                             echo "<td>" . $trabajoIniciadoMes->getValoracion() . "</td>";
+                             echo "<td>" . $trabajoIniciadoMes->getFkIdFactura() . "</td>";
+                             echo "<td>" . $trabajoIniciadoMes->getImporteTotal() . "€</td>";
+                             echo "<td>" . $trabajoIniciadoMes->getDireccionLugar() . "</td>";
+                             echo "<td>" . $trabajoIniciadoMes->getEstimacionHoras() . " h</td>";
+                             echo "<td>" . $trabajoIniciadoMes->getGastoTotal() . "€</td>";
+                             echo "<td>" . $trabajoIniciadoMes->getFechaInicio() . "</td>";
+                             echo "</tr>";
+                             
+                         }
+                          
+                         echo "</tbody>"
+                              . "</table>"
+                          ?>
+                </div>
+                
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Trabajos finalizados este mes</div>
+                          <?php
+                          
+                          $trabajosFinMes = $trabajoController->getTrabajosFinalizadosEsteMes();
+                          
+                            echo "<table class='table table-bordered'>"
+                         . "<thead>"
+                            . "<tr>"
+                               . "<th>ID</th>"
+                               . "<th>Cliente</th>"
+                               . "<th>Trabajador</th>"
+                               . "<th>Valoración</th>"
+                               . "<th>Factura</th>"
+                               . "<th>Importe Total</th>"
+                               . "<th>Dirección</th>"
+                               . "<th>Estimación</th>"
+                               . "<th>Gasto Total</th>"
+                               . "<th>Fecha Fin</th>"
+                            . "</tr>"
+                         . "</thead>"
+                         . "<tbody>";
+                            
+                            foreach ($trabajosFinMes as $trabajoFinMes) {
+                             
+                             echo "<tr>";
+                             echo "<td>" . $trabajoFinMes->getIdTrabajo() . "</td>";
+                             echo "<td>" . $trabajoFinMes->getFkIdCliente() . "</td>";
+                             echo "<td>" . $trabajoFinMes->getFkIdEmpleado() . "</td>";
+                             echo "<td>" . $trabajoFinMes->getValoracion() . "</td>";
+                             echo "<td>" . $trabajoFinMes->getFkIdFactura() . "</td>";
+                             echo "<td>" . $trabajoFinMes->getImporteTotal() . "€</td>";
+                             echo "<td>" . $trabajoFinMes->getDireccionLugar() . "</td>";
+                             echo "<td>" . $trabajoFinMes->getEstimacionHoras() . " h</td>";
+                             echo "<td>" . $trabajoFinMes->getGastoTotal() . "€</td>";
+                             echo "<td>" . $trabajoFinMes->getFechaFin() . "</td>";
+                             echo "</tr>";
+                             
+                         }
+                          
+                         echo "</tbody>"
+                              . "</table>"
+                          ?>
+                </div>
+    </div>
+    <!-- /.container -->
+
+</div>
 
 <!-- Header -->
 <a name="nominas"></a>
@@ -133,7 +339,20 @@
                 <div class="clearfix"></div>
                 <h2 class="section-heading">Facturas</h2>
                 
-                <!-- Nomina Table -->
+                <div class="form-group">
+                            <div class="input-group">
+                                <select class="selectpicker form-control" data-live-search="true"
+                                        title="Selecciona una opción" name="facturasForm">
+                                    <option value="" disabled selected>Elige una opcion</option>
+                                    <option value="0">Mes Actual</option>
+                                    <option value="1">4 Meses</option>
+                                    <option value="2">8 Meses</option>
+                                    <option value="3">Todos</option>
+                                </select>
+                            </div>
+                    </div>
+                
+                <!-- Factura Table -->
                 <div class="table-responsive">
                     <?php
                     include_once 'php/controllers/FacturaController.php';
@@ -184,7 +403,20 @@
                 <div class="clearfix"></div>
                 <h2 class="section-heading">Tesoreria</h2>
                 
-                <!-- Nomina Table -->
+                <div class="form-group">
+                            <div class="input-group">
+                                <select class="selectpicker form-control" data-live-search="true"
+                                        title="Selecciona una opción" name="tesoreriaForm">
+                                    <option value="" disabled selected>Elige una opcion</option>
+                                    <option value="0">Mes Actual</option>
+                                    <option value="1">4 Meses</option>
+                                    <option value="2">8 Meses</option>
+                                    <option value="3">Todos</option>
+                                </select>
+                            </div>
+                    </div>
+                
+                <!-- Tesoreria Table -->
                 <div class="table-responsive">
                     <?php
                     include_once 'php/controllers/TesoreriaController.php';

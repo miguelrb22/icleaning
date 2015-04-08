@@ -67,4 +67,17 @@ class FacturaController {
         $dbAccess = new DBAccess();
         $dbAccess->delete("DELETE FROM factura WHERE idfactura=" . $factura->getIdFactura());
     }
+    
+    //Tested
+    public function getTotalIngresosFacturas() {
+        
+        $dbAccess = new DBAccess();
+        $countIngresosFacturas = $dbAccess->getSelect("SELECT sum(total_importe) 'Total' FROM factura");
+        
+        foreach ($countIngresosFacturas as $countIngresosFactura) {
+            $totalIngresosFacturas = $countIngresosFactura['Total'];
+        }
+        
+        return $totalIngresosFacturas;
+    }
 }

@@ -84,4 +84,17 @@ class EmpleadoController {
         $dbAccess = new DBAccess();
         $dbAccess->delete("DELETE FROM empleado WHERE idempleado=" . $empleado->getIdEmpleado());
     }
+    
+    //Tested
+    public function getTotalEmpleados() {
+        
+        $dbAccess = new DBAccess();
+        $countEmpleados = $dbAccess->getSelect("SELECT count(*) 'Total' FROM empleado");
+        
+        foreach ($countEmpleados as $countEmpleado) {
+            $totalEmpleados = $countEmpleado['Total'];
+        }
+        
+        return $totalEmpleados;
+    }
 }
