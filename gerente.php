@@ -67,6 +67,19 @@
                 <div class="clearfix"></div>
                 <h2 class="section-heading">Nominas</h2>
                 
+                <div class="form-group">
+                            <div class="input-group">
+                                <select class="selectpicker form-control" data-live-search="true"
+                                        title="Selecciona una opción" name="nominaForm">
+                                    <option value="" disabled selected>Elige una opcion</option>
+                                    <option value="0">Mes Actual</option>
+                                    <option value="1">4 Meses</option>
+                                    <option value="2">8 Meses</option>
+                                    <option value="3">Todos</option>
+                                </select>
+                            </div>
+                    </div>
+                
                 <!-- Nomina Table -->
                 <div class="table-responsive">
                     <?php
