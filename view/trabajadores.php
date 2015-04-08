@@ -8,13 +8,7 @@
 
 
 error_reporting(E_ALL ^ E_NOTICE);
-session_start();
 
-if(!isset($_SESSION['name'])){
-
-    header('location: ../index.php');
-}
-else {
 
     require_once('..\php\database\DBAccess.php');
 
@@ -23,14 +17,12 @@ else {
     $fecha = $_POST['fecha'];
 
 
-    echo $zona . $especialidad . $fecha;
-
     $dbAccess = new DBAccess();
-    $query = $dbAccess->getSelect( "select * from cliente where email='" . $_SESSION['name'] . "'");
-    $numrows = mysqli_num_rows($query);
-
-    echo "<h1> Hola Cabron </h1>";
+    $aux = "SELECT * FROM empleado where idespecialidad =" .$especialidad . " and idzona = ". $zona ." and idempleado not in (select idempleado from ocupacion where fecha_ocupado='". $fecha. "')";
+    $query = $dbAccess->getSelect($aux);
 
 
+  foreach($query as $q){
 
-}
+      echo $q['idempleado'];
+  }

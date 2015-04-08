@@ -2,7 +2,7 @@
 
 <head>
 
-    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
@@ -22,6 +22,7 @@
     <!-- Fonts -->
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+    <?php  require_once('php/logic/index_logic.php'); ?>
 
 </head>
 
@@ -368,7 +369,7 @@
                 <h4 class="modal-title" id="myModalLabel">Encuentra lo que buscas facilmente</h4>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal" method="POST" action="">
+                <form class="form-horizontal" method="POST" action="view/trabajadores.php">
 
                     <div class="form-group">
                         <div class="col-sm-10 col-sm-offset-1">
@@ -377,11 +378,13 @@
                                 <select class="selectpicker form-control" data-live-search="true"
                                         title="Selecciona una zona" name="zona">
                                     <option value="" disabled selected>Selecciona la zona</option>
-                                    <option>Hot Dog, Fries and a Soda</option>
-                                    <option>Burger, Shake and a Smile</option>
-                                    <option>Sugar, Spice and all things nice</option>
-                                    <option>Baby Back Ribs</option>
-                                    <option>A really really long option made to illustra</option>
+
+
+                                    <?php
+
+                                    select_zonas()
+
+                                    ?>
                                 </select>
                             </div>
                         </div>
@@ -394,11 +397,7 @@
                                 <select class="selectpicker form-control" data-live-search="true"
                                         title="Selecciona una zona" name="especialidad">
                                     <option value="" disabled selected>Elige la especialidad</option>
-                                    <option>Hot Dog, Fries and a Soda</option>
-                                    <option>Burger, Shake and a Smile</option>
-                                    <option>Sugar, Spice and all things nice</option>
-                                    <option>Baby Back Ribs</option>
-                                    <option>A really really long option made to illustra</option>
+                                    <?php select_especialidades(); ?>
                                 </select>
                             </div>
                         </div>
@@ -415,7 +414,7 @@
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                        <button type="submit" class="btn btn-primary">¡A Limpiar</button>
+                        <button type="submit" class="btn btn-primary">A Limpiar!</button>
                     </div>
                 </form>
             </div>
