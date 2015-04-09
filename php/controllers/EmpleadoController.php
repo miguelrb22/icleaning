@@ -51,6 +51,23 @@ class EmpleadoController {
         
         return $empleado;
     }
+    
+    //Tested
+    public function getEmpleadoDNI($dniEmpleado) {
+        
+        $dbAccess = new DBAccess();
+        $result = $dbAccess->getSelect("SELECT * from empleado WHERE nif='". $dniEmpleado . "'");
+        
+        foreach($result as $row){
+        
+            $empleado = new Trabajador($row['idempleado'], $row['idespecialidad'], $row['idzona'], $row['nif'],
+                                       $row['apellidos'], $row['nombre'], $row['telefomo'], $row['email'], $row['numero_cuenta'],
+                                       $row['sip'], $row['anyos_experiencia'], $row['fechaUltimoTrabajo'], $row['horasTrabajadas'],
+                                       $row['contrasenya'], $row['foto_empleado'], $row['descripcion'], $row['valoracion']);
+        }
+        
+        return $empleado;
+    }
 
     //tested
     public function insertEmpleado($empleado) {

@@ -67,21 +67,14 @@
                     <div class="panel-heading">Buscar Cliente</div>
                     <div class="panel-body">
                       <div class="input-group">
-                          <input type="text" class="form-control" placeholder="Buscar por DNI" name="dnicli">
+                          <input type="text" class="form-control" placeholder="Buscar por DNI" name="dnicli" id="dnicli">
                         <span class="input-group-btn">
                             <button class="btn btn-default" type="button" id="getclient">Buscar</button>
                         </span>
                       </div><!-- /input-group -->
                     </div>
                 </div>
-                <div style="padding:16px;">
-                    TextBox : <input id="input1"type="textbox" placeholder="Type something"></input>
-                </div>
-
-                <button id="Get">Get TextBox Value</button> 
                 
-
-                <h2>TextBox value : <label id="msg"></label></h2>
     </div>
     <!-- /.container -->
 
@@ -100,9 +93,9 @@
                     <div class="panel-heading">Buscar Empleado</div>
                     <div class="panel-body">
                       <div class="input-group">
-                          <input type="text" class="form-control" placeholder="Buscar por DNI" name="dniemp">
+                          <input type="text" class="form-control" placeholder="Buscar por DNI" name="dniemp" id="dniemp">
                         <span class="input-group-btn">
-                          <button class="btn btn-default" type="button">Buscar</button>
+                          <button class="btn btn-default" type="button" id="getempleado">Buscar</button>
                         </span>
                       </div><!-- /input-group -->
                     </div>
@@ -150,8 +143,16 @@
 <script>
     $( document ).ready(function() {
 
-        $("#Get").click(function () {
-            $('#msg').html($('#input1').val());
+        $("#getclient").click(function () {           
+            $.post('php/logic/buscarCliente.php', 'val=' + $('#dnicli').val(), function (response) {
+                alert(response);
+            });
+        });
+        
+        $("#getempleado").click(function() {
+           $.post('php/logic/buscarEmpleado.php', 'val=' + $('#dniemp').val(), function (response) {
+               alert(response);
+           }); 
         });
     });
 
