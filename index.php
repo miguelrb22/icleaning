@@ -2,7 +2,7 @@
 
 <head>
 
-    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
@@ -11,18 +11,18 @@
     <title>iCleaning</title>
 
     <!-- Bootstrap CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="public/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- CSS -->
-    <link href="css/landing.css" rel="stylesheet">
+    <link href="public/css/landing.css" rel="stylesheet">
 
-    <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <link href="public/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
 
 
     <!-- Fonts -->
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
-    <?php  require_once('php/logic/index_logic.php'); ?>
+    <?php  require_once('app/logic/index_logic.php'); ?>
 
 </head>
 
@@ -106,7 +106,7 @@
                 <p class="lead">En iCleaning somos expertos en limpieza de interiores, tanto casas particulares como en oficinas.</p>
             </div>
             <div class="col-lg-5 col-lg-offset-2 col-sm-6">
-                <img class="img-responsive" src="oficina.jpg" alt="Oficinas limpias">
+                <img class="img-responsive" src="public/images/oficina.jpg" alt="Oficinas limpias">
             </div>
         </div>
 
@@ -128,7 +128,7 @@
                 <p class="lead">Tanto interiores, como exteriores. En icleaning limpiamos las ventanas de su casa u oficia por fuera.</p>
             </div>
             <div class="col-lg-5 col-sm-pull-6  col-sm-6">
-                <img class="img-responsive" src="exterior.jpg" alt="">
+                <img class="img-responsive" src="public/images/exterior.jpg" alt="">
             </div>
         </div>
 
@@ -150,7 +150,7 @@
                 <p class="lead">Si lo que buscas es mantener limpia tu piscina, en icleaning tenemos un servicio inmejorable para ello.</p>
             </div>
             <div class="col-lg-5 col-lg-offset-2 col-sm-6">
-                <img class="img-responsive" src="piscina.jpg" alt="">
+                <img class="img-responsive" src="public/images/piscina.jpg" alt="">
             </div>
         </div>
 
@@ -172,19 +172,19 @@
         </div>
         <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
             <h4 class="text-primary">Aparcamientos</h4>
-            <img class="img-responsive" src="parking.jpg" alt="">
+            <img class="img-responsive" src="public/images/parking.jpg" alt="">
         </div>
         <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
             <h4 class="text-primary">Trasteros</h4>
-            <img class="img-responsive" src="trastero.jpg" alt="">
+            <img class="img-responsive" src="public/images/trastero.jpg" alt="">
         </div>
         <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
             <h4 class="text-primary">Obras</h4>
-            <img class="img-responsive" src="finobra.jpg" alt="">
+            <img class="img-responsive" src="public/images/finobra.jpg" alt="">
         </div>
         <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
             <h4 class="text-primary">Comunidad</h4>
-            <img class="img-responsive" src="comunidades.jpg" alt="">
+            <img class="img-responsive" src="public/images/comunidades.jpg" alt="">
         </div>
     </div>
     <!-- /.container -->
@@ -326,7 +326,7 @@
                 <h4 class="modal-title" id="myModalLabel">Acceso para registrados</h4>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal" method="POST" action="php/logic/login.php">
+                <form class="form-horizontal" method="POST" action="app/logic/login.php">
 
                     <div class="form-group">
                         <div class="col-sm-10 col-sm-offset-1">
@@ -369,7 +369,7 @@
                 <h4 class="modal-title" id="myModalLabel">Encuentra lo que buscas facilmente</h4>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal" method="POST" action="view/trabajadores.php">
+                <form class="form-horizontal" method="POST" action="resources/views/trabajadores.php">
 
                     <div class="form-group">
                         <div class="col-sm-10 col-sm-offset-1">
@@ -380,11 +380,7 @@
                                     <option value="" disabled selected>Selecciona la zona</option>
 
 
-                                    <?php
 
-                                    select_zonas()
-
-                                    ?>
                                 </select>
                             </div>
                         </div>
@@ -425,14 +421,14 @@
 
 
 <!-- jQuery -->
-<script src="js/jquery.js"></script>
+<script src="public/js/jquery.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
-<script src="js/bootstrap.min.js"></script>
+<script src="public/bootstrap/js/bootstrap.min.js"></script>
 
-<script src="js/moment.min.js"></script>
+<script src="public/js/moment.min.js"></script>
 
-<script src="js/bootstrap-datetimepicker.js"></script>
+<script src="public/js/bootstrap-datetimepicker.js"></script>
 
 <script type="text/javascript">
     $(function () {
