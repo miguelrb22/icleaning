@@ -70,15 +70,13 @@
                     <div class="panel-heading">Buscar Cliente</div>
                     <div class="panel-body">
                         <form id="formcliente">
-                      <div class="input-group">
-                          <input type="text" class="form-control" placeholder="Buscar por DNI" name="dnicli" id="dnicli">
-                        <span class="input-group-btn">
-                            <button class="btn btn-default" type="submit" id="getclient">Buscar</button>
-                        </span>
-
-                      </div>
-
-                            </form>
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Buscar por DNI" name="dnicli" id="dnicli">
+                              <span class="input-group-btn">
+                                  <button class="btn btn-default" type="submit" id="getclient">Buscar</button>
+                              </span>
+                            </div>
+                        </form>
 
                         <!-- /input-group -->
                     </div>
@@ -111,14 +109,22 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">Buscar Empleado</div>
                     <div class="panel-body">
-                      <div class="input-group">
-                          <input type="text" class="form-control" placeholder="Buscar por DNI" name="dniemp" id="dniemp">
-                        <span class="input-group-btn">
-                          <button class="btn btn-default" type="button" id="getempleado">Buscar</button>
-                        </span>
-                      </div><!-- /input-group -->
+                        <form id="formempleado">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Buscar por DNI" name="dniemp" id="dniemp">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" type="submit" id="getempleado">Buscar</button>
+                                    </span>
+                            </div><!-- /input-group -->
+                        </form>                  
                     </div>
                 </div>
+            </div>
+        
+            <div class="row">
+
+                <div id="administradorempleado-result"></div>
+
             </div>
     </div>
 
@@ -180,6 +186,26 @@
 
 
                         $('#administrador-result').html(data);
+
+                    }
+                });
+        });
+        
+        $("#formempleado").submit(function(e) {
+
+            e.preventDefault();
+
+                $.ajax({
+                    type: "POST",
+                    url: "../../app/logic/buscarEmpleado.php",
+                    data: $("#formempleado").serialize(),
+                    dataType: "html",
+                    error: function() {
+                        alert("error petición ajax");
+                    },
+                    success: function(data) {
+
+                        $('#administradorempleado-result').html(data);
 
                     }
                 });
