@@ -144,13 +144,13 @@
     $( document ).ready(function() {
 
         $("#getclient").click(function () {           
-            $.post('php/logic/buscarCliente.php', 'val=' + $('#dnicli').val(), function (response) {
+            $.post('../../app/logic/buscarCliente.php', 'val=' + $('#dnicli').val(), function (response) {
                 alert(response);
             });
         });
         
         $("#getempleado").click(function() {
-           $.post('php/logic/buscarEmpleado.php', 'val=' + $('#dniemp').val(), function (response) {
+           $.post('../../app/logic/buscarEmpleado.php', 'val=' + $('#dniemp').val(), function (response) {
                alert(response);
            }); 
         });
