@@ -10,7 +10,7 @@
 error_reporting(E_ALL ^ E_NOTICE);
 
 
-    require_once('..\app\database\DBAccess.php');
+    require_once($_SERVER['DOCUMENT_ROOT'].'/app\database\DBAccess.php');
 
     $zona = $_POST['zona'];
     $especialidad = $_POST['especialidad'];

@@ -1,8 +1,8 @@
 <?php
 
-require_once('../database/DBAccess.php');
-require_once('../controllers/EmpleadoController.php');
-require_once('../models/Trabajador.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/database/DBAccess.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/controllers/EmpleadoController.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/models/Trabajador.php');
 
 $valueDNI = $_POST['val'];
 

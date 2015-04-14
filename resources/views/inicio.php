@@ -12,11 +12,11 @@ session_start();
 
 if(!isset($_SESSION['name'])){
 
-    header('location: ../index.php');
+    header('location: ../../index.php');
 }
 else {
 
-    require_once('..\app\database\DBAccess.php');
+    require_once($_SERVER['DOCUMENT_ROOT'].'/app\database\DBAccess.php');
 
     $zona = $_POST['zona'];
     $especialidad = $_POST['especialidad'];

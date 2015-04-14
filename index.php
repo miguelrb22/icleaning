@@ -22,7 +22,7 @@
     <!-- Fonts -->
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
-    <?php  require_once('app/logic/index_logic.php'); ?>
+    <?php  require_once($_SERVER['DOCUMENT_ROOT'].'/app/logic/index_logic.php'); ?>
 
 </head>
 
@@ -78,7 +78,7 @@
                     <ul class="list-inline intro-social-buttons">
 
                         <li>
-                            <button class="btn btn-success btn-lg" data-toggle="modal" data-target="#myModal"><i class="fa fa-share"></i> <span class="network-name">Contratar servicios</span></button>
+                            <button class="btn btn-success btn-lg" data-toggle="modal" data-target="#myModal"><i class="fa fa-share"></i> <span class="network-name"><?php echo $_SERVER['DOCUMENT_ROOT'] ?></span></button>
                         </li>
 
                     </ul>

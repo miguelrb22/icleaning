@@ -1,8 +1,8 @@
 <?php
 
 
-require_once('app/controllers/ZonaController.php');
-require_once('app/controllers/EspecialidadController.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/app/controllers/ZonaController.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/app/controllers/EspecialidadController.php');
 
 
 function select_zonas()

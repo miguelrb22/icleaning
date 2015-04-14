@@ -1,7 +1,7 @@
 <?php
 
-include_once '../../app/models/Trabajador.php';
-include_once '../../app/database/DBAccess.php';
+include_once $_SERVER['DOCUMENT_ROOT'].'/app/models/Trabajador.php';
+include_once $_SERVER['DOCUMENT_ROOT'].'/app/database/DBAccess.php';
 
 /**
  * @author Juan Serna Jaen <nyoronsheppard@gmail.com>

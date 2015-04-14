@@ -3,7 +3,7 @@
 error_reporting(E_ALL ^ E_NOTICE);
 session_start();
 
-require_once('../database/DBAccess.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/database/DBAccess.php');
 
 $_SESSION['name'] = $_POST['name'];
 $_SESSION['pass'] = $_POST['pass'];

@@ -1,7 +1,7 @@
 <?php
 
-include_once '../../app/models/Tesoreria.php';
-include_once '../../app/database/DBAccess.php';
+include_once $_SERVER['DOCUMENT_ROOT'].'/app/models/Tesoreria.php';
+include_once $_SERVER['DOCUMENT_ROOT'].'/app/database/DBAccess.php';
 
 /**
  * @author Juan Serna Jaen <nyoronsheppard@gmail.com>
