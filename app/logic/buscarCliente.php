@@ -1,8 +1,10 @@
 <?php
 
-require_once($_SERVER['DOCUMENT_ROOT'].'/database/DBAccess.php');
-require_once($_SERVER['DOCUMENT_ROOT'].'/controllers/ClienteController.php');
-require_once($_SERVER['DOCUMENT_ROOT'].'/models/Cliente.php');
+$path = substr($_SERVER['DOCUMENT_ROOT'],0,15);
+
+require_once( $path.'/icleaning/app/database/DBAccess.php');
+require_once( $path.'/icleaning/app/controllers/ClienteController.php');
+require_once( $path.'/icleaning/app/models/Cliente.php');
 
 $valueDNI = $_POST['val'];
 

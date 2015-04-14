@@ -1,7 +1,8 @@
 <?php
+$path = substr($_SERVER['DOCUMENT_ROOT'],0,15);
 
-include_once $_SERVER['DOCUMENT_ROOT'].'/app/models/Ocupacion.php';
-include_once $_SERVER['DOCUMENT_ROOT'].'/app/database/DBAccess.php';
+include_once  $path.'/icleaning/app/models/Ocupacion.php';
+include_once  $path.'/icleaning/app/database/DBAccess.php';
 
 /**
  * @author Juan Serna Jaen <nyoronsheppard@gmail.com>

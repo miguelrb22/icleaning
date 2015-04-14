@@ -3,7 +3,9 @@
 error_reporting(E_ALL ^ E_NOTICE);
 session_start();
 
-require_once($_SERVER['DOCUMENT_ROOT'].'/database/DBAccess.php');
+$path = substr($_SERVER['DOCUMENT_ROOT'],0,15);
+
+require_once( $path.'/icleaning/app/database/DBAccess.php');
 
 $_SESSION['name'] = $_POST['name'];
 $_SESSION['pass'] = $_POST['pass'];

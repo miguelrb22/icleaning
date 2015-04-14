@@ -1,8 +1,9 @@
 <?php
 
+$path = substr($_SERVER['DOCUMENT_ROOT'],0,15);
 
-require_once($_SERVER['DOCUMENT_ROOT'].'/app/controllers/ZonaController.php');
-require_once($_SERVER['DOCUMENT_ROOT'].'/app/controllers/EspecialidadController.php');
+require_once( $path.'/icleaning/app/controllers/ZonaController.php');
+require_once( $path.'/icleaning/app/controllers/EspecialidadController.php');
 
 
 function select_zonas()
