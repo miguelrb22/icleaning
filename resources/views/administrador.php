@@ -59,6 +59,9 @@
 <div class="content-section-a">
 
     <div class="container">
+
+
+        <div class="row">
                 <hr class="section-heading-spacer">
                 <div class="clearfix"></div>
                 <h2 class="section-heading">Zona Clientes</h2>
@@ -66,14 +69,28 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">Buscar Cliente</div>
                     <div class="panel-body">
+                        <form id="formcliente">
                       <div class="input-group">
                           <input type="text" class="form-control" placeholder="Buscar por DNI" name="dnicli" id="dnicli">
                         <span class="input-group-btn">
-                            <button class="btn btn-default" type="button" id="getclient">Buscar</button>
+                            <button class="btn btn-default" type="submit" id="getclient">Buscar</button>
                         </span>
-                      </div><!-- /input-group -->
+
+                      </div>
+
+                            </form>
+
+                        <!-- /input-group -->
                     </div>
+
                 </div>
+            </div>
+
+        <div class="row">
+
+            <div id="administrador-result"></div>
+
+        </div>
                 
     </div>
     <!-- /.container -->
@@ -85,6 +102,8 @@
 <div class="content-section-a">
 
     <div class="container">
+
+        <div class="row">
                 <hr class="section-heading-spacer">
                 <div class="clearfix"></div>
                 <h2 class="section-heading">Zona Empleados</h2>
@@ -100,6 +119,7 @@
                       </div><!-- /input-group -->
                     </div>
                 </div>
+            </div>
     </div>
 
 </div>
@@ -141,19 +161,30 @@
 
 <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
 <script>
-    $( document ).ready(function() {
+    $(document).ready(function() {
 
-        $("#getclient").click(function () {           
-            $.post('../../app/logic/buscarCliente.php', 'val=' + $('#dnicli').val(), function (response) {
-                alert(response);
-            });
+
+        $("#formcliente").submit(function(e) {
+
+            e.preventDefault();
+
+                $.ajax({
+                    type: "POST",
+                    url: "../../app/logic/buscarCliente.php",
+                    data: $("#formcliente").serialize(),
+                    dataType: "html",
+                    error: function() {
+                        alert("error petición ajax");
+                    },
+                    success: function(data) {
+
+
+                        $('#administrador-result').html(data);
+
+                    }
+                });
         });
-        
-        $("#getempleado").click(function() {
-           $.post('../../app/logic/buscarEmpleado.php', 'val=' + $('#dniemp').val(), function (response) {
-               alert(response);
-           }); 
-        });
+
     });
 
 </script>

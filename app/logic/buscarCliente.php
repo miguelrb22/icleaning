@@ -6,9 +6,9 @@ require_once( $path.'/icleaning/app/database/DBAccess.php');
 require_once( $path.'/icleaning/app/controllers/ClienteController.php');
 require_once( $path.'/icleaning/app/models/Cliente.php');
 
-$valueDNI = $_POST['val'];
+$valueDNI = $_POST['dnicli'];
 
-if ($_POST['val']) {
+if ($_POST['dnicli']) {
     
     $clienteControllerBuscarDNI = new ClienteController();
     $clientePorDNI = $clienteControllerBuscarDNI->getClienteDNI($valueDNI);
@@ -19,11 +19,11 @@ if ($_POST['val']) {
             ", " . $clientePorDNI->getApellidos() . ", " . $clientePorDNI->getDireccion() . ", " . $clientePorDNI->getEmail() .
             ", " . $clientePorDNI->getTelefono() . ", " . $clientePorDNI->getFechaRegistro() . ", " . 
             ", " . $clientePorDNI->getContrasenya();
-        
-            //header("Location:http://localhost/icleaning/clienteForm.php");
-    } 
+
+
+    }
     else {
-        //echo "No existe el cliente con el DNI " . $valueDNI;
+        echo "No existe el cliente con el DNI " . $valueDNI;
     }
 }
     
