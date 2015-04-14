@@ -26,7 +26,7 @@
 
     $path = substr($_SERVER['DOCUMENT_ROOT'],0,15);
 
-    require_once($path.'icleaning/app/logic/index_logic.php'); ?>
+    require_once($path.'/icleaning/app/logic/index_logic.php'); ?>
 
 </head>
 
