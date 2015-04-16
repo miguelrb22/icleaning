@@ -31,7 +31,7 @@ if ($_POST['dniemp']) {
                          . "</thead>"
                          . "<tbody>";
         
-        echo "<tr>";
+        echo "<tr cl>";
                              echo "<td>" . $empleado->getIdEmpleado() . "</td>";
                              echo "<td>" . $empleado->getNif() . "</td>";
                              echo "<td>" . $empleado->getNombre() . "</td>";

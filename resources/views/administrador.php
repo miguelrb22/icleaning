@@ -214,8 +214,20 @@
     });
     
     function deleteEmpleado(dniEmpleado) {
-        
-        alert(dniEmpleado);
+
+        $.ajax({
+            type: "POST",
+            url: "../../app/ajax/ajax_borrarempleado.php",
+            data: { aux: dniEmpleado},
+            dataType: "html",
+            error: function() {
+                alert("error petición ajax");
+            },
+            success: function(data) {
+
+                alert(data);
+            }
+        });
     }
 
 </script>

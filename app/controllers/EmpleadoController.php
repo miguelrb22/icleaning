@@ -128,7 +128,7 @@ class EmpleadoController {
     public function deleteEmpleadoPorID($idEmpleado) {
         
         $dbAccess = new DBAccess();
-        $dbAccess->delete("DELETE FROM empleado WHERE idempleado=" . $idEmpleado());
+        $dbAccess->delete("DELETE FROM empleado WHERE idempleado=" . $idEmpleado);
     }
     
     //Tested
