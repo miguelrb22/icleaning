@@ -27,13 +27,33 @@ class EmpleadoController {
         foreach($result as $row){
         
             $empleado = new Trabajador($row['idempleado'], $row['idespecialidad'], $row['idzona'], $row['nif'],
-                                       $row['apellidos'], $row['nombre'], $row['telefomo'], $row['email'], $row['numero_cuenta'],
+                                       $row['apellidos'], $row['nombre'], $row['telefono'], $row['email'], $row['numero_cuenta'],
                                        $row['sip'], $row['anyos_experiencia'], $row['fechaUltimoTrabajo'], $row['horasTrabajadas'],
                                        $row['contrasenya'], $row['foto_empleado'], $row['descripcion'], $row['valoracion']);
             
             array_push($listaEmpleados, $empleado);
         }
         
+        return $listaEmpleados;
+    }
+
+    public function getListaEmpleadosPorBusqueda() {
+
+        $listaEmpleados = array();
+
+        $dbAccess = new DBAccess();
+        $result = $dbAccess->getSelect("SELECT * from empleado");
+
+        foreach($result as $row){
+
+            $empleado = new Trabajador($row['idempleado'], $row['idespecialidad'], $row['idzona'], $row['nif'],
+                $row['apellidos'], $row['nombre'], $row['telefomo'], $row['email'], $row['numero_cuenta'],
+                $row['sip'], $row['anyos_experiencia'], $row['fechaUltimoTrabajo'], $row['horasTrabajadas'],
+                $row['contrasenya'], $row['foto_empleado'], $row['descripcion'], $row['valoracion']);
+
+            array_push($listaEmpleados, $empleado);
+        }
+
         return $listaEmpleados;
     }
     
@@ -46,7 +66,7 @@ class EmpleadoController {
         foreach($result as $row){
         
             $empleado = new Trabajador($row['idempleado'], $row['idespecialidad'], $row['idzona'], $row['nif'],
-                                       $row['apellidos'], $row['nombre'], $row['telefomo'], $row['email'], $row['numero_cuenta'],
+                                       $row['apellidos'], $row['nombre'], $row['telefono'], $row['email'], $row['numero_cuenta'],
                                        $row['sip'], $row['anyos_experiencia'], $row['fechaUltimoTrabajo'], $row['horasTrabajadas'],
                                        $row['contrasenya'], $row['foto_empleado'], $row['descripcion'], $row['valoracion']);
         }
@@ -63,7 +83,7 @@ class EmpleadoController {
         foreach($result as $row){
         
             $empleado = new Trabajador($row['idempleado'], $row['idespecialidad'], $row['idzona'], $row['nif'],
-                                       $row['apellidos'], $row['nombre'], $row['telefomo'], $row['email'], $row['numero_cuenta'],
+                                       $row['apellidos'], $row['nombre'], $row['telefono'], $row['email'], $row['numero_cuenta'],
                                        $row['sip'], $row['anyos_experiencia'], $row['fechaUltimoTrabajo'], $row['horasTrabajadas'],
                                        $row['contrasenya'], $row['foto_empleado'], $row['descripcion'], $row['valoracion']);
         }
@@ -102,6 +122,20 @@ class EmpleadoController {
 
         $dbAccess = new DBAccess();
         $dbAccess->delete("DELETE FROM empleado WHERE idempleado=" . $empleado->getIdEmpleado());
+    }
+    
+    //Tested
+    public function deleteEmpleadoPorID($idEmpleado) {
+        
+        $dbAccess = new DBAccess();
+        $dbAccess->delete("DELETE FROM empleado WHERE idempleado=" . $idEmpleado);
+    }
+    
+    //Tested
+    public function deleteEmpleadoPorDNI($dniEmpleado) {
+        
+        $dbAccess = new DBAccess();
+        $dbAccess->delete("DELETE FROM empleado WHERE nif=" . $dniEmpleado);
     }
     
     //Tested

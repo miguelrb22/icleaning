@@ -6,24 +6,48 @@ require_once( $path.'/icleaning/app/database/DBAccess.php');
 require_once( $path.'/icleaning/app/controllers/ClienteController.php');
 require_once( $path.'/icleaning/app/models/Cliente.php');
 
-$valueDNI = $_POST['val'];
+$valueDNI = $_POST['dnicli'];
 
-if ($_POST['val']) {
+if ($_POST['dnicli']) {
     
     $clienteControllerBuscarDNI = new ClienteController();
     $clientePorDNI = $clienteControllerBuscarDNI->getClienteDNI($valueDNI);
     
     if ($clientePorDNI != null) {
         
-            echo $clientePorDNI->getIdCliente() . ", " . $clientePorDNI->getDni() . ", " . $clientePorDNI->getNombre() .
-            ", " . $clientePorDNI->getApellidos() . ", " . $clientePorDNI->getDireccion() . ", " . $clientePorDNI->getEmail() .
-            ", " . $clientePorDNI->getTelefono() . ", " . $clientePorDNI->getFechaRegistro() . ", " . 
-            ", " . $clientePorDNI->getContrasenya();
+        echo "<table class='table table-bordered'>"
+                         . "<thead>"
+                            . "<tr>"
+                               . "<th>ID</th>"
+                               . "<th>DNI</th>"
+                               . "<th>Nombre</th>"
+                               . "<th>Apellidos</th>"
+                               . "<th>Direccion</th>"
+                               . "<th>Telefono</th>"
+                               . "<th>Email</th>"
+                               . "<th>Fecha Registro</th>"
+                               . "<th>Opciones</th>"
+                            . "</tr>"
+                         . "</thead>"
+                         . "<tbody>";
         
-            //header("Location:http://localhost/icleaning/clienteForm.php");
-    } 
+                        echo "<tr>";
+                             echo "<td>" . $clientePorDNI->getIdCliente() . "</td>";
+                             echo "<td>" . $clientePorDNI->getDni() . "</td>";
+                             echo "<td>" . $clientePorDNI->getNombre() . "</td>";
+                             echo "<td>" . $clientePorDNI->getApellidos() . "</td>";
+                             echo "<td>" . $clientePorDNI->getDireccion() . "</td>";
+                             echo "<td>" . $clientePorDNI->getTelefono() . "</td>";
+                             echo "<td>" . $clientePorDNI->getEmail() . "</td>";
+                             echo "<td>" . $clientePorDNI->getFechaRegistro() . "</td>";
+                             echo "<td>   <a>Edit</a> <a>Borrar</a> </td>";
+                        echo "</tr>";
+                        
+                        echo "</tbody>"
+                              . "</table>";
+    }
     else {
-        //echo "No existe el cliente con el DNI " . $valueDNI;
+        echo "No existe el cliente con el DNI " . $valueDNI;
     }
 }
     

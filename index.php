@@ -82,7 +82,7 @@
                     <ul class="list-inline intro-social-buttons">
 
                         <li>
-                            <button class="btn btn-success btn-lg" data-toggle="modal" data-target="#myModal"><i class="fa fa-share"></i> <span class="network-name"><?php echo $_SERVER['DOCUMENT_ROOT'] ?></span></button>
+                            <button class="btn btn-success btn-lg" data-toggle="modal" data-target="#myModal"><i class="fa fa-share"></i> <span class="network-name"> Buscar </span></button>
                         </li>
 
                     </ul>
@@ -382,7 +382,7 @@
                                 <select class="selectpicker form-control" data-live-search="true"
                                         title="Selecciona una zona" name="zona">
                                     <option value="" disabled selected>Selecciona la zona</option>
-
+                                    <?php select_zonas(); ?>
 
 
                                 </select>

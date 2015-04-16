@@ -10,6 +10,16 @@ class DBAccess
     protected $mysqli;
     protected $query;
     protected $result;
+    protected $affected;
+
+
+    /**
+     * @return mixed
+     */
+    public function getAffected()
+    {
+        return $this->affected;
+    }
     
     //Construct
     function __construct() {
@@ -22,6 +32,7 @@ class DBAccess
         
         $this->query = $sentencia;
         $this->result = $this->mysqli->query($this->query);
+        $this->affected = mysqli_affected_rows($this->mysqli);
         
         $this->mysqli->close();
         
@@ -34,6 +45,8 @@ class DBAccess
         
         $this->query = $sentencia;
         $this->mysqli->query($this->query);
+        $this->affected = mysqli_affected_rows($this->mysqli);
+
 
         $this->mysqli->close();
     }
@@ -43,7 +56,9 @@ class DBAccess
         
         $this->query = $sentencia;
         $this->mysqli->query($this->query);
-        
+
+        $this->affected = mysqli_affected_rows($this->mysqli);
+
         $this->mysqli->close();
     }
     
@@ -52,7 +67,9 @@ class DBAccess
         
         $this->query = $sentencia;
         $this->mysqli->query($this->query);
-        
+        $this->affected = mysqli_affected_rows($this->mysqli);
+
+
         $this->mysqli->close();
     }
 }
