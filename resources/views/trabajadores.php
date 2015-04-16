@@ -111,6 +111,8 @@ echo $fecha."<br>";
 
     foreach ($query as $q) {
         echo $q['idempleado'];
+
+
 }
 ?>
 
