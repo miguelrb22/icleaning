@@ -20,6 +20,8 @@
     <!-- Fonts -->
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="../../public/lolibox/dist/css/LobiBox.min.css">
+
 
 </head>
 
@@ -116,14 +118,16 @@
                                         <button class="btn btn-default" type="submit" id="getempleado">Buscar</button>
                                     </span>
                             </div><!-- /input-group -->
-                        </form>                  
+                        </form>
+
+                        <button class="btn btn-warning btn-xs" id="gettodosempleados">Mostrar todos</button>
                     </div>
                 </div>
             </div>
         
             <div class="row">
 
-                <div id="administradorempleado-result"></div>
+                <div id="administradorempleado-result" class="col col-xs-12 col-sm-12 col-md-12 col-lg-12"></div>
 
             </div>
     </div>
@@ -162,8 +166,12 @@
 <!-- jQuery -->
 <script src="../../public/js/jquery.js"></script>
 
+<script src="../../public/lolibox/dist/js/lobibox.min.js"></script>
+
+
 <!-- Bootstrap Core JavaScript -->
 <script src="../../public/js/bootstrap.min.js"></script>
+
 
 <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
 <script>
@@ -191,14 +199,13 @@
                 });
         });
         
-        $("#formempleado").submit(function(e) {
+        $("#gettodosempleados").click(function(e) {
 
             e.preventDefault();
 
                 $.ajax({
                     type: "POST",
-                    url: "../../app/logic/buscarEmpleado.php",
-                    data: $("#formempleado").serialize(),
+                    url: "../../app/logic/todosEmpleados.php",
                     dataType: "html",
                     error: function() {
                         alert("error petición ajax");
@@ -211,24 +218,68 @@
                 });
         });
 
+        $("#formempleado").submit(function(e) {
+
+            e.preventDefault();
+
+            $.ajax({
+                type: "POST",
+                url: "../../app/logic/buscarEmpleado.php",
+                data: $("#formempleado").serialize(),
+                dataType: "html",
+                error: function() {
+                    alert("error petición ajax");
+                },
+                success: function(data) {
+
+                    $('#administradorempleado-result').html(data);
+
+                }
+            });
+        });
+
     });
+
     
     function deleteEmpleado(dniEmpleado) {
 
-        $.ajax({
-            type: "POST",
-            url: "../../app/ajax/ajax_borrarempleado.php",
-            data: { aux: dniEmpleado},
-            dataType: "html",
-            error: function() {
-                alert("error petición ajax");
-            },
-            success: function(data) {
+        Lobibox.confirm({
+            msg: "¿Estas seguro que deseas eliminar el usuario?",
+            callback: function ($this, type, ev) {
+                if (type === 'yes'){
 
-                alert(data);
+                    $('#'+dniEmpleado).hide();
+
+                    $.ajax({
+                        type: "POST",
+                        url: "../../app/ajax/ajax_borrarempleado.php",
+                        data: { aux: dniEmpleado},
+                        dataType: "html",
+                        error: function() {
+                            alert("error petición ajax");
+                        },
+                        success: function(data) {
+
+                            Lobibox.notify('success', {
+                                msg: 'Usuario borrado correctamente'
+                            });
+
+                        }
+                    });
+
+
+                }else if (type === 'no'){
+                    Lobibox.notify('info', {
+                        msg: 'Te has salvado por los pelos'
+                    });
+                }
             }
         });
+
+
+
     }
+
 
 </script>
 </body>
