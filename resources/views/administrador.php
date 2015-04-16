@@ -261,6 +261,7 @@
                         success: function(data) {
 
                             Lobibox.notify('success', {
+                                title: 'Borrado',
                                 msg: 'Usuario borrado correctamente'
                             });
 
