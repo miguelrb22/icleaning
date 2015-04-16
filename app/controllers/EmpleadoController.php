@@ -125,6 +125,20 @@ class EmpleadoController {
     }
     
     //Tested
+    public function deleteEmpleadoPorID($idEmpleado) {
+        
+        $dbAccess = new DBAccess();
+        $dbAccess->delete("DELETE FROM empleado WHERE idempleado=" . $idEmpleado());
+    }
+    
+    //Tested
+    public function deleteEmpleadoPorDNI($dniEmpleado) {
+        
+        $dbAccess = new DBAccess();
+        $dbAccess->delete("DELETE FROM empleado WHERE nif=" . $dniEmpleado);
+    }
+    
+    //Tested
     public function getTotalEmpleados() {
         
         $dbAccess = new DBAccess();

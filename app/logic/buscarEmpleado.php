@@ -12,6 +12,7 @@ if ($_POST['dniemp']) {
     
     $trabajadorController = new EmpleadoController();
     $empleado = $trabajadorController->getEmpleadoDNI($valueDNI);
+    $iDEmpleado = $empleado->getIdEmpleado();
     
     if ($empleado != null) {
         
@@ -38,7 +39,8 @@ if ($_POST['dniemp']) {
                              echo "<td>" . $empleado->getEmail() . "</td>";
                              echo "<td>" . $empleado->getNumeroCuenta() . "</td>";
                              echo "<td>" . $empleado->getSip() . "</td>";
-                             echo "<td>   <a>Edit</a> <a>Borrar</a> </td>";
+                             echo "<td>   <button class='btn btn-info btn-xs'>Edit</button> ". ""
+                                     . "<button onclick='deleteEmpleado($iDEmpleado)' class='btn btn-info btn-xs'>Borrar</button> </td>";
                         echo "</tr>";
                         
                         echo "</tbody>"

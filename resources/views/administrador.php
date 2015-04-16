@@ -212,6 +212,11 @@
         });
 
     });
+    
+    function deleteEmpleado(dniEmpleado) {
+        
+        alert(dniEmpleado);
+    }
 
 </script>
 </body>
