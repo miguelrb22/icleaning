@@ -27,7 +27,7 @@ class EmpleadoController {
         foreach($result as $row){
         
             $empleado = new Trabajador($row['idempleado'], $row['idespecialidad'], $row['idzona'], $row['nif'],
-                                       $row['apellidos'], $row['nombre'], $row['telefomo'], $row['email'], $row['numero_cuenta'],
+                                       $row['apellidos'], $row['nombre'], $row['telefono'], $row['email'], $row['numero_cuenta'],
                                        $row['sip'], $row['anyos_experiencia'], $row['fechaUltimoTrabajo'], $row['horasTrabajadas'],
                                        $row['contrasenya'], $row['foto_empleado'], $row['descripcion'], $row['valoracion']);
             
@@ -66,7 +66,7 @@ class EmpleadoController {
         foreach($result as $row){
         
             $empleado = new Trabajador($row['idempleado'], $row['idespecialidad'], $row['idzona'], $row['nif'],
-                                       $row['apellidos'], $row['nombre'], $row['telefomo'], $row['email'], $row['numero_cuenta'],
+                                       $row['apellidos'], $row['nombre'], $row['telefono'], $row['email'], $row['numero_cuenta'],
                                        $row['sip'], $row['anyos_experiencia'], $row['fechaUltimoTrabajo'], $row['horasTrabajadas'],
                                        $row['contrasenya'], $row['foto_empleado'], $row['descripcion'], $row['valoracion']);
         }
@@ -83,7 +83,7 @@ class EmpleadoController {
         foreach($result as $row){
         
             $empleado = new Trabajador($row['idempleado'], $row['idespecialidad'], $row['idzona'], $row['nif'],
-                                       $row['apellidos'], $row['nombre'], $row['telefomo'], $row['email'], $row['numero_cuenta'],
+                                       $row['apellidos'], $row['nombre'], $row['telefono'], $row['email'], $row['numero_cuenta'],
                                        $row['sip'], $row['anyos_experiencia'], $row['fechaUltimoTrabajo'], $row['horasTrabajadas'],
                                        $row['contrasenya'], $row['foto_empleado'], $row['descripcion'], $row['valoracion']);
         }
