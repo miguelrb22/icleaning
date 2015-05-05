@@ -41,6 +41,9 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
                 <li>
+                    <a href="#cliTra">Trabajos contratados</a>
+                </li>
+                <li>
                     <a href="#infgen">Perfil Cliente</a>
                 </li>
 
@@ -51,7 +54,81 @@
     <!-- /.container -->
 </nav>
 
+<?php
+        include_once '../../app/controllers/ClienteController.php';
+        include_once '../../app/models/Cliente.php';
+        
+        include_once '../../app/controllers/TrabajoController.php';
+        include_once '../../app/models/Trabajo.php';
+
+
+        $clienteController = new ClienteController();
+        $cliente = $clienteController->getCliente(1); //Cambiar!!!!
+        
+        $trabajoController = new TrabajoController();
+        $listaTrabajos = $trabajoController->getListaTrabajosPorCliente($cliente->getIdCliente());
+?>
+
 <!-- Header -->
+<a name="cliTra"></a>
+<div class="content-section-a">
+    
+    <div class="container">
+    
+    
+    <div class="trabajo"></div>
+    <h2 class="section-heading">Trabajos Contratados</h2>
+    
+    <div class="tab-content">
+        
+        <?php
+            echo "<table id='tableTra' class='table table-striped table-bordered'>"
+                . "<thead>"
+                . "<tr>"
+                    ."<th>ID</th>"
+                    ."<th>Importe Total</th>"
+                    ."<th>Direccion</th>"
+                    ."<th>Estimacion</th>"
+                    ."<th>Valoracion</th>"
+                    ."<th>Finalizado</th>"
+                    ."<th>Fecha Inicio</th>"
+                    ."<th>Fecha Fin</th>"
+                    ."<th>Opciones</th>"
+                    ."</tr>"
+                    ."</thead>"
+                    ."<tbody>";
+                    
+            foreach ($listaTrabajos as $trabajo) {
+                $id = $trabajo->getIdTrabajo();
+                echo "<tr>";
+                echo "<td>" . $trabajo->getIdTrabajo() . "</td>";
+                echo "<td>" . $trabajo->getImporteTotal() . "</td>";
+                echo "<td>" . $trabajo->getDireccionLugar() . "</td>";
+                echo "<td>" . $trabajo->getEstimacionHoras() . "</td>";
+                echo "<td>" . $trabajo->getValoracion() . "</td>";
+                echo "<td>" . $trabajo->getFinalizado() . "</td>";
+                echo "<td>" . $trabajo->getFechaInicio() . "</td>";
+                echo "<td>" . $trabajo->getFechaFin() . "</td>";
+                
+                if ($trabajo->getFinalizado() == 0) {
+                    echo "<td> <button onclick='completeTrabajo($id)' class='btn btn-info btn-xs'>Completar</button> </td>";
+                }
+                else {
+                    echo "<td>Completado</td>";
+                }
+                
+                echo "</tr>";
+            }
+            
+            echo "</tbody>"
+                . "</table>";
+        ?>
+        
+    </div>
+    </div>
+    
+</div>
+
 <a name="infgen"></a>
 <div class="content-section-a">
 
@@ -62,15 +139,7 @@
         <h2 class="section-heading">Perfil Cliente</h2>
 
         <?php
-        include_once '../../app/controllers/ClienteController.php';
-        include_once '../../app/models/Cliente.php';
-
-
-        $clienteController = new ClienteController();
-
-        $cliente = $clienteController->getCliente(1);
-
-
+        
         $dni = $cliente->getDni();
         $nombre = $cliente->getNombre();
         $direccion = $cliente->getDireccion();
@@ -181,8 +250,10 @@
 
                 </form>
             </div>
-        </div>
-
+        </div>    
+    </div>
+    
+</div>
 
 
 
@@ -219,8 +290,55 @@
 <!-- jQuery -->
 <script src="../../public/js/jquery.js"></script>
 
+<script src="../../public/lolibox/dist/js/lobibox.min.js"></script>
+
+<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+
 <!-- Bootstrap Core JavaScript -->
 <script src="../../public/js/bootstrap.min.js"></script>
+
+<script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
+<script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+       $('#tableTra').dataTable();
+    });
+    
+    function completeTrabajo(idTrabajo) {
+
+        Lobibox.confirm({
+            msg: "¿Estas seguro que deseas completar el trabajo?",
+            callback: function ($this, type, ev) {
+                if (type === 'yes'){
+
+                    $.ajax({
+                        type: "POST",
+                        url: "../../app/ajax/ajax_completartrabajo.php",
+                        data: { aux: idTrabajo},
+                        dataType: "html",
+                        error: function() {
+                            alert("error petición ajax");
+                        },
+                        success: function(data) {
+
+                            Lobibox.notify('success', {
+                                title: 'Completado',
+                                msg: 'Trabajo completado correctamente'
+                            });
+                        }
+                    });
+
+
+                }else if (type === 'no'){
+                    Lobibox.notify('info', {
+                        msg: 'Trabajo no completado'
+                    });
+                }
+            }
+        });
+    }
+</script>
 
 </body>
 

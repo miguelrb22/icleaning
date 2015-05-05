@@ -57,6 +57,10 @@ class Trabajo {
         return $this->valoracion;
     }
     
+    public function setValoracion($valoracion) {
+        $this->valoracion = $valoracion;
+    }
+    
     public function getFkIdFactura() {
         return $this->fkIdFactura;
     }
@@ -67,6 +71,10 @@ class Trabajo {
     
     public function getFinalizado() {
         return $this->finalizado;
+    }
+    
+    public function setFinalizado($finalizado) {
+        $this->finalizado = $finalizado;
     }
     
     public function getDireccionLugar() {
