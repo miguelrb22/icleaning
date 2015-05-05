@@ -139,6 +139,13 @@ class TrabajoController {
         $dbAccess->delete("DELETE FROM trabajo WHERE idtrabajo=" . $trabajo->getIdTrabajo());
     }
     
+    //
+    public function deleteTrabajoPorId($idTrabajo) {
+        
+        $dbAccess = new DBAccess();
+        $dbAccess->delete("DELETE FROM trabajo WHERE idtrabajo=" . $idTrabajo);
+    }
+    
     //Tested
     public function getTotalTrabajos() {
         

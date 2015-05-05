@@ -111,7 +111,9 @@
                 echo "<td>" . $trabajo->getFechaFin() . "</td>";
                 
                 if ($trabajo->getFinalizado() == 0) {
-                    echo "<td> <button onclick='completeTrabajo($id)' class='btn btn-info btn-xs'>Completar</button> </td>";
+                    echo "<td> <button onclick='completeTrabajo($id)' class='btn btn-info btn-xs'>Completar</button> "
+                        . "<button onclick='deleteTrabajo($id)' class='btn btn-info btn-xs'>Eliminar</button>"
+                            . "</td>";
                 }
                 else {
                     echo "<td>Completado</td>";
@@ -333,6 +335,42 @@
                 }else if (type === 'no'){
                     Lobibox.notify('info', {
                         msg: 'Trabajo no completado'
+                    });
+                }
+            }
+        });
+    }
+    
+    function deleteTrabajo(idTrabajo) {
+
+        Lobibox.confirm({
+            msg: "¿Estas seguro que deseas eliminar el trabajo?",
+            callback: function ($this, type, ev) {
+                if (type === 'yes'){
+
+                    $('#'+idTrabajo).hide();
+                    
+                    $.ajax({
+                        type: "POST",
+                        url: "../../app/ajax/ajax_eliminartrabajo.php",
+                        data: { aux: idTrabajo},
+                        dataType: "html",
+                        error: function() {
+                            alert("error petición ajax");
+                        },
+                        success: function(data) {
+
+                            Lobibox.notify('success', {
+                                title: 'Completado',
+                                msg: 'Trabajo eliminado correctamente'
+                            });
+                        }
+                    });
+
+
+                }else if (type === 'no'){
+                    Lobibox.notify('info', {
+                        msg: 'Trabajo no eliminado'
                     });
                 }
             }
