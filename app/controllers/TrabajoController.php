@@ -36,6 +36,44 @@ class TrabajoController {
     }
     
     //Tested
+    public function getListaTrabajosIniciadosPorEmpleado($idEmpleado) {
+        
+        $listaTrabajos = array();
+        
+        $dbAccess = new DBAccess();
+        $result = $dbAccess->getSelect("SELECT * from trabajo WHERE idempleado=" . $idEmpleado . " and finalizado=0");
+
+        foreach($result as $row){
+        
+            $trabajo = new Trabajo($row['idtrabajo'], $row['idcliente'], $row['idempleado'], $row['valoracion'], $row['idfactura'],
+                                   $row['importe_total'], $row['finalizado'], $row['direccion_lugar'], $row['estimacion_horas'], $row['gasto_total'], 
+                                   $row['importe_recibido'], $row['fecha_inicio'], $row['fecha_fin']);
+            array_push($listaTrabajos, $trabajo);  
+        }
+        
+        return $listaTrabajos;
+    }
+    
+    //Tested
+    public function getListaTrabajosFinalizadosPorEmpleado($idEmpleado) {
+        
+        $listaTrabajos = array();
+        
+        $dbAccess = new DBAccess();
+        $result = $dbAccess->getSelect("SELECT * from trabajo WHERE idempleado=" . $idEmpleado . " and finalizado=1");
+
+        foreach($result as $row){
+        
+            $trabajo = new Trabajo($row['idtrabajo'], $row['idcliente'], $row['idempleado'], $row['valoracion'], $row['idfactura'],
+                                   $row['importe_total'], $row['finalizado'], $row['direccion_lugar'], $row['estimacion_horas'], $row['gasto_total'], 
+                                   $row['importe_recibido'], $row['fecha_inicio'], $row['fecha_fin']);
+            array_push($listaTrabajos, $trabajo);  
+        }
+        
+        return $listaTrabajos;
+    }
+    
+    //Tested
     public function getTrabajo($idTrabajo) {
         
         $dbAccess = new DBAccess();

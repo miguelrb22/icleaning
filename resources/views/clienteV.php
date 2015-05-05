@@ -68,7 +68,7 @@
 
         $clienteController = new ClienteController();
 
-        $cliente = $clienteController->getCliente(29);
+        $cliente = $clienteController->getCliente(1);
 
 
         $dni = $cliente->getDni();

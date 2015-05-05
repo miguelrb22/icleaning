@@ -41,9 +41,14 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a href="#infgen">Perfil Trabajador</a>
+                    <a href="#trabini">Trabajos Iniciados</a>
                 </li>
-
+                <li>
+                    <a href="#trabfin">Trabajos Finalizados</a>                                     
+                </li>
+                <li>
+                    <a href="#infgen">Perfil Trabajador</a> 
+                </li>
             </ul>
         </div>
         <!-- /.navbar-collapse -->
@@ -51,10 +56,128 @@
     <!-- /.container -->
 </nav>
 
+    <?php
+        include_once '../../app/controllers/EmpleadoController.php';
+        include_once '../../app/models/Trabajador.php';
+        
+        include_once '../../app/controllers/TrabajoController.php';
+        include_once '../../app/models/Trabajo.php';
+
+        $empleadoController = new EmpleadoController();
+        $trabajoController = new TrabajoController();
+
+        $trabajador = $empleadoController->getEmpleado(1229);//Cambiaaar
+        
+        //Trabajos iniciados (pero no finalizados) por este empleado
+        $listaTrabajosIniciados = $trabajoController->getListaTrabajosIniciadosPorEmpleado($trabajador->getIdEmpleado());
+        
+        //Trabajos finalizados por este empleado
+        $listaTrabajosFinalizados = $trabajoController->getListaTrabajosFinalizadosPorEmpleado($trabajador->getIdEmpleado());
+        
+    ?>
+
 <!-- Header -->
+<a name="trabini"></a>
+<div class="content-section-a">
+    
+    <div class="container">
+        
+        <div class="trabajoinicial"></div>
+        <h2 class="section-heading">Trabajos Iniciados</h2>
+        
+        <div class="tab-content">
+            
+            <?php
+                echo "<table id='tableTraIn' class='table table-striped table-bordered'>"
+                     . "<thead>"
+                     . "<tr>"
+                        . "<th>ID</th>"
+                        . "<th>Importe Total</th>"
+                        . "<th>Direccion</th>"
+                        . "<th>Estimacion</th>"
+                        . "<th>Gasto Total</th>"
+                        . "<th>Importe Recibido</th>"
+                        . "<th>Fecha Inicio</th>"
+                     . "</tr>"
+                     . "</thead>"
+                     . "<tbody>";
+                
+                foreach ($listaTrabajosIniciados as $trabajo) {
+                    
+                    echo "<tr>";
+                    echo "<td>" . $trabajo->getIdTrabajo() . "</td>";
+                    echo "<td>" . $trabajo->getImporteTotal() . "</td>";
+                    echo "<td>" . $trabajo->getDireccionLugar() . "</td>";
+                    echo "<td>" . $trabajo->getEstimacionHoras() . "</td>";
+                    echo "<td>" . $trabajo->getGastoTotal() . "</td>";
+                    echo "<td>" . $trabajo->getImporteRecibido() . "</td>";
+                    echo "<td>" . $trabajo->getFechaInicio() . "</td>";
+                    echo "</tr>";
+                }
+                
+                echo "</tbody>"
+                    . "</table>";
+            ?>
+            
+        </div>
+        
+    </div>
+    
+</div>
+
+<a name="trabfin"></a>
+<div class="content-section-a">
+    
+    <div class="container">
+        
+        <div class="trabajofinal"></div>
+        <h2 class="section-heading">Trabajos Finalizados</h2>
+        
+        <div class="tab-content">
+            
+            <?php
+                echo "<table id='tableTraFn' class='table table-striped table-bordered'>"
+                     . "<thead>"
+                     . "<tr>"
+                        . "<th>ID</th>"
+                        . "<th>Importe Total</th>"
+                        . "<th>Direccion</th>"
+                        . "<th>Estimacion</th>"
+                        . "<th>Gasto Total</th>"
+                        . "<th>Importe Recibido</th>"
+                        . "<th>Fecha Fin</th>"
+                     . "</tr>"
+                     . "</thead>"
+                     . "<tbody>";
+                
+                foreach ($listaTrabajosFinalizados as $trabajo) {
+                    
+                    echo "<tr>";
+                    echo "<td>" . $trabajo->getIdTrabajo() . "</td>";
+                    echo "<td>" . $trabajo->getImporteTotal() . "</td>";
+                    echo "<td>" . $trabajo->getDireccionLugar() . "</td>";
+                    echo "<td>" . $trabajo->getEstimacionHoras() . "</td>";
+                    echo "<td>" . $trabajo->getGastoTotal() . "</td>";
+                    echo "<td>" . $trabajo->getImporteRecibido() . "</td>";
+                    echo "<td>" . $trabajo->getFechaFin() . "</td>";
+                    echo "</tr>";
+                }
+                
+                echo "</tbody>"
+                    . "</table>";
+            ?>
+            
+        </div>
+        
+    </div>
+    
+</div>
+
+
 <a name="infgen"></a>
 <div class="content-section-a">
 
+    
 
     <div class="container">
 
@@ -62,12 +185,7 @@
         <h2 class="section-heading">Perfil Trabajador</h2>
 
         <?php
-        include_once '../../app/controllers/EmpleadoController.php';
-        include_once '../../app/models/Trabajador.php';
-
-        $empleadoController = new EmpleadoController();
-
-        $trabajador = $empleadoController->getEmpleado(17);
+        
 
         $especialidad = $trabajador->getFkIdEspecialidad();
         $zona = $trabajador->getFkIdZona();
@@ -328,6 +446,16 @@
 
 <!-- Bootstrap Core JavaScript -->
 <script src="../../public/js/bootstrap.min.js"></script>
+
+<script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
+<script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+       $('#tableTraIn').dataTable();
+       $('#tableTraFn').dataTable();
+    });
+</script>
 
 </body>
 
