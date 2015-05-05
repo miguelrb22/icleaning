@@ -12,7 +12,7 @@ require_once( $path.'/icleaning/app/models/Trabajador.php');
 
     if ($empleado != null) {
 
-        echo "<table class='table table-bordered table-responsive table-hover'>"
+        echo "<table id='todosEmp' class='table table-bordered table-responsive table-hover'>"
             . "<thead>"
             . "<tr class='danger'>"
             . "<th>ID</th>"

@@ -89,6 +89,20 @@ class ClienteController {
     }
     
     //Tested
+    public function deleteClientePorID($idCliente) {
+        
+        $dbAccess = new DBAccess();
+        $dbAccess->delete("DELETE FROM cliente WHERE idcliente=" . $idCliente);
+    }
+    
+    //Tested
+    public function deleteEmpleadoPorDNI($dniCliente) {
+        
+        $dbAccess = new DBAccess();
+        $dbAccess->delete("DELETE FROM cliente WHERE dni=" . $dniCliente);
+    }
+    
+    //Tested
     public function getTotalClientes() {
         
         $dbAccess = new DBAccess();

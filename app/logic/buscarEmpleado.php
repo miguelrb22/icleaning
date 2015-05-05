@@ -16,7 +16,7 @@ if ($_POST['dniemp']) {
     
     if ($empleado != null) {
         
-        echo "<table class='table table-bordered'>"
+        echo "<table class='table table-bordered table-responsive table-hover'>"
                          . "<thead>"
                             . "<tr>"
                                . "<th>ID</th>"

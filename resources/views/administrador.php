@@ -62,7 +62,6 @@
 
     <div class="container">
 
-
         <div class="row">
                 <hr class="section-heading-spacer">
                 <div class="clearfix"></div>
@@ -74,26 +73,23 @@
                         <form id="formcliente">
                             <div class="input-group">
                                 <input type="text" class="form-control" placeholder="Buscar por DNI" name="dnicli" id="dnicli">
-                              <span class="input-group-btn">
-                                  <button class="btn btn-default" type="submit" id="getclient">Buscar</button>
-                              </span>
-                            </div>
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" type="submit" id="getempleado">Buscar</button>
+                                    </span>
+                            </div><!-- /input-group -->
                         </form>
 
-                        <!-- /input-group -->
+                        <button class="btn btn-warning btn-xs" id="gettodosclientes">Mostrar todos</button>
                     </div>
-
                 </div>
             </div>
+        
+            <div class="row">
 
-        <div class="row">
+                <div id="administrador-result" class="col col-xs-12 col-sm-12 col-md-12 col-lg-12"></div>
 
-            <div id="administrador-result"></div>
-
-        </div>
-                
+            </div>
     </div>
-    <!-- /.container -->
 
 </div>
 
@@ -174,10 +170,13 @@
 
 
 <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+
+<script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
+<script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
+
 <script>
     $(document).ready(function() {
-
-
+        
         $("#formcliente").submit(function(e) {
 
             e.preventDefault();
@@ -199,6 +198,26 @@
                 });
         });
         
+        $("#gettodosclientes").click(function(e) {
+
+            e.preventDefault();
+
+                $.ajax({
+                    type: "POST",
+                    url: "../../app/logic/todosClientes.php",
+                    dataType: "html",
+                    error: function() {
+                        alert("error petición ajax");
+                    },
+                    success: function(data) {
+
+                        $('#administrador-result').html(data);
+                        $('#todosCli').dataTable();                       
+
+                    }
+                });
+        });
+        
         $("#gettodosempleados").click(function(e) {
 
             e.preventDefault();
@@ -213,10 +232,10 @@
                     success: function(data) {
 
                         $('#administradorempleado-result').html(data);
-
+                        $('#todosEmp').dataTable();
                     }
                 });
-        });
+        });      
 
         $("#formempleado").submit(function(e) {
 
@@ -239,6 +258,43 @@
         });
 
     });
+    
+    function deleteCliente(dniCliente) {
+
+        Lobibox.confirm({
+            msg: "¿Estas seguro que deseas eliminar el usuario?",
+            callback: function ($this, type, ev) {
+                if (type === 'yes'){
+
+                    $('#'+dniCliente).hide();
+
+                    $.ajax({
+                        type: "POST",
+                        url: "../../app/ajax/ajax_borrarcliente.php",
+                        data: { aux: dniCliente},
+                        dataType: "html",
+                        error: function() {
+                            alert("error petición ajax");
+                        },
+                        success: function(data) {
+
+                            Lobibox.notify('success', {
+                                title: 'Borrado',
+                                msg: 'Usuario borrado correctamente'
+                            });
+
+                        }
+                    });
+
+
+                }else if (type === 'no'){
+                    Lobibox.notify('info', {
+                        msg: 'Te has salvado por los pelos'
+                    });
+                }
+            }
+        });
+    }
 
     
     function deleteEmpleado(dniEmpleado) {
@@ -276,9 +332,6 @@
                 }
             }
         });
-
-
-
     }
 
 

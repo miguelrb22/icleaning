@@ -12,10 +12,11 @@ if ($_POST['dnicli']) {
     
     $clienteControllerBuscarDNI = new ClienteController();
     $clientePorDNI = $clienteControllerBuscarDNI->getClienteDNI($valueDNI);
+    $id = $clientePorDNI->getIdCliente();
     
     if ($clientePorDNI != null) {
         
-        echo "<table class='table table-bordered'>"
+        echo "<table class='table table-bordered table-responsive table-hover'>"
                          . "<thead>"
                             . "<tr>"
                                . "<th>ID</th>"
@@ -40,7 +41,8 @@ if ($_POST['dnicli']) {
                              echo "<td>" . $clientePorDNI->getTelefono() . "</td>";
                              echo "<td>" . $clientePorDNI->getEmail() . "</td>";
                              echo "<td>" . $clientePorDNI->getFechaRegistro() . "</td>";
-                             echo "<td>   <a>Edit</a> <a>Borrar</a> </td>";
+                             echo "<td>   <button class='btn btn-info btn-xs'>Edit</button> " . ""
+                                    . "<button onclick='deleteCliente($id)' class='btn btn-info btn-xs'>Borrar</button> </td>";
                         echo "</tr>";
                         
                         echo "</tbody>"
