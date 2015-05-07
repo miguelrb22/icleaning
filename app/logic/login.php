@@ -30,7 +30,8 @@ if ($_POST) {
 
                 if ($_SESSION['pass'] == $bdpassword) {
 
-                    header('location: ../../views/inicio.php');
+                    $_SESSION['activa'] = true;
+                    header('location: ../../resources/views/clienteV.php');
                 } else {
 
                     header('location: ../../index.php?e=1');
