@@ -26,7 +26,7 @@ class FacturaController {
 
         foreach($result as $row){
         
-            $factura = new Factura($row['idfactura'], $row['mes'], $row['total_importe'], $row['pagada']);
+            $factura = new Factura($row['idfactura'], $row['mes'], $row['total_importe'], $row['pagada'], $row['idTrabajo']);
             array_push($listaFacturas, $factura);
         }
         
@@ -41,7 +41,7 @@ class FacturaController {
         
         foreach($result as $row){
         
-            $factura = new Factura($row['idfactura'], $row['mes'], $row['total_importe'], $row['pagada']);
+            $factura = new Factura($row['idfactura'], $row['mes'], $row['total_importe'], $row['pagada'], $row['idTrabajo']);
         }
         
         return $factura;
@@ -51,8 +51,8 @@ class FacturaController {
     public function insertFactura($factura) {
         
         $dbAccess = new DBAccess();
-        $dbAccess->insert("INSERT INTO factura (mes, total_importe, pagada) VALUES ('" .
-                          $factura->getMes() . "', " . $factura->getTotalImporte() . ", '" . $factura->getPagada() . "')");
+        $dbAccess->insert("INSERT INTO factura (mes, total_importe, pagada, idTrabajo) VALUES ('" .
+                          $factura->getMes() . "', " . $factura->getTotalImporte() . ", '" . $factura->getPagada() . "', " . $factura->getIdTrabajo() . ")");
     }
     
     //Tested
@@ -60,7 +60,7 @@ class FacturaController {
         
         $dbAccess = new DBAccess();
         $dbAccess->update("UPDATE factura SET mes='" . $factura->getMes() . "', total_importe=" . $factura->getTotalImporte() . 
-                          ", pagada='" . $factura->getPagada() . "' WHERE idfactura=" . $factura->getIdFactura());
+                          ", pagada='" . $factura->getPagada() . ", idTrabajo=" . $factura->getIdTrabajo() . " WHERE idfactura=" . $factura->getIdFactura());
     }
     
     //Tested

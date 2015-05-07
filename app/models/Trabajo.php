@@ -100,5 +100,9 @@ class Trabajo {
     public function getFechaFin() {
         return $this->fechaFin;
     }
+    
+    public function setFechaFin($fechaFin) {
+        $this->fechaFin = $fechaFin;
+    }
 }
 
