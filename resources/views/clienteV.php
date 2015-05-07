@@ -142,6 +142,7 @@
 
         <?php
         
+        $idCliente = $cliente->getIdCliente();
         $dni = $cliente->getDni();
         $nombre = $cliente->getNombre();
         $direccion = $cliente->getDireccion();
@@ -177,14 +178,14 @@
 
                         <label class = "col-sm-2 control-label" for="formGroup">Nombre: </label>
                         <div class="col-sm-3">
-                            <input class="form-control" type="text" id="formGroup" value="<?php echo $nombre ?>" disabled>
+                            <input class="form-control" type="text" id="cliNombre" value="<?php echo $nombre ?>" disabled>
                         </div>
 
                         <div class="form-group">
                             <label class = "col-sm-2 control-label" for="formGroup">Telefono: </label>
                             <div class="input-group col-sm-2">
                                 <span class = "input-group-addon"><span class = "glyphicon glyphicon-phone"></span></span>
-                                <input class="form-control" type="text" id="formGroup" value="<?php echo $telefono ?>">
+                                <input class="form-control" type="text" name="cliTelefono" id="cliTelefono" value="<?php echo $telefono ?>">
                             </div>
                         </div>
 
@@ -195,14 +196,14 @@
 
                         <label class = "col-sm-2 control-label" for="formGroup">Apellidos: </label>
                         <div class="col-sm-3">
-                            <input class="form-control" type="text" id="formGroup" value="<?php echo $apellidos ?>" disabled>
+                            <input class="form-control" type="text" id="cliApellidos" value="<?php echo $apellidos ?>" disabled>
                         </div>
 
                         <div class="form-group">
                             <label class = "col-sm-2 control-label" for="formGroup">Email: </label>
                             <div class="input-group col-sm-3">
                                 <span class = "input-group-addon">@</span>
-                                <input class="form-control" type="text" id="formGroup" value="<?php echo $email ?>">
+                                <input class="form-control" type="text" name="cliEmail" id="cliEmail" value="<?php echo $email ?>">
                             </div>
                         </div>
 
@@ -213,13 +214,13 @@
 
                         <label class = "col-sm-2 control-label" for="formGroup">DNI: </label>
                         <div class="col-sm-3">
-                            <input class="form-control" type="text" id="formGroup" value="<?php echo $dni ?>" disabled>
+                            <input class="form-control" type="text" id="cliDni" value="<?php echo $dni ?>" disabled>
                         </div>
 
                         <div class="form-group">
                             <label class = "col-sm-2 control-label" for="formGroup">Direccion: </label>
                             <div class="col-sm-3">
-                                <input class="form-control" type="text" id="formGroup" value="<?php echo $direccion ?>">
+                                <input class="form-control" type="text" name="cliDireccion" id="cliDireccion" value="<?php echo $direccion ?>">
                             </div>
                         </div>
                     </div><br />
@@ -228,7 +229,7 @@
                     <div class="form-group">
                         <label class = "col-sm-2 control-label" for="formGroup">Cambiar contraseña: </label>
                         <div class="col-sm-2">
-                            <input class="form-control" type="text" id="formGroup">
+                            <input class="form-control" name="cliPassword" type="text" id="cliPassword">
                         </div>
                     </div>
 
@@ -236,7 +237,7 @@
                     <div class="form-group">
                         <label class = "col-sm-2 control-label" for="formGroup">Confirmar contraseña: </label>
                         <div class="col-sm-2">
-                            <input class="form-control" type="text" id="formGroup">
+                            <input class="form-control" type="text" name="cliPasswordConf" id="cliPasswordConf">
                         </div>
                     </div> <br />
 
@@ -244,10 +245,14 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label" for="formGroup"></label>
                         <div class="col-sm-4">
-                            <button type="submit" class="btn btn-success btn-lg"><span class="glyphicon glyphicon-floppy-saved"</span> Guardar </button>
+                            <?php
+                                //Como pillar la direccion del value del imput direccion
+                                //$cliDir = 'asdfasdf';
+                                echo "<button type='submit' onclick='modificarCliente($idCliente)' class='btn btn-success btn-lg'><span class='glyphicon glyphicon-floppy-saved'</span> Guardar </button>";                          
+                            ?>        
                             <button type="button" class="btn btn-danger btn-lg"><span class="glyphicon glyphicon-remove-circle"</span> Cancelar </button>
                         </div>
-                    </div>
+                    </div> 
 
                 </form>
             </div>
@@ -374,6 +379,43 @@
                 }
             }
         });
+    }
+    
+    function modificarCliente(idCliente) {
+                    
+                    var dirCli = $('#cliDireccion').val();
+                    var cliEmail = $('#cliEmail').val();
+                    var cliTelefono = $('#cliTelefono').val();
+                    var cliPass = $('#cliPassword').val();
+                    var cliPassConf = $('#cliPasswordConf').val();
+                    
+                    if (cliPass === '' || cliPassConf === '') {
+                        alert("Inserte un password");
+                    }
+                    else if (cliPass !== cliPassConf) {
+                        alert("Los passwords no coinciden");
+                    }
+                    else {
+                                                          
+                        $.ajax({
+                            type: "POST",
+                            url: "../../app/ajax/ajax_modificarcliente.php",
+                            data: { idcliente: idCliente, clidir: dirCli, cliemail: cliEmail, clitelefono: cliTelefono, clipass: cliPass },
+                            dataType: "html",
+                            error: function() {
+                                alert("error petición ajax");
+                            },
+                            success: function(data) {
+
+                                Lobibox.notify('success', {
+                                    title: 'Completado',
+                                    msg: 'Cliente modificado correctamente'
+                                });
+                            }
+                        });
+                    
+                    }
+        
     }
 </script>
 

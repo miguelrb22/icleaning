@@ -50,12 +50,24 @@ class Cliente {
         return $this->direccion;
     }
     
+    public function setDireccion($direccion) {
+        $this->direccion = $direccion;
+    }
+    
     public function getTelefono() {
         return $this->telefono;
     }
     
+    public function setTelefono($telefono) {
+        $this->telefono = $telefono;
+    }
+    
     public function getEmail() {
         return $this->email;
+    }
+    
+    public function setEmail($email) {
+        $this->email = $email;
     }
     
     public function getFechaRegistro() {
@@ -64,6 +76,10 @@ class Cliente {
     
     public function getContrasenya() {
         return $this->contrasenya;
+    }
+    
+    public function setContrasenya($contrasenya) {
+        $this->contrasenya = $contrasenya;
     }
     
     public function getFotoCliente() {
