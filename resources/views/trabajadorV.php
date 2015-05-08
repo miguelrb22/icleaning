@@ -62,6 +62,12 @@
         
         include_once '../../app/controllers/TrabajoController.php';
         include_once '../../app/models/Trabajo.php';
+        
+        include_once '../../app/controllers/EspecialidadController.php';
+        include_once '../../app/models/Especialidad.php';
+        
+        include_once '../../app/controllers/ZonaController.php';
+        include_once '../../app/models/Zona.php';
 
         $empleadoController = new EmpleadoController();
         $trabajoController = new TrabajoController();
@@ -73,6 +79,14 @@
         
         //Trabajos finalizados por este empleado
         $listaTrabajosFinalizados = $trabajoController->getListaTrabajosFinalizadosPorEmpleado($trabajador->getIdEmpleado());
+        
+        //Especialida del trabajador
+        $especialidadController = new EspecialidadController();
+        $especialidad = $especialidadController->getEspecialidad($trabajador->getFkIdEspecialidad());
+        
+        //Zona del trabajador
+        $zonaController = new ZonaController();
+        $zona = $zonaController->getZona($trabajador->getFkIdZona());
         
     ?>
 
@@ -186,9 +200,7 @@
 
         <?php
         
-
-        $especialidad = $trabajador->getFkIdEspecialidad();
-        $zona = $trabajador->getFkIdZona();
+        $idTrabajador = $trabajador->getIdEmpleado();
         $nif = $trabajador->getNif();
         $apellidos = $trabajador->getApellidos();
         $nombre = $trabajador->getNombre();
@@ -281,7 +293,7 @@
                             <label class = "col-sm-2 control-label" for="formGroup">Telefono: </label>
                             <div class="input-group col-sm-2">
                                 <span class = "input-group-addon"><span class = "glyphicon glyphicon-phone"></span></span>
-                                <input class="form-control" type="text" id="formGroup" value="<?php echo $telefono ?>">
+                                <input class="form-control" type="text" name="traTelefono" id="traTelefono" value="<?php echo $telefono ?>">
                             </div>
                         </div>
 
@@ -299,7 +311,7 @@
                             <label class = "col-sm-2 control-label" for="formGroup">Email: </label>
                             <div class="input-group col-sm-3">
                                 <span class = "input-group-addon">@</span>
-                                <input class="form-control" type="text" id="formGroup" value="<?php echo $email ?>">
+                                <input class="form-control" type="text" name="traEmail" id="traEmail" value="<?php echo $email ?>">
                             </div>
                         </div>
 
@@ -316,7 +328,7 @@
                         <div class="form-group">
                             <label class = "col-sm-2 control-label" for="formGroup">Numero de cuenta: </label>
                             <div class="col-sm-4">
-                                <input class="form-control" type="text" id="formGroup" value="<?php echo $numCuenta ?>">
+                                <input class="form-control" type="text" name="traCuenta" id="traCuenta" value="<?php echo $numCuenta ?>">
                             </div>
                         </div>
 
@@ -324,23 +336,15 @@
 
 
                     <div class="form-group">
-
-                        <label class="col-sm-2 control-label" for="formGroup">Especialidad: </label>
-                        <div class="col-sm-3">
-                            <select class="form-control">
-                                <option>meter especialidades</option>
-                                <option>asdfasd</option>
-                            </select>
+                        
+                        <label class = "col-sm-2 control-label" for="formGroup">Especialidad: </label>
+                        <div class="col-sm-2">
+                            <input class="form-control" type="text" id="formGroup" value="<?php echo $especialidad->getTipoEspecialidad() ?>" disabled>
                         </div>
-
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label" for="formGroup">Zona: </label>
-                            <div class="col-sm-3">
-                                <select class="form-control">
-                                    <option>meter las zonas</option>
-                                    <option>asdfasd</option>
-                                </select>
-                            </div>
+                        
+                        <label class = "col-sm-2 control-label" for="formGroup">Zona: </label>
+                        <div class="col-sm-2">
+                            <input class="form-control" type="text" id="formGroup" value="<?php echo $zona->getNombre() ?>" disabled>
                         </div>
 
                     </div><br />
@@ -374,7 +378,7 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label" for="formGroup">Descripcion</label>
                         <div class="col-sm-9">
-                            <textarea class="form-control" rows="6"></textarea>
+                            <textarea class="form-control" rows="6" name="traDescripcion" id="traDescripcion" ><?php echo $descripcion ?></textarea>
                         </div>
                     </div>
 
@@ -382,7 +386,7 @@
                     <div class="form-group">
                         <label class = "col-sm-2 control-label" for="formGroup">Cambiar contraseña: </label>
                         <div class="col-sm-2">
-                            <input class="form-control" type="text" id="formGroup">
+                            <input class="form-control" type="text" id="traPass" name="traPass">
                         </div>
                     </div>
 
@@ -390,7 +394,7 @@
                     <div class="form-group">
                         <label class = "col-sm-2 control-label" for="formGroup">Confirmar contraseña: </label>
                         <div class="col-sm-2">
-                            <input class="form-control" type="text" id="formGroup">
+                            <input class="form-control" type="text" id="traPassConf" id="traPassConf">
                         </div>
                     </div> <br />
 
@@ -398,7 +402,9 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label" for="formGroup"></label>
                         <div class="col-sm-4">
-                            <button type="submit" class="btn btn-success btn-lg"><span class="glyphicon glyphicon-floppy-saved"</span> Guardar </button>
+                            <?php
+                                echo "<button type='submit' onclick='modificarTrabajador($idTrabajador)' class='btn btn-success btn-lg'><span class='glyphicon glyphicon-floppy-saved'</span> Guardar </button>";
+                            ?>
                             <button type="button" class="btn btn-danger btn-lg"><span class="glyphicon glyphicon-remove-circle"</span> Cancelar </button>
                         </div>
                     </div>
@@ -444,6 +450,10 @@
 <!-- jQuery -->
 <script src="../../public/js/jquery.js"></script>
 
+<script src="../../public/lolibox/dist/js/lobibox.min.js"></script>
+
+<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+
 <!-- Bootstrap Core JavaScript -->
 <script src="../../public/js/bootstrap.min.js"></script>
 
@@ -455,6 +465,44 @@
        $('#tableTraIn').dataTable();
        $('#tableTraFn').dataTable();
     });
+    
+    function modificarTrabajador(idTrabajador) {
+                    
+                    var traTelefono = $('#traTelefono').val();
+                    var traEmail = $('#traEmail').val();
+                    var traCuenta = $('#traCuenta').val();
+                    var traDescripcion = $('#traDescripcion').val();
+                    var traPass = $('#traPass').val();
+                    var traPassConf = $('#traPassConf').val();
+                    
+                    if (traPass === '' || traPassConf === '') {
+                        alert("Contraseña vacia");
+                    }
+                    else if (traPass !== traPassConf) {
+                        alert("No coinciden las contraseñas");
+                    }
+                    else {
+                        
+                        $.ajax({
+                            type: "POST",
+                            url: "../../app/ajax/ajax_modificartrabajador.php",
+                            data: { idtrabajador: idTrabajador, tratelefono: traTelefono, traemail: traEmail, tracuenta: traCuenta, tradescripcion: traDescripcion, trapass: traPass},
+                            dataType: "html",
+                            error: function() {
+                                alert("error petición ajax");
+                            },
+                            success: function(data) {
+
+                                Lobibox.notify('success', {
+                                    title: 'Completado',
+                                    msg: 'Trabajador modificado correctamente'
+                                });
+                            }
+                        });
+                    }                                                         
+                                                  
+    }
+    
 </script>
 
 </body>

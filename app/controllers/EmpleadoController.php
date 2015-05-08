@@ -109,12 +109,13 @@ class EmpleadoController {
     public function updateEmpleado($empleado) {
         
         $dbAccess = new DBAccess();
-        $dbAccess->update("UPDATE empleado SET idespecialidad=" . $empleado->getFkIdEspecialidad() . ",idzona=" . $empleado->getFkIdZona() .
-            ", nif='" . $empleado->getNif() . "', apellidos='" . $empleado->getApellidos() . "', nombre='" . $empleado->getNombre() . "', telefono=" .
-            $empleado->getTelefono() . ", email='" . $empleado->getEmail() . "', numero_cuenta=" . $empleado->getNumeroCuenta() . ", sip=" .
-            $empleado->getSip() . ",anyos_experiencia=" . $empleado->getAnyosExperiencia(). ", fechaUltimoTrabajo='" . $empleado->getFechaUltimoTrabajo() . "', horasTrabajadas=" . $empleado->getHorasTrabajadas() .
-            ", contrasenya='" . $empleado->getContrasenya() . "', foto_empleado='" . $empleado->getFotoEmpleado() . "', descripcion='" . $empleado->getDescripcion() .
-            "', valoracion=" . $empleado->getValoracion() . " WHERE idempleado=" . $empleado->getIdEmpleado());
+        $dbAccess->update("UPDATE empleado SET idespecialidad=" . $empleado->getFkIdEspecialidad() . ", idzona=" . $empleado->getFkIdZona() . 
+                ", nif='" . $empleado->getNif() . "', apellidos='" . $empleado->getApellidos() . "', nombre='" . $empleado->getNombre() . 
+                "', telefono=" . $empleado->getTelefono() . ", email='" . $empleado->getEmail() . "', numero_cuenta=" . $empleado->getNumeroCuenta() . 
+                ", sip=" . $empleado->getSip() . ", anyos_experiencia=" . $empleado->getAnyosExperiencia() . ", fechaUltimoTrabajo='" . $empleado->getFechaUltimoTrabajo() . 
+                "', horasTrabajadas=" . $empleado->getHorasTrabajadas() . ", contrasenya='" . $empleado->getContrasenya() . 
+                "', foto_empleado='" . $empleado->getFotoEmpleado() . "', descripcion='" . $empleado->getDescripcion() .
+                "', valoracion=" . $empleado->getValoracion() . " WHERE idempleado=" . $empleado->getIdEmpleado());
     }
 
     //Tested
