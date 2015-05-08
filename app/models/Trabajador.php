@@ -76,12 +76,24 @@ class Trabajador {
         return $this->telefono;
     }
     
+    public function setTelefono($telefono) {
+        $this->telefono = $telefono;
+    }
+    
     public function getEmail() {
         return $this->email;
     }
     
+    public function setEmail($email) {
+        $this->email = $email;
+    }
+    
     public function getNumeroCuenta() {
         return $this->numeroCuenta;
+    }
+    
+    public function setNumeroCuenta($numeroCuenta) {
+        $this->numeroCuenta = $numeroCuenta;
     }
     
     public function getSip() {
@@ -104,12 +116,20 @@ class Trabajador {
         return $this->contrasenya;
     }
     
+    public function setContrasenya($contrasenya) {
+        $this->contrasenya = $contrasenya;
+    }
+    
     public function getFotoEmpleado() {
         return $this->fotoEmpleado;
     }
     
     public function getDescripcion() {
         return $this->descripcion;
+    }
+    
+    public function setDescripcion($descripcion) {
+        $this->descripcion = $descripcion;
     }
     
     public function getValoracion() {
