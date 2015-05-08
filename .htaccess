@@ -1,1 +1,5 @@
-Options -Indexes 
+Options -Indexes
+
+
+
+RedirectMatch 301 /~resources/ http://localhost/icleaning/

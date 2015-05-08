@@ -10,13 +10,16 @@
 error_reporting(E_ALL ^ E_NOTICE);
 session_start();
 
+$path = substr($_SERVER['DOCUMENT_ROOT'],0,15);
+
+
 if(!isset($_SESSION['name'])){
 
     header('location: ../../index.php');
 }
 else {
 
-    require_once($_SERVER['DOCUMENT_ROOT'].'/app\database\DBAccess.php');
+    require_once($path.'/icleaning/app\database\DBAccess.php');
 
     $zona = $_POST['zona'];
     $especialidad = $_POST['especialidad'];
@@ -29,7 +32,7 @@ else {
     $query = $dbAccess->getSelect( "select * from cliente where email='" . $_SESSION['name'] . "'");
     $numrows = mysqli_num_rows($query);
 
-    echo "<h1> Hola Cabron </h1>";
+    echo "<h1> Bienvenido </h1>";
 
 
 
