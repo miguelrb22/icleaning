@@ -75,14 +75,14 @@
     
     <div class="container">
     
-    
+
     <div class="trabajo"></div>
     <h2 class="section-heading">Trabajos Contratados</h2>
-    
+
     <div class="tab-content">
         
         <?php
-            echo "<table id='tableTra' class='table table-striped table-bordered'>"
+            echo "<table id='tableTra' class='table table-striped table-borderedss'>"
                 . "<thead>"
                 . "<tr>"
                     ."<th>ID</th>"
@@ -128,7 +128,7 @@
         
     </div>
     </div>
-    
+
 </div>
 
 <a name="infgen"></a>
@@ -248,15 +248,15 @@
                             <?php
                                 //Como pillar la direccion del value del imput direccion
                                 //$cliDir = 'asdfasdf';
-                                echo "<button type='submit' onclick='modificarCliente($idCliente)' class='btn btn-success btn-lg'><span class='glyphicon glyphicon-floppy-saved'</span> Guardar </button>";                          
-                            ?>        
+                                echo "<button type='submit' onclick='modificarCliente($idCliente)' class='btn btn-success btn-lg'><span class='glyphicon glyphicon-floppy-saved'</span> Guardar </button>";
+                            ?>
                             <button type="button" class="btn btn-danger btn-lg"><span class="glyphicon glyphicon-remove-circle"</span> Cancelar </button>
                         </div>
-                    </div> 
+                    </div>
 
                 </form>
             </div>
-        </div>    
+        </div>
     </div>
     
 </div>
