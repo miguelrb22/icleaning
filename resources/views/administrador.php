@@ -49,12 +49,19 @@
                 <li>
                     <a href="#zempleado">Zona Empleados</a>
                 </li>
+                <li>
+                    <a href="#zcrearempleado">Crear Empleado</a>
+                </li>
             </ul>
         </div>
         <!-- /.navbar-collapse -->
     </div>
     <!-- /.container -->
 </nav>
+
+<?php
+include_once '../../app/logic/index_logic.php';
+?>
 
 <!-- Header -->
 <a name="zcliente"></a>
@@ -130,6 +137,177 @@
 
 </div>
 
+<a name="zcrearempleado"></a>
+<div class="content-section-a">
+
+    
+
+    <div class="container">
+
+        <div class="clearfix"></div>
+        <h2 class="section-heading">Crear Empleado</h2>
+
+        <div class="row">
+            <div class="col-xs-4 col-md-2">
+                <a href="#" class="thumbnail">
+                    <img src="http://www.velaporti.com/images/no_perfil_M.png" class="img-rounded" alt="imagen" width="174" height="50">
+                </a>
+
+            </div>
+
+            <button type="button" class="btn btn-info btn-group-sm"> Cambiar imagen </button>
+
+            <br />
+            <br />
+            
+        </div>
+
+
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">Datos</div>
+            <div class="panel-body">
+
+                <form class = "form-horizontal"> <br />
+
+                    <div class="form-group">
+
+                        <label class = "col-sm-2 control-label" for="formGroup">Nombre: </label>
+                        <div class="col-sm-3">
+                            <input class="form-control" type="text" name="traNombre" id="traNombre" value="" >
+                        </div>
+
+                        <div class="form-group">
+                            <label class = "col-sm-2 control-label" for="formGroup">Telefono: </label>
+                            <div class="input-group col-sm-2">
+                                <span class = "input-group-addon"><span class = "glyphicon glyphicon-phone"></span></span>
+                                <input class="form-control" type="text" name="traTelefono" id="traTelefono" value="">
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label class = "col-sm-2 control-label" for="formGroup">Apellidos: </label>
+                        <div class="col-sm-3">
+                            <input class="form-control" type="text" name="traApellidos" id="traApellidos" value="">
+                        </div>
+
+                        <div class="form-group">
+                            <label class = "col-sm-2 control-label" for="formGroup">Email: </label>
+                            <div class="input-group col-sm-3">
+                                <span class = "input-group-addon">@</span>
+                                <input class="form-control" type="text" name="traEmail" id="traEmail" value="">
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label class = "col-sm-2 control-label" for="formGroup">NIF: </label>
+                        <div class="col-sm-3">
+                            <input class="form-control" type="text" name="traNif" id="traNif" value="" >
+                        </div>
+
+                        <div class="form-group">
+                            <label class = "col-sm-2 control-label" for="formGroup">Numero de cuenta: </label>
+                            <div class="col-sm-4">
+                                <input class="form-control" type="text" name="traCuenta" id="traCuenta" value="">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class = "col-sm-2 control-label" for="formGroup">SIP: </label>
+                            <div class="col-sm-4">
+                                <input class="form-control" type="text" name="traSip" id="traSip" value="">
+                            </div>
+                        </div>
+
+                    </div><br />
+
+
+                    <div class="form-group">
+                        <div class="col-sm-10 col-sm-offset-1">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-globe"></i></span>
+                                <select class="selectpicker form-control" data-live-search="true"
+                                        title="Selecciona una zona" name="zona">
+                                    <option value="" disabled selected>Selecciona la zona</option>
+                                    <?php select_zonas(); ?>
+
+
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-10 col-sm-offset-1">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-magic"></i></span>
+                                <select class="selectpicker form-control" data-live-search="true"
+                                        title="Selecciona una zona" name="especialidad">
+                                    <option value="" disabled selected>Elige la especialidad</option>
+                                    <?php select_especialidades(); ?>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label class = "col-sm-2 control-label" for="formGroup">Años experiencia: </label>
+                        <div class="col-sm-2">
+                            <input class="form-control" type="text" name="traExperiencia" id="traExperiencia" value="" >
+                        </div>
+
+                    </div> <br />
+
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="formGroup">Descripcion</label>
+                        <div class="col-sm-9">
+                            <textarea class="form-control" rows="6" name="traDescripcion" id="traDescripcion" ></textarea>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label class = "col-sm-2 control-label" for="formGroup">Insertar contraseña: </label>
+                        <div class="col-sm-2">
+                            <input class="form-control" type="text" id="traPass" name="traPass">
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label class = "col-sm-2 control-label" for="formGroup">Confirmar contraseña: </label>
+                        <div class="col-sm-2">
+                            <input class="form-control" type="text" id="traPassConf" id="traPassConf">
+                        </div>
+                    </div> <br />
+
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="formGroup"></label>
+                        <div class="col-sm-4">
+                            <?php
+                                echo "<button type='submit' onclick='crearTrabajador()' class='btn btn-success btn-lg'><span class='glyphicon glyphicon-floppy-saved'</span> Guardar </button>";
+                            ?>
+                            <button type="button" class="btn btn-danger btn-lg"><span class="glyphicon glyphicon-remove-circle"</span> Cancelar </button>
+                        </div>
+                    </div>
+
+
+                </form>
+            </div>
+        </div>
+
 <!-- Footer -->
 <footer>
     <div class="container">
@@ -165,11 +343,15 @@
 <script src="../../public/lolibox/dist/js/lobibox.min.js"></script>
 
 
-<!-- Bootstrap Core JavaScript -->
-<script src="../../public/js/bootstrap.min.js"></script>
+<!-- jQuery -->
+<script src="../../public/js/jquery.js"></script>
 
+<script src="../../public/lolibox/dist/js/lobibox.min.js"></script>
 
 <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="../../public/js/bootstrap.min.js"></script>
 
 <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
 <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
@@ -332,6 +514,48 @@
                 }
             }
         });
+    }
+    
+    function crearTrabajador() {
+        
+                    var traTelefono = $('#traTelefono').val();
+                    var traEmail = $('#traEmail').val();
+                    var traCuenta = $('#traCuenta').val();
+                    var traDescripcion = $('#traDescripcion').val();
+                    var traPass = $('#traPass').val();
+                    var traPassConf = $('#traPassConf').val();
+                    var traExperiencia = $('#traExperiencia').val();
+                    var traNif = $('#traNif').val();
+                    var traApellidos = $('#traApellidos').val();
+                    var traNombre = $('#traNombre').val();
+                    var traSip = $('#traSip').val();
+                    
+                    if (traPass === '' || traPassConf === '') {
+                        alert("Contraseña vacia");
+                    }
+                    else if (traPass !== traPassConf) {
+                        alert("No coinciden las contraseñas");
+                    }
+                    else if (traTelefono === '' || traEmail === '' || traCuenta === '' || traDescripcion === '' || traExperiencia === '' || traNif === '' || traNombre === '' || traApellidos === '' || traSip === '') {
+                        alert("No se admite ningun campo vacio");
+                    }
+                    else {
+                        
+                        $.ajax({
+                            type: "POST",
+                            url: "../../app/ajax/ajax_crearempleado.php",
+                            data: { trasip: traSip, tranombre: traNombre, traapellidos: traApellidos, tranif: traNif, traexperiencia: traExperiencia, tratelefono: traTelefono, traemail: traEmail, tracuenta: traCuenta, tradescripcion: traDescripcion, trapass: traPass},
+                            dataType: "html",                           
+                            success: function(data) {
+
+                                Lobibox.notify('success', {
+                                    title: 'Completado',
+                                    msg: 'Trabajador creado correctamente'
+                                });
+                            }
+                        });
+                    }
+                    
     }
 
 
