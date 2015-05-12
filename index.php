@@ -312,6 +312,9 @@
                     <li>
                         <a href="#contact">Contacto</a>
                     </li>
+                    <li>
+                        <button style="margin-top:2%;" class="btn btn-default btn-xs" data-toggle="modal" data-target="#myModal3"><i class="fa fa-key"></i> <span>Administración</span></button>
+                    </li>
                 </ul>
                 <p class="copyright text-muted small">Copyright © iCleaning 2015. Todos los derechos reservados</p>
             </div>
@@ -320,8 +323,49 @@
 </footer>
 
 
-<!-- Ventana modal INICIAR SESION-->
+<!-- Ventana modal INICIAR SESION administracion-->
 <!-- Modal -->
+<div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Acceso administracion</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" method="POST" action="app/logic/adminLogin.php">
+
+                    <div class="form-group">
+                        <div class="col-sm-10 col-sm-offset-1">
+                            <div class="input-group">
+                                <div class="input-group-addon"><i class="fa fa-user"></i></div>
+                                <input type="text" class="form-control"  placeholder="Usuario" name="name">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-sm-10 col-sm-offset-1">
+                            <div class="input-group">
+                                <div class="input-group-addon"><i class="fa fa-key"></i></div>
+                                <input type="password" class="form-control"  placeholder="Contraseña" name="pass">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-primary">¡Entrar!</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
 <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
