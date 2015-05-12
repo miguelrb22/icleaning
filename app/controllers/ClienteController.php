@@ -18,11 +18,11 @@ class ClienteController {
     
     //Methods
     //Tested
-    public function getListaClientes() {
+    public function getListaClientes($inicio = 0, $fin = 10) {
         $listaClientes = array();
         
         $dbAccess = new DBAccess();
-        $result = $dbAccess->getSelect("SELECT * from cliente");
+        $result = $dbAccess->getSelect("SELECT * from cliente limit " . $inicio . ", " . $fin);
 
         foreach($result as $row){
             $cliente = new Cliente($row['idcliente'], $row['dni'], $row['nombre'], $row['direccion'], $row['telefono'],

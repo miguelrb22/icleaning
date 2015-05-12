@@ -286,7 +286,7 @@
 
                         <label class = "col-sm-2 control-label" for="formGroup">Nombre: </label>
                         <div class="col-sm-3">
-                            <input class="form-control" type="text" id="formGroup" value="<?php echo $nombre ?>" disabled>
+                            <input class="form-control" type="text" id="formGroup" value="<?php echo utf8_encode( $nombre) ?>" disabled>
                         </div>
 
                         <div class="form-group">
@@ -304,14 +304,14 @@
 
                         <label class = "col-sm-2 control-label" for="formGroup">Apellidos: </label>
                         <div class="col-sm-3">
-                            <input class="form-control" type="text" id="formGroup" value="<?php echo $apellidos ?>" disabled>
+                            <input class="form-control" type="text" id="formGroup" value="<?php echo utf8_encode( $apellidos )?>" disabled>
                         </div>
 
                         <div class="form-group">
                             <label class = "col-sm-2 control-label" for="formGroup">Email: </label>
                             <div class="input-group col-sm-3">
                                 <span class = "input-group-addon">@</span>
-                                <input class="form-control" type="text" name="traEmail" id="traEmail" value="<?php echo $email ?>">
+                                <input class="form-control" type="text" name="traEmail" id="traEmail" value="<?php echo utf8_encode($email) ?>">
                             </div>
                         </div>
 
@@ -339,12 +339,12 @@
                         
                         <label class = "col-sm-2 control-label" for="formGroup">Especialidad: </label>
                         <div class="col-sm-2">
-                            <input class="form-control" type="text" id="formGroup" value="<?php echo $especialidad->getTipoEspecialidad() ?>" disabled>
+                            <input class="form-control" type="text" id="formGroup" value="<?php echo utf8_encode($especialidad->getTipoEspecialidad()) ?>" disabled>
                         </div>
                         
                         <label class = "col-sm-2 control-label" for="formGroup">Zona: </label>
                         <div class="col-sm-2">
-                            <input class="form-control" type="text" id="formGroup" value="<?php echo $zona->getNombre() ?>" disabled>
+                            <input class="form-control" type="text" id="formGroup" value="<?php echo utf8_encode($zona->getNombre()) ?>" disabled>
                         </div>
 
                     </div><br />
@@ -378,7 +378,7 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label" for="formGroup">Descripcion</label>
                         <div class="col-sm-9">
-                            <textarea class="form-control" rows="6" name="traDescripcion" id="traDescripcion" ><?php echo $descripcion ?></textarea>
+                            <textarea class="form-control" rows="6" name="traDescripcion" id="traDescripcion" ><?php echo utf8_encode($descripcion) ?></textarea>
                         </div>
                     </div>
 

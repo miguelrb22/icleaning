@@ -26,7 +26,7 @@ else {
     $fecha = $_POST['fecha'];
 
 
-    echo $zona . $especialidad . $fecha;
+    echo utf8_encode( $zona . $especialidad . $fecha);
 
     $dbAccess = new DBAccess();
     $query = $dbAccess->getSelect( "select * from cliente where email='" . $_SESSION['name'] . "'");

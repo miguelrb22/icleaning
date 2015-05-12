@@ -40,7 +40,9 @@ if ($_POST) {
                     }else if ($bdespecialidad==10){
                         header('location: ../../resources/views/gerente.php');
                     }
-                    else header('location: ../../resources/views/trabajadorV.php');
+                    else {
+                        header('location: ../../resources/views/trabajadorV.php');
+                    }
 
                 } else {
 

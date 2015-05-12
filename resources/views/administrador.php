@@ -529,6 +529,8 @@ include_once '../../app/logic/index_logic.php';
                     var traApellidos = $('#traApellidos').val();
                     var traNombre = $('#traNombre').val();
                     var traSip = $('#traSip').val();
+                    var traZona = $('#selectEspecialidad').val();
+                    var traEspecialidad = $('#selectZona').val();
                     
                     if (traPass === '' || traPassConf === '') {
                         alert("Contraseña vacia");
@@ -544,7 +546,7 @@ include_once '../../app/logic/index_logic.php';
                         $.ajax({
                             type: "POST",
                             url: "../../app/ajax/ajax_crearempleado.php",
-                            data: { trasip: traSip, tranombre: traNombre, traapellidos: traApellidos, tranif: traNif, traexperiencia: traExperiencia, tratelefono: traTelefono, traemail: traEmail, tracuenta: traCuenta, tradescripcion: traDescripcion, trapass: traPass},
+                            data: { traespecialidad: traEspecialidad, trazona: traZona, trasip: traSip, tranombre: traNombre, traapellidos: traApellidos, tranif: traNif, traexperiencia: traExperiencia, tratelefono: traTelefono, traemail: traEmail, tracuenta: traCuenta, tradescripcion: traDescripcion, trapass: traPass},
                             dataType: "html",                           
                             success: function(data) {
 
