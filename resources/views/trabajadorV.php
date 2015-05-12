@@ -72,7 +72,9 @@
         $empleadoController = new EmpleadoController();
         $trabajoController = new TrabajoController();
 
-        $trabajador = $empleadoController->getEmpleado(1229);//Cambiaaar
+        session_start();
+        
+        $trabajador = $empleadoController->getEmpleadoEmail($_SESSION['name']);
         
         //Trabajos iniciados (pero no finalizados) por este empleado
         $listaTrabajosIniciados = $trabajoController->getListaTrabajosIniciadosPorEmpleado($trabajador->getIdEmpleado());

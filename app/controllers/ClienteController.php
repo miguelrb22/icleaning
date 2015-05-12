@@ -49,6 +49,20 @@ class ClienteController {
     }
     
     //Tested
+    public function getClienteEmail($emailCliente) {
+        
+        $dbAccess = new DBAccess();
+        $result = $dbAccess->getSelect("SELECT * from cliente WHERE email='" . $emailCliente . "'");
+        
+        foreach ($result as $row) {
+            $cliente = new Cliente($row['idcliente'], $row['dni'], $row['nombre'], $row['direccion'], $row['telefono'],
+                                   $row['email'], $row['fecha_registro'], $row['contrasenya'], $row['foto_cliente'], $row['apellidos']);
+        }
+        
+        return $cliente;
+    }
+    
+    //Tested
     public function getClienteDNI($dniCliente) {
         
         $dbAccess = new DBAccess();
