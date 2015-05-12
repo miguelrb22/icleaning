@@ -1,5 +1,9 @@
 <?php
 
+$path = substr($_SERVER['DOCUMENT_ROOT'], 0, 15);
+
+include_once $path . '/icleaning/app/database/DBAccess.php';
+
 /**
  * Created by PhpStorm.
  * User: Miguel
@@ -18,6 +22,7 @@ class datos
     public $contacto = array();
     public $pass = array();
     public $registros = array();
+    public $direcciones = array();
 
     public $aux = 0;
 
@@ -169,19 +174,32 @@ class datos
     public function generar_correos()
     {
 
-        $dominios = array("@hotmail.com", "@hotmail.es", "@outlook.es", "@outlook.com", "@gmail.com", "@yahoo.es", "@yahoo.com", "@aol.com");
+        $dominios = array("@hotmail.com", "@hotmail.es", "@outlook.es", "@outlook.com", "@gmail.com", "@yahoo.es", "@yahoo.com", "@aol.com", "@aol.es", "@mail.com", "@mail.es","@latinmail.com", "@latinmail.es", "@hispavista.com","@hispavista.es","@orange.es");
         $correos = array();
+        $correos2 = array();
 
 
         for ($i = 0; $i < $this->tam; $i++) {
 
             $key = array_rand($dominios);
             $cola = $dominios[$key];
-            $correo = str_replace(" ", "", strtolower($this->nombres[$i] . $this->apellidos1[$i] . $cola));
-            array_push($correos, $correo);
+            $correo = str_replace(" ", "", strtolower($this->nombres[$i] . $this->apellidos1[$i] .mt_rand(1,999). $cola));
+
+            if (!array_key_exists($correo, $correos)) {
+
+                $correos[$correo] = 1;
+            } else {
+                $i--;
+            }
         }
 
-        $this->contacto = $correos;
+        foreach ($correos as $correo => $value) {
+
+            array_push($correos2, $correo);
+        }
+
+
+        $this->contacto = $correos2;
 
     }
 
@@ -189,23 +207,19 @@ class datos
     public function escribir_fichero()
     {
 
-        $lista = array(
-            $this->lista_dnis,
-            $this->lista_telefonos,
-            $this->apellidos1,
-            $this->apellidos2,
-            $this->nombres,
-            $this->contacto,
-            $this->pass,
-            $this->registros
+        $lista = array();
 
-        );
+        for ($i = 0; $i < $this->tam; $i++) {
+
+            array_push($lista, array($this->lista_dnis[$i], $this->nombres[$i], $this->direcciones[$i], $this->lista_telefonos[$i],
+                $this->contacto[$i], $this->registros[$i], $this->pass[$i], $this->apellidos1[$i] . ' ' . $this->apellidos2[$i]));
+        }
 
         $fp = fopen('fichero.csv', 'w');
 
         foreach ($lista as $campos) {
 
-            fputcsv($fp, $campos, ';');
+            fputcsv($fp, $campos, ';', chr(null));
         }
 
         fclose($fp);
@@ -222,22 +236,48 @@ class datos
 
     }
 
-    function generar_registro(){
 
+    function generar_direcciones()
+    {
+
+
+        $sec = array("Plaza", "Calle", "Calle", "Avenida", "Avenida", "Calle");
+        $letra = array('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I');
+        for ($i = 0; $i < $this->tam; $i++) {
+
+            $nombre_calle = $sec[array_rand($sec)] . ' ' . $this->nombres[array_rand($this->nombres)] . ' ' . $this->apellidos1[array_rand($this->apellidos1)] . ' Nº' . mt_rand(1, 299) . ' ' . mt_rand(1, 15) . 'º' . $letra[array_rand($letra)];
+            array_push($this->direcciones, $nombre_calle);
+        }
+    }
+
+    function generar_registro()
+    {
 
 
         for ($i = 0; $i < $this->tam; $i++) {
 
             $fecha = date('Y-m-j');
             $lap = mt_rand(0, 1000);
-            $nuevafecha = strtotime ( '- '. $lap.' day' , strtotime ( $fecha ) ) ;
-            $nuevafecha = date ( 'd/m/Y' , $nuevafecha );
+            $nuevafecha = strtotime('- ' . $lap . ' day', strtotime($fecha));
+            $nuevafecha = date('Y-m-d', $nuevafecha);
             array_push($this->registros, $nuevafecha);
 
 
         }
     }
 
+
+    public function bdsave()
+    {
+
+        $link = NEW DBAccess();
+
+        $link->update("LOAD DATA LOCAL INFILE 'fichero.csv'
+                      INTO TABLE cliente FIELDS TERMINATED BY ';' LINES TERMINATED BY '\n'
+                    (`dni`, `nombre`, `direccion`, `telefono`, `email`, `fecha_registro`,`contrasenya`,`apellidos`);");
+
+
+    }
 
     public function init($t)
     {
@@ -252,10 +292,12 @@ class datos
         $this->generar_correos();
         $this->generatePassword();
         $this->generar_registro();
+        $this->generar_direcciones();
 
 
         //EL ULTIMO
         $this->escribir_fichero();
+       // $this->bdsave();
 
     }
 }
