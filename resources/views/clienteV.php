@@ -178,7 +178,7 @@
 
                         <label class = "col-sm-2 control-label" for="formGroup">Nombre: </label>
                         <div class="col-sm-3">
-                            <input class="form-control" type="text" id="cliNombre" value="<?php echo $nombre ?>" disabled>
+                            <input class="form-control" type="text" id="cliNombre" value="<?php echo utf8_encode( $nombre) ?>" disabled>
                         </div>
 
                         <div class="form-group">
@@ -196,14 +196,14 @@
 
                         <label class = "col-sm-2 control-label" for="formGroup">Apellidos: </label>
                         <div class="col-sm-3">
-                            <input class="form-control" type="text" id="cliApellidos" value="<?php echo $apellidos ?>" disabled>
+                            <input class="form-control" type="text" id="cliApellidos" value="<?php echo utf8_encode( $apellidos) ?>" disabled>
                         </div>
 
                         <div class="form-group">
                             <label class = "col-sm-2 control-label" for="formGroup">Email: </label>
                             <div class="input-group col-sm-3">
                                 <span class = "input-group-addon">@</span>
-                                <input class="form-control" type="text" name="cliEmail" id="cliEmail" value="<?php echo $email ?>">
+                                <input class="form-control" type="text" name="cliEmail" id="cliEmail" value="<?php echo utf8_encode( $email) ?>">
                             </div>
                         </div>
 
@@ -220,7 +220,7 @@
                         <div class="form-group">
                             <label class = "col-sm-2 control-label" for="formGroup">Direccion: </label>
                             <div class="col-sm-3">
-                                <input class="form-control" type="text" name="cliDireccion" id="cliDireccion" value="<?php echo $direccion ?>">
+                                <input class="form-control" type="text" name="cliDireccion" id="cliDireccion" value="<?php echo utf8_encode($direccion) ?>">
                             </div>
                         </div>
                     </div><br />

@@ -27,7 +27,7 @@ class TrabajoController {
         foreach($result as $row){
         
             $trabajo = new Trabajo($row['idtrabajo'], $row['idcliente'], $row['idempleado'], $row['valoracion'], $row['idfactura'],
-                                   $row['importe_total'], $row['finalizado'], $row['direccion_lugar'], $row['estimacion_horas'], $row['gasto_total'], 
+                                   $row['importe_total'], $row['finalizado'], utf8_encode($row['direccion_lugar']), $row['estimacion_horas'], $row['gasto_total'],
                                    $row['importe_recibido'], $row['fecha_inicio'], $row['fecha_fin']);
             array_push($listaTrabajos, $trabajo);  
         }
@@ -46,7 +46,7 @@ class TrabajoController {
         foreach($result as $row){
         
             $trabajo = new Trabajo($row['idtrabajo'], $row['idcliente'], $row['idempleado'], $row['valoracion'], $row['idfactura'],
-                                   $row['importe_total'], $row['finalizado'], $row['direccion_lugar'], $row['estimacion_horas'], $row['gasto_total'], 
+                                   $row['importe_total'], $row['finalizado'], utf8_encode($row['direccion_lugar']), $row['estimacion_horas'], $row['gasto_total'],
                                    $row['importe_recibido'], $row['fecha_inicio'], $row['fecha_fin']);
             array_push($listaTrabajos, $trabajo);  
         }
@@ -65,7 +65,7 @@ class TrabajoController {
         foreach($result as $row){
         
             $trabajo = new Trabajo($row['idtrabajo'], $row['idcliente'], $row['idempleado'], $row['valoracion'], $row['idfactura'],
-                                   $row['importe_total'], $row['finalizado'], $row['direccion_lugar'], $row['estimacion_horas'], $row['gasto_total'], 
+                                   $row['importe_total'], $row['finalizado'], utf8_encode($row['direccion_lugar']), $row['estimacion_horas'], $row['gasto_total'],
                                    $row['importe_recibido'], $row['fecha_inicio'], $row['fecha_fin']);
             array_push($listaTrabajos, $trabajo);  
         }
@@ -84,7 +84,7 @@ class TrabajoController {
         foreach($result as $row){
         
             $trabajo = new Trabajo($row['idtrabajo'], $row['idcliente'], $row['idempleado'], $row['valoracion'], $row['idfactura'],
-                                   $row['importe_total'], $row['finalizado'], $row['direccion_lugar'], $row['estimacion_horas'], $row['gasto_total'], 
+                                   $row['importe_total'], $row['finalizado'], utf8_encode($row['direccion_lugar']), $row['estimacion_horas'], $row['gasto_total'],
                                    $row['importe_recibido'], $row['fecha_inicio'], $row['fecha_fin']);
             array_push($listaTrabajos, $trabajo);  
         }
@@ -101,7 +101,7 @@ class TrabajoController {
         foreach($result as $row){
         
             $trabajo = new Trabajo($row['idtrabajo'], $row['idcliente'], $row['idempleado'], $row['valoracion'], $row['idfactura'],
-                                   $row['importe_total'], $row['finalizado'], $row['direccion_lugar'], $row['estimacion_horas'], $row['gasto_total'], 
+                                   $row['importe_total'], $row['finalizado'], utf8_encode($row['direccion_lugar']), $row['estimacion_horas'], $row['gasto_total'],
                                    $row['importe_recibido'], $row['fecha_inicio'], $row['fecha_fin']); 
         }
         
