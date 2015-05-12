@@ -396,9 +396,13 @@
                     </div>
 
                     <div class="modal-footer">
+                        
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                         <button type="submit" class="btn btn-primary">¡Entrar!</button>
                     </div>
+                </form>
+                <form action="resources/views/crearcliente.php">
+                            <input type="submit" class="btn btn-primary" value="Crear Cuenta">
                 </form>
             </div>
 
