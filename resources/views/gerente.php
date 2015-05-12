@@ -46,6 +46,9 @@
                 <li>
                     <a href="#tesoreriap">Tesoreria</a>
                 </li>
+                <li>
+                    <a href="#pagnominas">Nominas</a>
+                </li>
             </ul>
         </div>
         <!-- /.navbar-collapse -->
@@ -463,6 +466,19 @@
                 </div>
 
 </div>
+    
+<a name="pagnominas"></a>
+<div class="content-section-a">
+    
+    <div class="container">
+        <h2 class="section-heading">Nominas</h2>
+        <div class="row">
+            <?php
+                echo "<button type='submit' onclick='pagarNominas()' class='btn btn-success btn-lg'><span class='glyphicon glyphicon-floppy-saved'</span> Pagar Nominas </button>";
+            ?>
+        </div>
+    </div>
+</div>
 
 <!-- Footer -->
 <footer>
@@ -496,12 +512,16 @@
 <!-- jQuery -->
 <script src="../../public/js/jquery.js"></script>
 
+<script src="../../public/lolibox/dist/js/lobibox.min.js"></script>
+
+<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+
 <!-- Bootstrap Core JavaScript -->
 <script src="../../public/js/bootstrap.min.js"></script>
 
 <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
 <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
-      
+ 
 <script>
     $(document).ready(function() {
         $('#cliMes').dataTable();
@@ -511,6 +531,28 @@
         $('#nomDT').dataTable();
         $('#tesDT').dataTable();
     } );
+    
+    function pagarNominas() {
+                    
+                        
+                        $.ajax({
+                            type: "POST",
+                            url: "../../app/ajax/ajax_pagarnominas.php",
+                            data: { },
+                            dataType: "html",
+                            error: function() {
+                                alert("error petición ajax");
+                            },
+                            success: function(data) {
+
+                                Lobibox.notify('success', {
+                                    title: 'Completado',
+                                    msg: 'Nominas pagadas correctamente'
+                                });
+                            }
+                        });                                                       
+                                                  
+    }
     
 </script>
 
