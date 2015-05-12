@@ -10,8 +10,8 @@ $traApellidos = $_POST["traapellidos"];
 $traNif = $_POST["tranif"];
 $traExperiencia = $_POST["traexperiencia"];
 $traSip = $_POST["trasip"];
-$traZona = $_POST["trazona"];
-$traEspecialidad = $_POST["traespecialidad"];
+$traEspecialidad = $_POST["trazona"];
+$traZona = $_POST["traespecialidad"];
 
 
 $path = substr($_SERVER['DOCUMENT_ROOT'], 0, 15);

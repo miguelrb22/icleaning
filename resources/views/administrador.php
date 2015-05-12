@@ -235,7 +235,7 @@ include_once '../../app/logic/index_logic.php';
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-globe"></i></span>
                                 <select class="selectpicker form-control" data-live-search="true"
-                                        title="Selecciona una zona" name="zona">
+                                        title="Selecciona una zona" id="zona" name="zona">
                                     <option value="" disabled selected>Selecciona la zona</option>
                                     <?php select_zonas(); ?>
 
@@ -250,7 +250,7 @@ include_once '../../app/logic/index_logic.php';
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-magic"></i></span>
                                 <select class="selectpicker form-control" data-live-search="true"
-                                        title="Selecciona una zona" name="especialidad">
+                                        title="Selecciona una zona" id="especialidad" name="especialidad">
                                     <option value="" disabled selected>Elige la especialidad</option>
                                     <?php select_especialidades(); ?>
                                 </select>
@@ -529,8 +529,8 @@ include_once '../../app/logic/index_logic.php';
                     var traApellidos = $('#traApellidos').val();
                     var traNombre = $('#traNombre').val();
                     var traSip = $('#traSip').val();
-                    var traZona = $('#selectEspecialidad').val();
-                    var traEspecialidad = $('#selectZona').val();
+                    var traZona = $('#especialidad').val();
+                    var traEspecialidad = $('#zona').val();
                     
                     if (traPass === '' || traPassConf === '') {
                         alert("Contraseña vacia");
