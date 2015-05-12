@@ -17,7 +17,7 @@ function select_zonas()
 
         $z = $zona->getIdZona();
         $n = $zona->getNombre();
-        echo "<option value='$z'>$n</option>";
+        echo "<option value='$z'>".utf8_encode($n) ."</option>";
 
 
     }
@@ -37,7 +37,7 @@ function select_especialidades()
 
         $e = $especialidad->getIdEspecialidad();
         $n = $especialidad->getTipoEspecialidad();
-        echo "<option value='$e'>$n</option>";
+        echo "<option value='$e'>".utf8_encode($n)."</option>";
 
 
     }
