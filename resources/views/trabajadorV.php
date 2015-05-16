@@ -232,48 +232,64 @@
             <br />
             <br />
 
-            <h4 class = "col-sm-2 control-label" for="formGroup">Valoracion: </h4>
+            <div class="col-xs-4 col-md-2">
+                <h4 class = "col-sm-2 control-label" for="formGroup">Valoracion: </h4>
 
-            <?php
+                <br />
+                <br />
 
-            if($valoracion == 0){
-                //Ninguna
+                <?php
 
-            }
-            else if($valoracion == 1){
-                echo " <span class='glyphicon glyphicon-star' aria-hidden='true'> </text> ";
+                if($valoracion == 0){
+
+                    echo " <span class='glyphicon glyphicon-star-empty'> </text>";
+                    echo " <span class='glyphicon glyphicon-star-empty'> </text>";
+                    echo " <span class='glyphicon glyphicon-star-empty'> </text>";
+                    echo " <span class='glyphicon glyphicon-star-empty'> </text>";
+                    echo " <span class='glyphicon glyphicon-star-empty'> </text>";
+                }
+                else if($valoracion == 1){
+                    echo " <span class='glyphicon glyphicon-star'> </text> ";
+                    echo " <span class='glyphicon glyphicon-star-empty'> </text>";
+                    echo " <span class='glyphicon glyphicon-star-empty'> </text>";
+                    echo " <span class='glyphicon glyphicon-star-empty'> </text>";
+                    echo " <span class='glyphicon glyphicon-star-empty'> </text>";
+                }
+                else if($valoracion == 2){
+                    echo " <span class='glyphicon glyphicon-star'> </text> ";
+                    echo " <span class='glyphicon glyphicon-star'> </text> ";
+                    echo " <span class='glyphicon glyphicon-star-empty'> </text>";
+                    echo " <span class='glyphicon glyphicon-star-empty'> </text>";
+                    echo " <span class='glyphicon glyphicon-star-empty'> </text>";
+
+                }
+                else if($valoracion == 3){
+                    echo " <span class='glyphicon glyphicon-star'> </text> ";
+                    echo " <span class='glyphicon glyphicon-star'> </text> ";
+                    echo " <span class='glyphicon glyphicon-star'> </text> ";
+                    echo " <span class='glyphicon glyphicon-star-empty'> </text>";
+                    echo " <span class='glyphicon glyphicon-star-empty'> </text>";
+
+                }
+                else if($valoracion == 4){
+                    echo " <span class='glyphicon glyphicon-star'> </text> ";
+                    echo " <span class='glyphicon glyphicon-star'> </text> ";
+                    echo " <span class='glyphicon glyphicon-star'> </text> ";
+                    echo " <span class='glyphicon glyphicon-star'> </text> ";
+                    echo " <span class='glyphicon glyphicon-star-empty'> </text>";
 
 
-            }
-            else if($valoracion == 2){
-                echo " <span class='glyphicon glyphicon-star' aria-hidden='true'> </text> ";
-                echo " <span class='glyphicon glyphicon-star' aria-hidden='true'> </text> ";
+                }
+                else if ($valoracion == 5){
+                    echo " <span class='glyphicon glyphicon-star'> </text> ";
+                    echo " <span class='glyphicon glyphicon-star'> </text> ";
+                    echo " <span class='glyphicon glyphicon-star'> </text> ";
+                    echo " <span class='glyphicon glyphicon-star'> </text> ";
+                    echo " <span class='glyphicon glyphicon-star'> </text> ";
+                }
+                ?>
 
-            }
-            else if($valoracion == 3){
-                echo " <span class='glyphicon glyphicon-star' aria-hidden='true'> </text> ";
-                echo " <span class='glyphicon glyphicon-star' aria-hidden='true'> </text> ";
-                echo " <span class='glyphicon glyphicon-star' aria-hidden='true'> </text> ";
-
-            }
-            else if($valoracion == 4){
-                echo " <span class='glyphicon glyphicon-star' aria-hidden='true'> </text> ";
-                echo " <span class='glyphicon glyphicon-star' aria-hidden='true'> </text> ";
-                echo " <span class='glyphicon glyphicon-star' aria-hidden='true'> </text> ";
-                echo " <span class='glyphicon glyphicon-star' aria-hidden='true'> </text> ";
-
-
-            }
-            else if ($valoracion == 5){
-                echo " <span class='glyphicon glyphicon-star' aria-hidden='true'> </text> ";
-                echo " <span class='glyphicon glyphicon-star' aria-hidden='true'> </text> ";
-                echo " <span class='glyphicon glyphicon-star' aria-hidden='true'> </text> ";
-                echo " <span class='glyphicon glyphicon-star' aria-hidden='true'> </text> ";
-                echo " <span class='glyphicon glyphicon-star' aria-hidden='true'> </text> ";
-
-            }
-            ?>
-
+            </div>
         </div>
 
 
