@@ -115,7 +115,7 @@ class EmpleadoController {
 
         $dbAccess->insert("INSERT INTO empleado (idespecialidad,idzona, nif, apellidos, nombre, telefono, email, numero_cuenta, sip, anyos_experiencia, fechaUltimoTrabajo, horasTrabajadas, contrasenya, foto_empleado, valoracion) VALUES ("
                                     . $empleado->getFkIdEspecialidad() . ", " . $empleado->getFkIdZona() . ", '" . $empleado->getNif() . "', '" . $empleado->getApellidos() . "', '" . 
-                                    $empleado->getNombre() . "', " . $empleado->getTelefono() . ", '" . $empleado->getEmail() . "', " . $empleado->getNumeroCuenta() . ", " . $empleado->getSip() . ", " .
+                                    $empleado->getNombre() . "', " . $empleado->getTelefono() . ", '" . $empleado->getEmail() . "', '" . $empleado->getNumeroCuenta() . "', '" . $empleado->getSip() . "', " .
                                     $empleado->getAnyosExperiencia() . ", '" . $empleado->getFechaUltimoTrabajo() . "', " . $empleado->getHorasTrabajadas() . ", '" . $empleado->getContrasenya() . "', '" . 
                                     $empleado->getDescripcion() . "', " . $empleado->getValoracion() . ")");
         
@@ -128,8 +128,8 @@ class EmpleadoController {
         $dbAccess = new DBAccess();
         $dbAccess->update("UPDATE empleado SET idespecialidad=" . $empleado->getFkIdEspecialidad() . ", idzona=" . $empleado->getFkIdZona() . 
                 ", nif='" . $empleado->getNif() . "', apellidos='" . $empleado->getApellidos() . "', nombre='" . $empleado->getNombre() . 
-                "', telefono=" . $empleado->getTelefono() . ", email='" . $empleado->getEmail() . "', numero_cuenta=" . $empleado->getNumeroCuenta() . 
-                ", sip=" . $empleado->getSip() . ", anyos_experiencia=" . $empleado->getAnyosExperiencia() . ", fechaUltimoTrabajo='" . $empleado->getFechaUltimoTrabajo() . 
+                "', telefono=" . $empleado->getTelefono() . ", email='" . $empleado->getEmail() . "', numero_cuenta='" . $empleado->getNumeroCuenta() . 
+                "', sip='" . $empleado->getSip() . "', anyos_experiencia=" . $empleado->getAnyosExperiencia() . ", fechaUltimoTrabajo='" . $empleado->getFechaUltimoTrabajo() . 
                 "', horasTrabajadas=" . $empleado->getHorasTrabajadas() . ", contrasenya='" . $empleado->getContrasenya() . 
                 "', foto_empleado='" . $empleado->getFotoEmpleado() . "', descripcion='" . $empleado->getDescripcion() .
                 "', valoracion=" . $empleado->getValoracion() . " WHERE idempleado=" . $empleado->getIdEmpleado());
