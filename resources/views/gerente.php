@@ -205,16 +205,20 @@
                                              . "</thead>"
                                              . "<tbody>";
 
+
                                                 foreach ($trabajosIniciadoMes as $trabajoIniciadoMes) {
+
+                                                 $cliente = $clienteController->getCliente($trabajoIniciadoMes->getFkIdCliente());
+                                                 $empleado = $empleadoController->getEmpleado($trabajoIniciadoMes->getFkIdEmpleado());
 
                                                  echo "<tr>";
                                                  echo "<td>" . $trabajoIniciadoMes->getIdTrabajo() . "</td>";
-                                                 echo "<td>" . $trabajoIniciadoMes->getFkIdCliente() . "</td>";
-                                                 echo "<td>" . $trabajoIniciadoMes->getFkIdEmpleado() . "</td>";
+                                                 echo "<td>" . $cliente->getDni(). "</td>";
+                                                 echo "<td>" . $empleado->getNif() . "</td>";
                                                  echo "<td>" . $trabajoIniciadoMes->getValoracion() . "</td>";
                                                  echo "<td>" . $trabajoIniciadoMes->getFkIdFactura() . "</td>";
                                                  echo "<td>" . $trabajoIniciadoMes->getImporteTotal() . "€</td>";
-                                                 echo "<td>" . $trabajoIniciadoMes->getDireccionLugar() . "</td>";
+                                                 echo "<td>" . utf8_encode($trabajoIniciadoMes->getDireccionLugar()) . "</td>";
                                                  echo "<td>" . $trabajoIniciadoMes->getEstimacionHoras() . " h</td>";
                                                  echo "<td>" . $trabajoIniciadoMes->getGastoTotal() . "€</td>";
                                                  echo "<td>" . $trabajoIniciadoMes->getFechaInicio() . "</td>";
@@ -254,14 +258,17 @@
 
                                                 foreach ($trabajosFinMes as $trabajoFinMes) {
 
+                                                 $cliente = $clienteController->getCliente($trabajoFinMes->getFkIdCliente());
+                                                 $empleado = $empleadoController->getEmpleado($trabajoFinMes->getFkIdEmpleado());
+
                                                  echo "<tr>";
                                                  echo "<td>" . $trabajoFinMes->getIdTrabajo() . "</td>";
-                                                 echo "<td>" . $trabajoFinMes->getFkIdCliente() . "</td>";
-                                                 echo "<td>" . $trabajoFinMes->getFkIdEmpleado() . "</td>";
+                                                 echo "<td>" . $cliente->getDni(). "</td>";
+                                                 echo "<td>" . $empleado->getNif() . "</td>";
                                                  echo "<td>" . $trabajoFinMes->getValoracion() . "</td>";
                                                  echo "<td>" . $trabajoFinMes->getFkIdFactura() . "</td>";
                                                  echo "<td>" . $trabajoFinMes->getImporteTotal() . "€</td>";
-                                                 echo "<td>" . $trabajoFinMes->getDireccionLugar() . "</td>";
+                                                 echo "<td>" . utf8_encode($trabajoFinMes->getDireccionLugar()) . "</td>";
                                                  echo "<td>" . $trabajoFinMes->getEstimacionHoras() . " h</td>";
                                                  echo "<td>" . $trabajoFinMes->getGastoTotal() . "€</td>";
                                                  echo "<td>" . $trabajoFinMes->getFechaFin() . "</td>";
