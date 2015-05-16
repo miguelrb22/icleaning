@@ -18,7 +18,7 @@ include_once $path.'/icleaning/app/controllers/ClienteController.php';
 
     <style>
 
-        tbody{
+        #tbodyCli{
 
             font-size: 11px;
         }
