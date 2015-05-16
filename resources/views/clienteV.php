@@ -61,9 +61,11 @@
         include_once '../../app/controllers/TrabajoController.php';
         include_once '../../app/models/Trabajo.php';
 
-
         $clienteController = new ClienteController();
-        $cliente = $clienteController->getCliente(1); //Cambiar!!!!
+
+        session_start();
+        
+        $cliente = $clienteController->getClienteEmail($_SESSION['name']);
         
         $trabajoController = new TrabajoController();
         $listaTrabajos = $trabajoController->getListaTrabajosPorCliente($cliente->getIdCliente());
