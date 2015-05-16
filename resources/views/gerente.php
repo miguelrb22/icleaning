@@ -165,11 +165,11 @@
                                                  echo "<tr>";
                                                  echo "<td>" . $cliente->getIdCliente() . "</td>";
                                                  echo "<td>" . $cliente->getDni() . "</td>";
-                                                 echo "<td>" . $cliente->getNombre() . "</td>";
-                                                 echo "<td>" . $cliente->getApellidos() . "</td>";
-                                                 echo "<td>" . $cliente->getDireccion() . "</td>";
+                                                 echo "<td>" . utf8_encode($cliente->getNombre()) . "</td>";
+                                                 echo "<td>" . utf8_encode($cliente->getApellidos()) . "</td>";
+                                                 echo "<td>" . utf8_encode($cliente->getDireccion()) . "</td>";
                                                  echo "<td>" . $cliente->getTelefono() . "</td>";
-                                                 echo "<td>" . $cliente->getEmail() . "</td>";
+                                                 echo "<td>" . utf8_encode($cliente->getEmail()) . "</td>";
                                                  echo "<td>" . $cliente->getFechaRegistro() . "</td>";
                                                  echo "<td>" . $cliente->getContrasenya() . "</td>";
                                                  echo "</tr>";
