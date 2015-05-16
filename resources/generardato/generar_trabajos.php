@@ -10,7 +10,12 @@ $path = substr($_SERVER['DOCUMENT_ROOT'], 0, 15);
 
 include_once $path . '/icleaning/app/database/DBAccess.php';
 
+set_time_limit (0);
+ini_set('memory_limit', '-1');
+ini_set('post_max_size','-1');
 
+ini_set('upload_max_filesize','-1');
+ini_set('max_input_time','-1');
 
 for($i=0; $i<1000000; $i++){
 
