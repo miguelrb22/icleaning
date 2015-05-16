@@ -25,7 +25,7 @@ if ($cliente != null) {
             . "<th>Opciones</th>"
             . "</tr>"
             . "</thead>"
-            . "<tbody>";
+            . "<tbody id='tbodyCli'>";
     
     foreach ($cliente as $cli) {
         
@@ -46,5 +46,7 @@ if ($cliente != null) {
     
     echo "</tbody>"
             . "</table>";
+
+
 }
 

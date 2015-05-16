@@ -1,3 +1,9 @@
+<?php
+
+$path = substr($_SERVER['DOCUMENT_ROOT'],0,15);
+
+include_once $path.'/icleaning/app/controllers/ClienteController.php';
+?>
 <html lang="es">
 
 <head>
@@ -10,6 +16,13 @@
 
     <title>iCleaning</title>
 
+    <style>
+
+        tbody{
+
+            font-size: 11px;
+        }
+    </style>
     
     <!-- Bootstrap CSS -->
     <link href="../../public/css/bootstrap.min.css" rel="stylesheet">
@@ -94,8 +107,10 @@ include_once '../../app/logic/index_logic.php';
             <div class="row">
 
                 <div id="administrador-result" class="col col-xs-12 col-sm-12 col-md-12 col-lg-12"></div>
-
+                <div class="paginacion"></div>
             </div>
+
+
     </div>
 
 </div>
@@ -131,6 +146,7 @@ include_once '../../app/logic/index_logic.php';
             <div class="row">
 
                 <div id="administradorempleado-result" class="col col-xs-12 col-sm-12 col-md-12 col-lg-12"></div>
+                <div class="paginacion2"></div>
 
             </div>
     </div>
@@ -342,23 +358,76 @@ include_once '../../app/logic/index_logic.php';
 
 <script src="../../public/lolibox/dist/js/lobibox.min.js"></script>
 
-
-<!-- jQuery -->
-<script src="../../public/js/jquery.js"></script>
-
-<script src="../../public/lolibox/dist/js/lobibox.min.js"></script>
-
 <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
 
-<!-- Bootstrap Core JavaScript -->
+        <!-- Bootstrap Core JavaScript -->
 <script src="../../public/js/bootstrap.min.js"></script>
 
 <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
-<script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" charset="utf8" src="../../public/js/bootpag.js"></script>
 
-<script>
+
+ <?php
+
+  $clientes = New ClienteController();
+ $total = $clientes->getTotalClientes();
+
+ ?>
+<script type="text/javascript">
+
+    var total = <?php echo $total; ?>;
+
+    var count = total;  //variable para contar el total de franquicias y mostrar en relacion con el nº de paginas
+    var paginas = 0;
+    if (count%10 != 0){
+        paginas = Math.floor(count/10)+1;
+    }else{
+        paginas = count/10; //4 es el número de items que queremos que aparezcan.
+    }
+
     $(document).ready(function() {
-        
+
+        $('.paginacion').hide();
+
+        $('.paginacion').bootpag({
+            total: paginas,
+            page: 1,
+            maxVisible: 3,
+            leaps: true,
+            firstLastUse: true,
+            first: '←',
+            last: '→',
+            wrapClass: 'pagination',
+            activeClass: 'active',
+            disabledClass: 'disabled',
+            nextClass: 'next',
+            prevClass: 'prev',
+            lastClass: 'last',
+            firstClass: 'first'
+
+        }).on("page", function(event, num) {
+
+
+
+            $.ajax({
+
+                type: "post",
+                url: "../../app/ajax/ajax_paginacion_clientes.php",
+                data: {page : num},
+                dataType: "html",
+                error: function () {
+                    alert("Error en la petición");
+                },
+                success: function (data) {
+
+                    $("#tbodyCli").html(data);
+
+                }
+            });
+        });
+
+
+
         $("#formcliente").submit(function(e) {
 
             e.preventDefault();
@@ -393,8 +462,10 @@ include_once '../../app/logic/index_logic.php';
                     },
                     success: function(data) {
 
-                        $('#administrador-result').html(data);
-                        $('#todosCli').dataTable();                       
+                        $('#administrador-result').html(data)
+
+                        $('.paginacion').show();
+
 
                     }
                 });
@@ -414,7 +485,6 @@ include_once '../../app/logic/index_logic.php';
                     success: function(data) {
 
                         $('#administradorempleado-result').html(data);
-                        $('#todosEmp').dataTable();
                     }
                 });
         });      
