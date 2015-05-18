@@ -1,3 +1,5 @@
+<?php error_reporting(E_ALL ^ E_NOTICE);
+?>
 <html lang="es">
 
 <head>
@@ -26,7 +28,13 @@
 
     $path = substr($_SERVER['DOCUMENT_ROOT'],0,15);
 
-    require_once($path.'/icleaning/app/logic/index_logic.php');    
+    require_once($path.'/icleaning/app/logic/index_logic.php');
+    require_once($path.'/icleaning/app/controllers/csrf.php');
+
+    $csrf = new csrf();
+    $token_id = $csrf->get_token_id();
+    $token_value = $csrf->get_token($token_id);
+
     ?>
 
 </head>
@@ -62,8 +70,9 @@
                     session_start();
                     
                     if ($_SESSION) {
-                                                               
-                        if ($_SESSION['name']) { 
+
+                     if ($_SESSION['activa']==true) {
+                      if ($_SESSION['name']) {
 
                             //Cliente
                             if ($_SESSION['login'] == 1) {
@@ -98,10 +107,11 @@
                             echo '</li>';
 
                             echo '<li>';
-                            echo "<button style='margin-top:4%;' onclick='logout()' class='btn btn-danger'><i class='fa fa-key'></i> <span>Logout</span></button>";
+                            echo "<button style='margin-top:5%; margin-right: 5px;' onclick='logout()' class='btn btn-danger'><i class='fa fa-key'></i> <span>Logout</span></button>";
                             echo '</li>';
 
                         }
+                    }
                     }
                 ?>
                 
@@ -376,6 +386,8 @@
 <!-- Modal -->
 <div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
+
+
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -383,6 +395,8 @@
             </div>
             <div class="modal-body">
                 <form class="form-horizontal" method="POST" action="app/logic/adminLogin.php">
+
+                    <input type="hidden" name="<?= $token_id; ?>" value="<?= $token_value; ?>" />
 
                     <div class="form-group">
                         <div class="col-sm-10 col-sm-offset-1">
@@ -515,12 +529,15 @@
                         <?php 
                         
                         if ($_SESSION) {
-                            
-                            if ($_SESSION['login'] == 1) {
-                                
-                                echo "<button type='submit' class='btn btn-primary'>A Limpiar!</button>";
-                                
-                            }
+
+                            if ($_SESSION['activa'] == true){
+
+                                if ($_SESSION['login'] == 1) {
+
+                                    echo "<button type='submit' class='btn btn-primary'>A Limpiar!</button>";
+
+                                }
+                        }
                             else {
                                 echo "<button type='submit' class='btn btn-primary disabled'>Debe de iniciar sesion</button>";
                             }
@@ -581,6 +598,8 @@ function logout() {
                                 });
                             }
                         });
+
+    window.location.reload();
                     
 }
 

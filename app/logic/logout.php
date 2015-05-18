@@ -8,8 +8,6 @@
 session_start();
 session_destroy();
 
-$path = substr($_SERVER['DOCUMENT_ROOT'],0,15);
+$_POST['reload']=true;
+header("Refresh:0; url=../../index.php");
 
-$aux = $path.'/icleaning/index.php';
-
-header("Refresh:0; url=$path");
