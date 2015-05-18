@@ -1,10 +1,10 @@
 <?php
 
-$idcliente = $_POST["idcliente"];
-$direccion = $_POST["clidir"];
-$email = $_POST["cliemail"];
-$telefono = $_POST["clitelefono"];
-$password = $_POST["clipass"];
+$idcliente = mysql_real_escape_string($_POST["idcliente"]);
+$direccion = mysql_real_escape_string($_POST["clidir"]);
+$email = mysql_real_escape_string($_POST["cliemail"]);
+$telefono = mysql_real_escape_string($_POST["clitelefono"]);
+$password = mysql_real_escape_string($_POST["clipass"]);
 
 $path = substr($_SERVER['DOCUMENT_ROOT'], 0, 15);
 

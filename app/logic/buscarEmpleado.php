@@ -6,7 +6,7 @@ require_once( $path.'/icleaning/app/database/DBAccess.php');
 require_once( $path.'/icleaning/app/controllers/EmpleadoController.php');
 require_once( $path.'/icleaning/app/models/Trabajador.php');
 
-$valueDNI = $_POST['dniemp'];
+$valueDNI = mysql_real_escape_string($_POST['dniemp']);
 
 if ($_POST['dniemp']) {
     

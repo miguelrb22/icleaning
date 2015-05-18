@@ -1,17 +1,17 @@
 <?php
 
-$telefono = $_POST["tratelefono"];
-$email = $_POST["traemail"];
-$numCuenta = $_POST["tracuenta"];
-$traDescripcion = $_POST["tradescripcion"];
-$traContrasenya = $_POST["trapass"];
-$traNombre = $_POST["tranombre"];
-$traApellidos = $_POST["traapellidos"];
-$traNif = $_POST["tranif"];
-$traExperiencia = $_POST["traexperiencia"];
-$traSip = $_POST["trasip"];
-$traEspecialidad = $_POST["trazona"];
-$traZona = $_POST["traespecialidad"];
+$telefono = mysql_real_escape_string($_POST["tratelefono"]);
+$email = mysql_real_escape_string($_POST["traemail"]);
+$numCuenta = mysql_real_escape_string($_POST["tracuenta"]);
+$traDescripcion = mysql_real_escape_string($_POST["tradescripcion"]);
+$traContrasenya = mysql_real_escape_string($_POST["trapass"]);
+$traNombre = mysql_real_escape_string($_POST["tranombre"]);
+$traApellidos = mysql_real_escape_string($_POST["traapellidos"]);
+$traNif = mysql_real_escape_string($_POST["tranif"]);
+$traExperiencia = mysql_real_escape_string($_POST["traexperiencia"]);
+$traSip = mysql_real_escape_string($_POST["trasip"]);
+$traEspecialidad = mysql_real_escape_string($_POST["trazona"]);
+$traZona = mysql_real_escape_string($_POST["traespecialidad"]);
 
 
 $path = substr($_SERVER['DOCUMENT_ROOT'], 0, 15);

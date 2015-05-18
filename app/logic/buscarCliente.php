@@ -6,7 +6,7 @@ require_once( $path.'/icleaning/app/database/DBAccess.php');
 require_once( $path.'/icleaning/app/controllers/ClienteController.php');
 require_once( $path.'/icleaning/app/models/Cliente.php');
 
-$valueDNI = $_POST['dnicli'];
+$valueDNI = mysql_real_escape_string($_POST['dnicli']);
 
 if ($_POST['dnicli']) {
     
