@@ -26,7 +26,16 @@
 
     $path = substr($_SERVER['DOCUMENT_ROOT'],0,15);
 
-    require_once($path.'/icleaning/app/logic/index_logic.php'); ?>
+    require_once($path.'/icleaning/app/logic/index_logic.php'); 
+    
+
+                    
+        session_start();
+                            
+        if ($_SESSION['name'] != null) {                   
+            $varSesion = 'Hola, cliente';
+        } else { $varSesion = 'Adios, cliente'; }
+    ?>
 
 </head>
 
@@ -48,6 +57,9 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a><?php echo $varSesion?></a>
+                </li>
                 <li>
                     <a href="#services">Servicios</a>
                 </li>
