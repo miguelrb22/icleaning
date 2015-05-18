@@ -6,7 +6,7 @@ require_once( $path.'/icleaning/app/database/DBAccess.php');
 require_once( $path.'/icleaning/app/controllers/ClienteController.php');
 require_once( $path.'/icleaning/app/models/Cliente.php');
 
-$num = $_POST["page"];
+$num = mysql_real_escape_string($_POST["page"]);
 $clienteController = new ClienteController();
 $cliente = $clienteController->getListaClientes((($num-1)*10),10);
 

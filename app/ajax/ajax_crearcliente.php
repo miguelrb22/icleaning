@@ -1,12 +1,12 @@
 <?php
 
-$cliname = $_POST["cliname"];
-$cliapellidos = $_POST["cliapellidos"];
-$clidni = $_POST["clidni"];
-$clidireccion = $_POST["clidireccion"];
-$cliemail = $_POST["cliemail"];
-$clitelefono = $_POST["clitelefono"];
-$clipass = $_POST["clipass"];
+$cliname = mysql_real_escape_string($_POST["cliname"]);
+$cliapellidos =mysql_real_escape_string( $_POST["cliapellidos"]);
+$clidni = mysql_real_escape_string($_POST["clidni"]);
+$clidireccion = mysql_real_escape_string($_POST["clidireccion"]);
+$cliemail = mysql_real_escape_string($_POST["cliemail"]);
+$clitelefono = mysql_real_escape_string($_POST["clitelefono"]);
+$clipass = mysql_real_escape_string($_POST["clipass"]);
 
 $dt = new DateTime();
 //$dt->format('Y-m-d')

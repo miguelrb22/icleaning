@@ -21,9 +21,9 @@ else {
 
     require_once($path.'/icleaning/app\database\DBAccess.php');
 
-    $zona = $_POST['zona'];
-    $especialidad = $_POST['especialidad'];
-    $fecha = $_POST['fecha'];
+    $zona = mysql_real_escape_string($_POST['zona']);
+    $especialidad = mysql_real_escape_string($_POST['especialidad']);
+    $fecha = mysql_real_escape_string($_POST['fecha']);
 
 
     echo utf8_encode( $zona . $especialidad . $fecha);

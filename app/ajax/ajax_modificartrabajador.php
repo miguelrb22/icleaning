@@ -1,11 +1,11 @@
 <?php
 
-$idtrabajador = $_POST["idtrabajador"];
-$telefono = $_POST["tratelefono"];
-$email = $_POST["traemail"];
-$numCuenta = $_POST["tracuenta"];
-$traDescripcion = $_POST["tradescripcion"];
-$traContrasenya = $_POST["trapass"];
+$idtrabajador = mysql_real_escape_string($_POST["idtrabajador"]);
+$telefono = mysql_real_escape_string($_POST["tratelefono"]);
+$email = mysql_real_escape_string($_POST["traemail"]);
+$numCuenta = mysql_real_escape_string($_POST["tracuenta"]);
+$traDescripcion = mysql_real_escape_string($_POST["tradescripcion"]);
+$traContrasenya = mysql_real_escape_string($_POST["trapass"]);
 
 $path = substr($_SERVER['DOCUMENT_ROOT'], 0, 15);
 
