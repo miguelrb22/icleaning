@@ -1,17 +1,19 @@
 <?php
 
-$telefono = mysql_real_escape_string($_POST["tratelefono"]);
-$email = mysql_real_escape_string($_POST["traemail"]);
-$numCuenta = mysql_real_escape_string($_POST["tracuenta"]);
-$traDescripcion = mysql_real_escape_string($_POST["tradescripcion"]);
-$traContrasenya = mysql_real_escape_string($_POST["trapass"]);
-$traNombre = mysql_real_escape_string($_POST["tranombre"]);
-$traApellidos = mysql_real_escape_string($_POST["traapellidos"]);
-$traNif = mysql_real_escape_string($_POST["tranif"]);
-$traExperiencia = mysql_real_escape_string($_POST["traexperiencia"]);
-$traSip = mysql_real_escape_string($_POST["trasip"]);
-$traEspecialidad = mysql_real_escape_string($_POST["trazona"]);
-$traZona = mysql_real_escape_string($_POST["traespecialidad"]);
+$filtro = mysqli_connect("bbdd.dlsi.ua.es:3306","gi_jsj11",".jsj11.","gi_telelimpieza");
+
+$telefono = utf8_decode($filtro->real_escape_string($_POST["tratelefono"]));
+$email = utf8_decode($filtro->real_escape_string($_POST["traemail"]));
+$numCuenta = utf8_decode($filtro->real_escape_string($_POST["tracuenta"]));
+$traDescripcion = utf8_decode($filtro->real_escape_string($_POST["tradescripcion"]));
+$traContrasenya = utf8_decode($filtro->real_escape_string($_POST["trapass"]));
+$traNombre = utf8_decode($filtro->real_escape_string($_POST["tranombre"]));
+$traApellidos = utf8_decode($filtro->real_escape_string($_POST["traapellidos"]));
+$traNif = utf8_decode($filtro->real_escape_string($_POST["tranif"]));
+$traExperiencia = utf8_decode($filtro->real_escape_string($_POST["traexperiencia"]));
+$traSip = utf8_decode($filtro->real_escape_string($_POST["trasip"]));
+$traEspecialidad = utf8_decode($filtro->real_escape_string($_POST["trazona"]));
+$traZona = utf8_decode($filtro->real_escape_string($_POST["traespecialidad"]));
 
 
 $path = substr($_SERVER['DOCUMENT_ROOT'], 0, 15);
