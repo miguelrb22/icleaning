@@ -21,9 +21,11 @@ else {
 
     require_once($path.'/icleaning/app\database\DBAccess.php');
 
-    $zona = mysql_real_escape_string($_POST['zona']);
-    $especialidad = mysql_real_escape_string($_POST['especialidad']);
-    $fecha = mysql_real_escape_string($_POST['fecha']);
+    $filtro = mysqli_connect("bbdd.dlsi.ua.es:3306","gi_jsj11",".jsj11.","gi_telelimpieza");
+
+    $zona =  utf8_decode($filtro->real_escape_string($_POST['zona']));
+    $especialidad =  utf8_decode($filtro->real_escape_string($_POST['especialidad']));
+    $fecha =  utf8_decode($filtro->real_escape_string($_POST['fecha']));
 
 
     echo utf8_encode( $zona . $especialidad . $fecha);

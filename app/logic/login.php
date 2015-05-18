@@ -7,8 +7,10 @@ $path = substr($_SERVER['DOCUMENT_ROOT'],0,15);
 
 require_once( $path.'/icleaning/app/database/DBAccess.php');
 
-$_SESSION['name'] = $_POST['name'];
-$_SESSION['pass'] = $_POST['pass'];
+$filtro = mysqli_connect("bbdd.dlsi.ua.es:3306","gi_jsj11",".jsj11.","gi_telelimpieza");
+
+$_SESSION['name'] = utf8_decode($filtro->real_escape_string($_POST['name']));
+$_SESSION['pass'] = utf8_decode($filtro->real_escape_string($_POST['pass']));
 $_SESSION['login'] = 1;
 
 if ($_POST) {

@@ -1,12 +1,13 @@
 <?php
+$filtro = mysqli_connect("bbdd.dlsi.ua.es:3306","gi_jsj11",".jsj11.","gi_telelimpieza");
 
-$cliname = mysql_real_escape_string($_POST["cliname"]);
-$cliapellidos =mysql_real_escape_string( $_POST["cliapellidos"]);
-$clidni = mysql_real_escape_string($_POST["clidni"]);
-$clidireccion = mysql_real_escape_string($_POST["clidireccion"]);
-$cliemail = mysql_real_escape_string($_POST["cliemail"]);
-$clitelefono = mysql_real_escape_string($_POST["clitelefono"]);
-$clipass = mysql_real_escape_string($_POST["clipass"]);
+$cliname = utf8_decode($filtro->real_escape_string($_POST["cliname"]));
+$cliapellidos =utf8_decode($filtro->real_escape_string( $_POST["cliapellidos"]));
+$clidni = utf8_decode($filtro->real_escape_string($_POST["clidni"]));
+$clidireccion = utf8_decode($filtro->real_escape_string($_POST["clidireccion"]));
+$cliemail = utf8_decode($filtro->real_escape_string($_POST["cliemail"]));
+$clitelefono = utf8_decode($filtro->real_escape_string($_POST["clitelefono"]));
+$clipass = utf8_decode($filtro->real_escape_string($_POST["clipass"]));
 
 $dt = new DateTime();
 //$dt->format('Y-m-d')

@@ -1,11 +1,12 @@
 <?php
+$filtro = mysqli_connect("bbdd.dlsi.ua.es:3306","gi_jsj11",".jsj11.","gi_telelimpieza");
 
-$idtrabajador = mysql_real_escape_string($_POST["idtrabajador"]);
-$telefono = mysql_real_escape_string($_POST["tratelefono"]);
-$email = mysql_real_escape_string($_POST["traemail"]);
-$numCuenta = mysql_real_escape_string($_POST["tracuenta"]);
-$traDescripcion = mysql_real_escape_string($_POST["tradescripcion"]);
-$traContrasenya = mysql_real_escape_string($_POST["trapass"]);
+$idtrabajador = utf8_decode($filtro->real_escape_string($_POST["idtrabajador"]));
+$telefono = utf8_decode($filtro->real_escape_string($_POST["tratelefono"]));
+$email = utf8_decode($filtro->real_escape_string($_POST["traemail"]));
+$numCuenta = utf8_decode($filtro->real_escape_string($_POST["tracuenta"]));
+$traDescripcion = utf8_decode($filtro->real_escape_string($_POST["tradescripcion"]));
+$traContrasenya = utf8_decode($filtro->real_escape_string($_POST["trapass"]));
 
 $path = substr($_SERVER['DOCUMENT_ROOT'], 0, 15);
 

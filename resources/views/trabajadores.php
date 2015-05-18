@@ -95,9 +95,11 @@
 
         require_once($path . '/icleaning/app/database/DBAccess.php');
 
-        $zona = $_POST['zona'];
-        $especialidad = $_POST['especialidad'];
-        $fecha = $_POST['fecha'];
+        $filtro = mysqli_connect("bbdd.dlsi.ua.es:3306","gi_jsj11",".jsj11.","gi_telelimpieza");
+
+        $zona = utf8_decode($filtro->real_escape_string($_POST['zona']));
+        $especialidad = utf8_decode($filtro->real_escape_string($_POST['especialidad']));
+        $fecha = utf8_decode($filtro->real_escape_string($_POST['fecha']));
         $dbAccess = new DBAccess();
 
         $aux2 = "SELECT * FROM empleado where idespecialidad =" . $especialidad . " and idzona = " . $zona . " and idempleado not in (select idempleado from ocupacion where fecha_ocupado='" . $fecha . "')";

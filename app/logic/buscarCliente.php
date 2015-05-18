@@ -6,7 +6,9 @@ require_once( $path.'/icleaning/app/database/DBAccess.php');
 require_once( $path.'/icleaning/app/controllers/ClienteController.php');
 require_once( $path.'/icleaning/app/models/Cliente.php');
 
-$valueDNI = mysql_real_escape_string($_POST['dnicli']);
+$filtro = mysqli_connect("bbdd.dlsi.ua.es:3306","gi_jsj11",".jsj11.","gi_telelimpieza");
+
+$valueDNI = utf8_decode($filtro->real_escape_string($_POST['dnicli']));
 
 if ($_POST['dnicli']) {
     
