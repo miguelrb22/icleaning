@@ -61,11 +61,8 @@ require_once($path . '/icleaning/app/database/DBAccess.php');
 
 $filtro = mysqli_connect("bbdd.dlsi.ua.es:3306","gi_jsj11",".jsj11.","gi_telelimpieza");
 
-//$idEmpleado = $_GET['id'];
-//$fecha = $_GET['fecha'];
-
-$idEmpleado = 1239;
-$fecha = "2015-05-22";
+$idEmpleado = $_GET['id'];
+$fecha = $_GET['fecha'];
 
 include_once '../../app/controllers/ClienteController.php';
 include_once '../../app/models/Cliente.php';
@@ -351,7 +348,7 @@ $trabajador = $trabajadorController->getEmpleado($idEmpleado);
                         <label class="col-sm-2 control-label" for="formGroup"></label>
                         <div class="col-sm-4">
                             <?php
-                                echo "<button type='submit' onclick='contratarTrabajador($idTrabajador)' class='btn btn-success btn-lg'>Contratar </button>";
+                                echo "<button type='submit' onclick='contratarTrabajador($idEmpleado)' class='btn btn-success btn-lg'>Contratar </button>";
                             ?>
                         </div>
                     </div>
@@ -416,9 +413,6 @@ function contratarTrabajador(idTrabajador) {
                             url: "../../app/ajax/ajax_contratarempleado.php",
                             data: { idtrabajador: idTrabajador, idcliente: idCliente, calle: calle, trahoras: traHoras, fecha: traFecha },
                             dataType: "html",
-                            error: function() {
-                            alert("error petición ajax");
-                            },
                             success: function(data) {
                             }
                         });                                                       

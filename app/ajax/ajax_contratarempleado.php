@@ -8,6 +8,8 @@ $calle = utf8_decode($filtro->real_escape_string($_POST["calle"]));
 $traHoras = utf8_decode($filtro->real_escape_string($_POST["trahoras"]));
 $fecha = utf8_decode($filtro->real_escape_string($_POST["fecha"]));
 
+$path = substr($_SERVER['DOCUMENT_ROOT'], 0, 15);
+
 include_once $path . '/icleaning/app/controllers/EmpleadoController.php';
 include_once $path . '/icleaning/app/models/Trabajador.php';
 
@@ -32,9 +34,8 @@ $especialidad = $especialidadController->getEspecialidad($empleado->getFkIdEspec
 $importeTotal = $especialidad->getCobroHora() * $traHoras;
 
 $trabajoController = new TrabajoController();
-$trabajo = new Trabajo(0, $idCliente, $idEmpleado, 3, null, $importeTotal, 0, $calle, $traHoras, 50, 0, $fecha, null);
-$trabajo2 = new Trabajo(0, 1, 1239, 3, 0, 500, 0, "Calle calle", 5, 50, 0, "2015-05-22", "0000-00-00");
-$trabajoController->insertTrabajo($trabajo2);
+$trabajo = new Trabajo(0, $idCliente, $idEmpleado, 3, 1, $importeTotal, 0, $calle, $traHoras, 50, 0, $fecha, "0000-00-00");
+$trabajoController->insertTrabajo($trabajo);
 
 
 

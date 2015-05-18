@@ -36,8 +36,8 @@
 //include_once 'app/controllers/TesoreriaController.php';
 //include_once 'app/models/Tesoreria.php';
 
-//include_once 'app/controllers/TrabajoController.php';
-//include_once 'app/models/Trabajo.php';
+//include_once '../app/controllers/TrabajoController.php';
+//include_once '../app/models/Trabajo.php';
 
 //Prueba con listas
 
