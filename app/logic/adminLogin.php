@@ -7,8 +7,9 @@ $path = substr($_SERVER['DOCUMENT_ROOT'],0,15);
 
 require_once( $path.'/icleaning/app/database/DBAccess.php');
 
-$_SESSION['name'] = mysql_real_escape_string($_POST['name']);
-$_SESSION['pass'] = mysql_real_escape_string($_POST['pass']);
+$_SESSION['name'] = $_POST['name'];
+$_SESSION['pass'] = $_POST['pass'];
+$_SESSION['login'] = 2;
 
 if ($_POST) {
 

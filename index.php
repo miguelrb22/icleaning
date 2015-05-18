@@ -26,15 +26,7 @@
 
     $path = substr($_SERVER['DOCUMENT_ROOT'],0,15);
 
-    require_once($path.'/icleaning/app/logic/index_logic.php'); 
-    
-
-                    
-        session_start();
-                            
-        if ($_SESSION['name'] != null) {                   
-            $varSesion = 'Hola, cliente';
-        } else { $varSesion = 'Adios, cliente'; }
+    require_once($path.'/icleaning/app/logic/index_logic.php');    
     ?>
 
 </head>
@@ -58,9 +50,6 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a><?php echo $varSesion?></a>
-                </li>
-                <li>
                     <a href="#services">Servicios</a>
                 </li>
                 <li>
@@ -69,6 +58,54 @@
                 <li>
                     <a href="#contact">Contacto</a>
                 </li>
+                <?php
+                    session_start();
+                    
+                    if ($_SESSION) {
+                                                               
+                        if ($_SESSION['name']) { 
+
+                            //Cliente
+                            if ($_SESSION['login'] == 1) {
+
+                                require_once($path.'/icleaning/app/controllers/ClienteController.php');
+                                require_once($path.'/icleaning/app/models/Cliente.php');
+
+                                $clienteController = new ClienteController();
+                                $cliente = $clienteController->getClienteEmail($_SESSION['name']);
+
+                                $varSesion = 'Bienvenido ' . $cliente->getNombre();
+
+                            }
+                            //Empleado
+                            else if ($_SESSION['login'] == 2) {
+
+                                require_once($path.'/icleaning/app/controllers/EmpleadoController.php');
+                                require_once($path.'/icleaning/app/models/Trabajador.php');
+                                
+                                $empleadoController = new EmpleadoController();
+                                $trabajador = $empleadoController->getEmpleadoEmail($_SESSION['name']);
+                                
+                                $varSesion = 'Bienvenido ' . $trabajador->getNombre();
+                                
+                            }
+
+                            else { $varSesion = ''; }
+
+
+                            echo '<li>';
+                            echo '<a>' . $varSesion . '</a>';
+                            echo '</li>';
+
+                            echo '<li>';
+                            echo "<button style='margin-top:4%;' onclick='logout()' class='btn btn-danger'><i class='fa fa-key'></i> <span>Logout</span></button>";
+                            echo '</li>';
+
+                        }
+                    }
+                ?>
+                
+                
                 <li>
                     <button style="margin-top:4%;" class="btn btn-success" data-toggle="modal" data-target="#myModal2"><i class="fa fa-key"></i> <span>Área Privada</span></button>
                 </li>
@@ -474,7 +511,27 @@
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                        <button type="submit" class="btn btn-primary">A Limpiar!</button>
+                        
+                        <?php 
+                        
+                        if ($_SESSION) {
+                            
+                            if ($_SESSION['login'] == 1) {
+                                
+                                echo "<button type='submit' class='btn btn-primary'>A Limpiar!</button>";
+                                
+                            }
+                            else {
+                                echo "<button type='submit' class='btn btn-primary disabled'>Debe de iniciar sesion</button>";
+                            }
+                        }
+                        else {
+                            echo "<button type='submit' class='btn btn-primary disabled'>Debe de iniciar sesion</button>";
+                        }
+                        
+                        ?>
+                        
+                        
                     </div>
                 </form>
             </div>
@@ -486,6 +543,7 @@
 
 <!-- jQuery -->
 <script src="public/js/jquery.js"></script>
+
 
 <!-- Bootstrap Core JavaScript -->
 <script src="public/bootstrap/js/bootstrap.min.js"></script>
@@ -503,7 +561,30 @@
     });
 </script>
 
+<script>
 
+function logout() {
+                                    
+                        $.ajax({
+                            type: "POST",
+                            url: "app/logic/logout.php",
+                            data: { },
+                            dataType: "html",
+                            error: function() {
+                                alert("error petición ajax");
+                            },
+                            success: function(data) {
+
+                                Lobibox.notify('success', {
+                                    title: 'Completado',
+                                    msg: 'Cliente desconectado correctamente'
+                                });
+                            }
+                        });
+                    
+}
+
+</script>
 
 
 

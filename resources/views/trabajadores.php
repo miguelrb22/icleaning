@@ -95,9 +95,9 @@
 
         require_once($path . '/icleaning/app/database/DBAccess.php');
 
-        $zona = mysql_real_escape_string($_POST['zona']);
-        $especialidad = mysql_real_escape_string($_POST['especialidad']);
-        $fecha = mysql_real_escape_string($_POST['fecha']);
+        $zona = $_POST['zona'];
+        $especialidad = $_POST['especialidad'];
+        $fecha = $_POST['fecha'];
         $dbAccess = new DBAccess();
 
         $aux2 = "SELECT * FROM empleado where idespecialidad =" . $especialidad . " and idzona = " . $zona . " and idempleado not in (select idempleado from ocupacion where fecha_ocupado='" . $fecha . "')";
