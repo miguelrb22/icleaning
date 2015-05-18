@@ -10,7 +10,7 @@
                       <span class="icon-bar"></span>
                     </button>
                     <a class="navbar-brand" href="index.php" style="height:100px">
-                        <div id="pp"> <img src="logo.png" width="192" height="112"></img> </div>
+                        <div id="pp"> <img src="logo.png" width="192" height="112"> </div>
                     </a>
                   </div>
                   <div id="navbar" class="navbar-collapse collapse" style="margin-top:none">

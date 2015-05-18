@@ -8,6 +8,9 @@ session_start();
 $path = substr($_SERVER['DOCUMENT_ROOT'],0,15);
 
 require_once( $path.'/icleaning/app/database/DBAccess.php');
+require_once($path.'/icleaning/app/controllers/csrf.php');
+
+$csrf = new csrf();
 
 $filtro = mysqli_connect("bbdd.dlsi.ua.es:3306","gi_jsj11",".jsj11.","gi_telelimpieza");
 
@@ -40,7 +43,9 @@ if ($_POST) {
                     $_SESSION['activa'] = true;
 
 
-                    if($bdespecialidad==9) {
+                    if($bdespecialidad==9 &&  $csrf->check_valid('post')==1) {
+
+                        $_SESSION['admin']  = true;
                         header('location: ../../resources/views/administrador.php');
                     }else if ($bdespecialidad==10){
                         header('location: ../../resources/views/gerente.php');

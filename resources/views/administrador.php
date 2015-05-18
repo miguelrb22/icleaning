@@ -1,13 +1,13 @@
 <?php
 
-
-if ($_SESSION['name'] && $_SESSION['pass']) {
-
-
-}
+error_reporting(E_ALL ^ E_NOTICE);
+session_start();
 $path = substr($_SERVER['DOCUMENT_ROOT'],0,15);
 
-include_once $path.'/icleaning/app/controllers/ClienteController.php';
+if ( (!isset($_SESSION['name'])) || $_SESSION['activa'] != 1 || $_SESSION['admin']  != 1){
+
+    header('location: ../../index.php');
+}
 ?>
 <html lang="es">
 
@@ -23,12 +23,12 @@ include_once $path.'/icleaning/app/controllers/ClienteController.php';
 
     <style>
 
-        #tbodyCli{
+        #tbodyCli,#todosEmp{
 
             font-size: 11px;
         }
     </style>
-    
+
     <!-- Bootstrap CSS -->
     <link href="../../public/css/bootstrap.min.css" rel="stylesheet">
 
@@ -39,6 +39,8 @@ include_once $path.'/icleaning/app/controllers/ClienteController.php';
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="../../public/lolibox/dist/css/LobiBox.min.css">
+    <link rel="stylesheet" href="../../public/datatables/media/css/jquery.dataTables.min.css">
+
 
 
 </head>
@@ -61,6 +63,14 @@ include_once $path.'/icleaning/app/controllers/ClienteController.php';
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
+
+
+                <li>
+
+                    <form action="http://google.com">
+                        <button type ="submit" style="margin-top: 5%" class="btn btn-danger">Cuadro de mando</button>
+                    </form>
+                </li>
                 <li>
                     <a href="#zcliente">Zona Clientes</a>
                 </li>
@@ -91,7 +101,7 @@ include_once '../../app/logic/index_logic.php';
                 <hr class="section-heading-spacer">
                 <div class="clearfix"></div>
                 <h2 class="section-heading">Zona Clientes</h2>
-                
+
                 <div class="panel panel-default">
                     <div class="panel-heading">Buscar Cliente</div>
                     <div class="panel-body">
@@ -108,7 +118,7 @@ include_once '../../app/logic/index_logic.php';
                     </div>
                 </div>
             </div>
-        
+
             <div class="row">
 
                 <div id="administrador-result" class="col col-xs-12 col-sm-12 col-md-12 col-lg-12"></div>
@@ -130,7 +140,7 @@ include_once '../../app/logic/index_logic.php';
                 <hr class="section-heading-spacer">
                 <div class="clearfix"></div>
                 <h2 class="section-heading">Zona Empleados</h2>
-                
+
                 <div class="panel panel-default">
                     <div class="panel-heading">Buscar Empleado</div>
                     <div class="panel-body">
@@ -147,11 +157,11 @@ include_once '../../app/logic/index_logic.php';
                     </div>
                 </div>
             </div>
-        
+
             <div class="row">
 
                 <div id="administradorempleado-result" class="col col-xs-12 col-sm-12 col-md-12 col-lg-12"></div>
-                <div class="paginacion2"></div>
+
 
             </div>
     </div>
@@ -161,7 +171,7 @@ include_once '../../app/logic/index_logic.php';
 <a name="zcrearempleado"></a>
 <div class="content-section-a">
 
-    
+
 
     <div class="container">
 
@@ -180,7 +190,7 @@ include_once '../../app/logic/index_logic.php';
 
             <br />
             <br />
-            
+
         </div>
 
 
@@ -240,7 +250,7 @@ include_once '../../app/logic/index_logic.php';
                                 <input class="form-control" type="text" name="traCuenta" id="traCuenta" value="">
                             </div>
                         </div>
-                        
+
                         <div class="form-group">
                             <label class = "col-sm-2 control-label" for="formGroup">SIP: </label>
                             <div class="col-sm-4">
@@ -363,14 +373,14 @@ include_once '../../app/logic/index_logic.php';
 
 <script src="../../public/lolibox/dist/js/lobibox.min.js"></script>
 
-<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
 
         <!-- Bootstrap Core JavaScript -->
-<script src="../../public/js/bootstrap.min.js"></script>
 
-<script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
+        <script src="../../public/datatables/media/js/jquery.dataTables.min.js"></script>
+
         <script type="text/javascript" charset="utf8" src="../../public/js/bootpag.js"></script>
 
+        <script src="../../public/js/bootstrap.min.js"></script>
 
  <?php
 
@@ -392,7 +402,12 @@ include_once '../../app/logic/index_logic.php';
 
     $(document).ready(function() {
 
+
+
         $('.paginacion').hide();
+
+        $('#todosEmp').DataTable();
+
 
         $('.paginacion').bootpag({
             total: paginas,
@@ -453,7 +468,7 @@ include_once '../../app/logic/index_logic.php';
                     }
                 });
         });
-        
+
         $("#gettodosclientes").click(function(e) {
 
             e.preventDefault();
@@ -475,7 +490,7 @@ include_once '../../app/logic/index_logic.php';
                     }
                 });
         });
-        
+
         $("#gettodosempleados").click(function(e) {
 
             e.preventDefault();
@@ -490,9 +505,10 @@ include_once '../../app/logic/index_logic.php';
                     success: function(data) {
 
                         $('#administradorempleado-result').html(data);
+                        $('#todosEmp').DataTable();
                     }
                 });
-        });      
+        });
 
         $("#formempleado").submit(function(e) {
 
@@ -515,7 +531,7 @@ include_once '../../app/logic/index_logic.php';
         });
 
     });
-    
+
     function deleteCliente(dniCliente) {
 
         Lobibox.confirm({
@@ -553,7 +569,7 @@ include_once '../../app/logic/index_logic.php';
         });
     }
 
-    
+
     function deleteEmpleado(dniEmpleado) {
 
         Lobibox.confirm({
@@ -590,9 +606,9 @@ include_once '../../app/logic/index_logic.php';
             }
         });
     }
-    
+
     function crearTrabajador() {
-        
+
                     var traTelefono = $('#traTelefono').val();
                     var traEmail = $('#traEmail').val();
                     var traCuenta = $('#traCuenta').val();
@@ -606,7 +622,7 @@ include_once '../../app/logic/index_logic.php';
                     var traSip = $('#traSip').val();
                     var traZona = $('#especialidad').val();
                     var traEspecialidad = $('#zona').val();
-                    
+
                     if (traPass === '' || traPassConf === '') {
                         alert("Contraseña vacia");
                     }
@@ -617,12 +633,12 @@ include_once '../../app/logic/index_logic.php';
                         alert("No se admite ningun campo vacio");
                     }
                     else {
-                        
+
                         $.ajax({
                             type: "POST",
                             url: "../../app/ajax/ajax_crearempleado.php",
                             data: { traespecialidad: traEspecialidad, trazona: traZona, trasip: traSip, tranombre: traNombre, traapellidos: traApellidos, tranif: traNif, traexperiencia: traExperiencia, tratelefono: traTelefono, traemail: traEmail, tracuenta: traCuenta, tradescripcion: traDescripcion, trapass: traPass},
-                            dataType: "html",                           
+                            dataType: "html",
                             success: function(data) {
 
                                 Lobibox.notify('success', {
@@ -632,7 +648,7 @@ include_once '../../app/logic/index_logic.php';
                             }
                         });
                     }
-                    
+
     }
 
 

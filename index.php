@@ -28,7 +28,13 @@
 
     $path = substr($_SERVER['DOCUMENT_ROOT'],0,15);
 
-    require_once($path.'/icleaning/app/logic/index_logic.php');    
+    require_once($path.'/icleaning/app/logic/index_logic.php');
+    require_once($path.'/icleaning/app/controllers/csrf.php');
+
+    $csrf = new csrf();
+    $token_id = $csrf->get_token_id();
+    $token_value = $csrf->get_token($token_id);
+
     ?>
 
 </head>
@@ -380,6 +386,8 @@
 <!-- Modal -->
 <div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
+
+
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -387,6 +395,8 @@
             </div>
             <div class="modal-body">
                 <form class="form-horizontal" method="POST" action="app/logic/adminLogin.php">
+
+                    <input type="hidden" name="<?= $token_id; ?>" value="<?= $token_value; ?>" />
 
                     <div class="form-group">
                         <div class="col-sm-10 col-sm-offset-1">
