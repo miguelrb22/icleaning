@@ -3,6 +3,8 @@
 error_reporting(E_ALL ^ E_NOTICE);
 session_start();
 
+
+
 $path = substr($_SERVER['DOCUMENT_ROOT'],0,15);
 
 require_once( $path.'/icleaning/app/database/DBAccess.php');

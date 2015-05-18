@@ -1,5 +1,10 @@
 <?php
 
+
+if ($_SESSION['name'] && $_SESSION['pass']) {
+
+
+}
 $path = substr($_SERVER['DOCUMENT_ROOT'],0,15);
 
 include_once $path.'/icleaning/app/controllers/ClienteController.php';
