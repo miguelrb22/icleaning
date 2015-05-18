@@ -404,9 +404,6 @@
                             url: "../../app/ajax/ajax_modificarcliente.php",
                             data: { idcliente: idCliente, clidir: dirCli, cliemail: cliEmail, clitelefono: cliTelefono, clipass: cliPass },
                             dataType: "html",
-                            error: function() {
-                                alert("error petición ajax");
-                            },
                             success: function(data) {
 
                                 Lobibox.notify('success', {

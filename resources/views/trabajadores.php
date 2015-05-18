@@ -141,15 +141,16 @@ foreach ($query as $q) {
                         </div> 
                         </div>
 
-
-
-
                 </div>
 
-                <div class="panel-footer" style="height: 50px">
-                    <button class="btn btn-success pull-right"> Contratar</button>
-                </div>
-
+                <form class="form-horizontal" method="POST" action="../../resources/views/contratarempleado.php?id='. $q['idempleado'] .'&fecha=' . $fecha . ' ">
+                    <div class="panel-footer" style="height: 50px">
+                        <button class="btn btn-success pull-right"> Contratar</button>
+                        <input type="hidden" name="id" value=' . $q['idempleado'] . ' >
+                        <input type="hidden" name="fecha" value=' . $fecha . ' >
+                    </div>
+                </form>
+                
             </div>
         </div>';
 }
