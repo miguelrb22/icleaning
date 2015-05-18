@@ -1,3 +1,5 @@
+<?php error_reporting(E_ALL ^ E_NOTICE);
+?>
 <html lang="es">
 
 <head>
@@ -62,8 +64,9 @@
                     session_start();
                     
                     if ($_SESSION) {
-                                                               
-                        if ($_SESSION['name']) { 
+
+                     if ($_SESSION['activa']==true) {
+                      if ($_SESSION['name']) {
 
                             //Cliente
                             if ($_SESSION['login'] == 1) {
@@ -98,10 +101,11 @@
                             echo '</li>';
 
                             echo '<li>';
-                            echo "<button style='margin-top:4%;' onclick='logout()' class='btn btn-danger'><i class='fa fa-key'></i> <span>Logout</span></button>";
+                            echo "<button style='margin-top:5%; margin-right: 5px;' onclick='logout()' class='btn btn-danger'><i class='fa fa-key'></i> <span>Logout</span></button>";
                             echo '</li>';
 
                         }
+                    }
                     }
                 ?>
                 
@@ -515,12 +519,15 @@
                         <?php 
                         
                         if ($_SESSION) {
-                            
-                            if ($_SESSION['login'] == 1) {
-                                
-                                echo "<button type='submit' class='btn btn-primary'>A Limpiar!</button>";
-                                
-                            }
+
+                            if ($_SESSION['activa'] == true){
+
+                                if ($_SESSION['login'] == 1) {
+
+                                    echo "<button type='submit' class='btn btn-primary'>A Limpiar!</button>";
+
+                                }
+                        }
                             else {
                                 echo "<button type='submit' class='btn btn-primary disabled'>Debe de iniciar sesion</button>";
                             }
@@ -581,6 +588,8 @@ function logout() {
                                 });
                             }
                         });
+
+    window.location.reload();
                     
 }
 
