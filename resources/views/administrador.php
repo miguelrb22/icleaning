@@ -67,7 +67,7 @@ if ( (!isset($_SESSION['name'])) || $_SESSION['activa'] != 1 || $_SESSION['admin
 
                 <li>
 
-                    <form action="http://google.com">
+                    <form action="cuadros_de_mando/mas_activos.php">
                         <button type ="submit" style="margin-top: 5%" class="btn btn-danger">Cuadro de mando</button>
                     </form>
                 </li>
