@@ -8,6 +8,9 @@ if ( (!isset($_SESSION['name'])) || $_SESSION['activa'] != 1 || $_SESSION['admin
 
     header('location: ../../index.php');
 }
+
+include_once $path.'/icleaning/app/controllers/ClienteController.php';
+
 ?>
 <html lang="es">
 
@@ -23,12 +26,12 @@ if ( (!isset($_SESSION['name'])) || $_SESSION['activa'] != 1 || $_SESSION['admin
 
     <style>
 
-        #tbodyCli,#todosEmp{
+        #tbodyCli{
 
             font-size: 11px;
         }
     </style>
-
+    
     <!-- Bootstrap CSS -->
     <link href="../../public/css/bootstrap.min.css" rel="stylesheet">
 
@@ -65,12 +68,12 @@ if ( (!isset($_SESSION['name'])) || $_SESSION['activa'] != 1 || $_SESSION['admin
             <ul class="nav navbar-nav navbar-right">
 
 
-                <li>
+               <li><form action="cuadros_de_mando/mas_activos.php">
+                    <button type ="submit" style="margin-top: 5%" class="btn btn-danger">Cuadro de mando</button>
+                </form>
 
-                    <form action="cuadros_de_mando/mas_activos.php">
-                        <button type ="submit" style="margin-top: 5%" class="btn btn-danger">Cuadro de mando</button>
-                    </form>
-                </li>
+
+
                 <li>
                     <a href="#zcliente">Zona Clientes</a>
                 </li>
@@ -101,7 +104,7 @@ include_once '../../app/logic/index_logic.php';
                 <hr class="section-heading-spacer">
                 <div class="clearfix"></div>
                 <h2 class="section-heading">Zona Clientes</h2>
-
+                
                 <div class="panel panel-default">
                     <div class="panel-heading">Buscar Cliente</div>
                     <div class="panel-body">
@@ -118,7 +121,7 @@ include_once '../../app/logic/index_logic.php';
                     </div>
                 </div>
             </div>
-
+        
             <div class="row">
 
                 <div id="administrador-result" class="col col-xs-12 col-sm-12 col-md-12 col-lg-12"></div>
@@ -140,7 +143,7 @@ include_once '../../app/logic/index_logic.php';
                 <hr class="section-heading-spacer">
                 <div class="clearfix"></div>
                 <h2 class="section-heading">Zona Empleados</h2>
-
+                
                 <div class="panel panel-default">
                     <div class="panel-heading">Buscar Empleado</div>
                     <div class="panel-body">
@@ -157,7 +160,7 @@ include_once '../../app/logic/index_logic.php';
                     </div>
                 </div>
             </div>
-
+        
             <div class="row">
 
                 <div id="administradorempleado-result" class="col col-xs-12 col-sm-12 col-md-12 col-lg-12"></div>
@@ -171,7 +174,7 @@ include_once '../../app/logic/index_logic.php';
 <a name="zcrearempleado"></a>
 <div class="content-section-a">
 
-
+    
 
     <div class="container">
 
@@ -190,7 +193,7 @@ include_once '../../app/logic/index_logic.php';
 
             <br />
             <br />
-
+            
         </div>
 
 
@@ -250,7 +253,7 @@ include_once '../../app/logic/index_logic.php';
                                 <input class="form-control" type="text" name="traCuenta" id="traCuenta" value="">
                             </div>
                         </div>
-
+                        
                         <div class="form-group">
                             <label class = "col-sm-2 control-label" for="formGroup">SIP: </label>
                             <div class="col-sm-4">
@@ -468,7 +471,7 @@ include_once '../../app/logic/index_logic.php';
                     }
                 });
         });
-
+        
         $("#gettodosclientes").click(function(e) {
 
             e.preventDefault();
@@ -490,7 +493,7 @@ include_once '../../app/logic/index_logic.php';
                     }
                 });
         });
-
+        
         $("#gettodosempleados").click(function(e) {
 
             e.preventDefault();
@@ -508,7 +511,7 @@ include_once '../../app/logic/index_logic.php';
                         $('#todosEmp').DataTable();
                     }
                 });
-        });
+        });      
 
         $("#formempleado").submit(function(e) {
 
@@ -531,7 +534,7 @@ include_once '../../app/logic/index_logic.php';
         });
 
     });
-
+    
     function deleteCliente(dniCliente) {
 
         Lobibox.confirm({
@@ -569,7 +572,7 @@ include_once '../../app/logic/index_logic.php';
         });
     }
 
-
+    
     function deleteEmpleado(dniEmpleado) {
 
         Lobibox.confirm({
@@ -606,9 +609,9 @@ include_once '../../app/logic/index_logic.php';
             }
         });
     }
-
+    
     function crearTrabajador() {
-
+        
                     var traTelefono = $('#traTelefono').val();
                     var traEmail = $('#traEmail').val();
                     var traCuenta = $('#traCuenta').val();
@@ -622,7 +625,7 @@ include_once '../../app/logic/index_logic.php';
                     var traSip = $('#traSip').val();
                     var traZona = $('#especialidad').val();
                     var traEspecialidad = $('#zona').val();
-
+                    
                     if (traPass === '' || traPassConf === '') {
                         alert("Contraseña vacia");
                     }
@@ -633,12 +636,12 @@ include_once '../../app/logic/index_logic.php';
                         alert("No se admite ningun campo vacio");
                     }
                     else {
-
+                        
                         $.ajax({
                             type: "POST",
                             url: "../../app/ajax/ajax_crearempleado.php",
                             data: { traespecialidad: traEspecialidad, trazona: traZona, trasip: traSip, tranombre: traNombre, traapellidos: traApellidos, tranif: traNif, traexperiencia: traExperiencia, tratelefono: traTelefono, traemail: traEmail, tracuenta: traCuenta, tradescripcion: traDescripcion, trapass: traPass},
-                            dataType: "html",
+                            dataType: "html",                           
                             success: function(data) {
 
                                 Lobibox.notify('success', {
@@ -648,7 +651,7 @@ include_once '../../app/logic/index_logic.php';
                             }
                         });
                     }
-
+                    
     }
 
 
