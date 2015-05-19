@@ -45,7 +45,7 @@ $bd = new DBAccess();
     <!-- Fonts -->
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
-    <script src="../../../public/Chart.js/Chart.js"></script>
+    <script src="../../../public/js/Chart.min.js"></script>
 
 
 
