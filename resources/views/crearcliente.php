@@ -255,6 +255,9 @@
                         });
                     
                     }
+                    
+        window.location.replace("http://localhost/icleaning/index.php");
+        window.location.reload();
         
     }
 </script>

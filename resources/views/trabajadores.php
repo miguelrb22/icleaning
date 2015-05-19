@@ -105,7 +105,7 @@
         $aux2 = "SELECT * FROM empleado where idespecialidad =" . $especialidad . " and idzona = " . $zona . " and idempleado not in (select idempleado from ocupacion where fecha_ocupado='" . $fecha . "')";
         $aux = "SELECT e.* , s.cobro_hora FROM empleado e join especialidad s on e.idespecialidad=s.idespecialidad 
                 where e.idespecialidad =$especialidad  and idzona =  $zona  
-                 and idempleado not in (select idempleado from ocupacion where fecha_ocupado='$fecha ')";
+                 and idempleado not in (select idempleado from ocupacion where fecha_ocupado='$fecha')";
         $query = $dbAccess->getSelect($aux);
         ?>
 

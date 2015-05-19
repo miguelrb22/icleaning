@@ -573,7 +573,7 @@
     $(function () {
         $('#datetimepicker4').datetimepicker({
             locale: 'es',
-            format: 'L'
+            format: 'YYYY-mm-DD'
         });
     });
 </script>

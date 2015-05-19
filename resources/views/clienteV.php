@@ -345,6 +345,8 @@
                 }
             }
         });
+        
+        window.location.reload();
     }
     
     function deleteTrabajo(idTrabajo) {
@@ -381,6 +383,8 @@
                 }
             }
         });
+        
+        window.location.reload();
     }
     
     function modificarCliente(idCliente) {
@@ -414,6 +418,8 @@
                         });
                     
                     }
+                    
+                    window.location.reload();
         
     }
 </script>

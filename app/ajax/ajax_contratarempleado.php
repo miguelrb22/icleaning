@@ -22,6 +22,9 @@ include_once $path . '/icleaning/app/models/Trabajo.php';
 include_once $path . '/icleaning/app/controllers/EspecialidadController.php';
 include_once $path . '/icleaning/app/models/Especialidad.php';
 
+include_once $path . '/icleaning/app/controllers/OcupacionController.php';
+include_once $path . '/icleaning/app/models/Ocupacion.php';
+
 $empleadoController = new EmpleadoController();
 $empleado = $empleadoController->getEmpleado($idEmpleado);
 
@@ -36,6 +39,10 @@ $importeTotal = $especialidad->getCobroHora() * $traHoras;
 $trabajoController = new TrabajoController();
 $trabajo = new Trabajo(0, $idCliente, $idEmpleado, 3, 1, $importeTotal, 0, $calle, $traHoras, 50, 0, $fecha, "0000-00-00");
 $trabajoController->insertTrabajo($trabajo);
+
+$ocupacionController = new OcupacionController();
+$ocupacion = new Ocupacion(0, $idEmpleado, $fecha);
+$ocupacionController->insertOcupacion($ocupacion);
 
 
 

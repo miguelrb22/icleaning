@@ -10,6 +10,7 @@
     
     include_once $path . '/icleaning/app/models/Factura.php';
     include_once $path . '/icleaning/app/controllers/FacturaController.php';
+    
 
     $trabajoController = new TrabajoController();
     $trabajo = $trabajoController->getTrabajo($aux);

@@ -415,7 +415,10 @@ function contratarTrabajador(idTrabajador) {
                             dataType: "html",
                             success: function(data) {
                             }
-                        });                                                       
+                        });  
+                        
+        window.location.replace("http://localhost/icleaning/index.php");
+        window.location.reload();
                                                   
     }
 

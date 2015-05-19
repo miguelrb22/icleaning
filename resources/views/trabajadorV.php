@@ -517,7 +517,9 @@
                                 });
                             }
                         });
-                    }                                                         
+                    }   
+                    
+        window.location.reload();
                                                   
     }
     
